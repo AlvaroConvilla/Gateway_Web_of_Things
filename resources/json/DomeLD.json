@@ -1,0 +1,196 @@
+{
+  "@context": {
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
+    "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
+    "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
+    "base":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#base",
+    "schema":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#schema",
+    "writeable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#writeable",
+    "observable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#observable",
+    "form":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#form",
+    "href":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#href",
+    "mediaType":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#mediaType",
+    "address":"http://schema.org/address",
+    "Thing":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#Thing",
+    "saref":"http://uri.etsi.org/m2m/saref#",
+    "om":"http://www.ontology-of-units-of-measure.org/resource/om-2/",
+    "azimuth":"http://iot.linkeddata.es/def/adapters#Azimuth",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "product":"http://schema.org/Product#",
+    "place":"http://schema.org/Place#",
+    "geo": "http://schema.org/geo",
+    "latitude": {
+      "@id": "http://schema.org/latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "http://schema.org/longitude",
+      "@type": "xsd:float"
+    },
+    "image":{
+      "@id":"http://schema.org/image",
+      "@type": "@id"
+    },
+    "dir":"http://schema.org/"
+  },
+  "@type": ["Thing","product"],
+  "@id": "Dome",
+  "name": "OAFMS Dome",
+  "description": "Dome of the Francisco Manuel Sánchez Astronomical Observatory",
+  "base" : "http://pluton.datsi.fi.upm.es:8484/Dome",
+  "image": "http://mercurio.datsi.fi.upm.es/wp-content/uploads/2015/11/om.jpg",
+  "address":{
+    "@type": "dir:PostalAddress",
+    "dir:addressLocality": "Madrid",
+    "dir:addressRegion": "Boadilla del Monte",
+    "dir:postalCode": "28660",
+    "dir:streetAddress": "Ciruelos"
+  },
+  "geo": {
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
+  "tags":["WoT","Dome"],
+  "form":[{
+    "href":"http://pluton.datsi.fi.upm.es:8484/Dome/model"
+  }],
+  "wot-context:interaction":
+  [
+    {
+      "@id": "wot-context:OnOffState",
+      "@type": ["wot-td:Property","wot-context:OnOffState"],
+      "name": "State of the connection with the Dome.",
+      "description": "Shows if the gateway has a connection to the Dome",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/state",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id":"Azimuth",
+      "@type":["wot-td:Property","Azimuth"],
+      "name":"Azimuth.",
+      "description":"Angular measurement in a spherical coordinate system.",
+      "schema": {
+        "saref:UnitOfMeasure":"azimuth",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/azimuth",
+        "mediaType": "application/json"
+      }]},
+    {"@id":"Shutter",
+      "@type":["wot-td:Property","Shutter"],
+      "name":"Shutter.",
+      "description":"Shutter of the dome.",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/shutter",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"VoltageBattery",
+      "@type":["wot-td:Property","Voltage", "Battery"],
+      "name":"VoltageBattery.",
+      "description":"Voltage of the dome battery.",
+      "schema": {
+        "saref:UnitOfMeasure": "voltage",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/voltageBattery",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"CurrentAction",
+      "@type":["wot-td:Property","CurrentAction"],
+      "name":"CurrentAction.",
+      "description":"Current action of the dome.",
+      "schema": {
+        "saref:UnitOfMeasure": ["Running CCW","Running CW","Stopped","Parking","Going home","At home","Calibrating"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/currentAction",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"ChangeStateShutter",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends when it receives that the status of the shutter has changed",
+      "schema": {
+        "saref:UnitOfMeasure": ["OPEN","CLOSE"],
+        "@type":"xsd:string"
+      },
+      "name": "State Shutter Changed",
+      "property":"Shutter",
+      "form": [{
+        "href" : "/changeStateShutter",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"ChangeStateDome",
+      "@type": ["wot-td:Event"],
+      "description":"The event is sent when the connection or loss of connection with the dome is detected",
+      "schema": {
+        "saref:UnitOfMeasure": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "ChangeStateDome",
+      "property":"State",
+      "form": [{
+        "href" : "/changeStateDome",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"LowVoltageBattery",
+      "@type": ["wot-td:Event"],
+      "description":"The event is sent when low level of the dome's battery is detected",
+      "schema":  {
+        "saref:UnitOfMeasure": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "LowVoltageBattery",
+      "form": [{
+        "href" : "/lowVoltageBattery",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"StopRunningDome",
+      "@type": ["wot-td:Event"],
+      "description":"The event is sent when the dome is in motion.",
+      "schema":  {
+        "saref:UnitOfMeasure": ["Running"],
+        "@type":"xsd:string"
+      },
+      "name": "LowVoltageBattery",
+      "form": [{
+        "href" : "/stopRunningDome",
+        "mediaType": "application/json"
+      }]
+    }
+  ]
+}

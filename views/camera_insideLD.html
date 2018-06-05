@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WoT Controller</title>
+
+    <style class="anchorjs"></style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Documentation extras -->
+    <link href="/css/docs.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<!-- Docs page layout -->
+<div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+        {{#if req.uri}}
+        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/ <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
+
+        {{else}}
+        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a> /{{req.entityId}}</h1>
+        {{/if}}
+        <p>Details - Web Thing</p>
+    </div>
+</div>
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+
+                <h2>Result</h2>
+
+                <pre>{{req.result}}</pre>
+                <script type="application/ld+json">{
+  "@context": {
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
+    "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
+    "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
+    "base":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#base",
+    "schema":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#schema",
+    "writeable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#writeable",
+    "observable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#observable",
+    "form":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#form",
+    "href":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#href",
+    "mediaType":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#mediaType",
+    "address":"http://schema.org/address",
+    "Thing":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#Thing",
+    "saref":"http://uri.etsi.org/m2m/saref#",
+    "om":"http://www.ontology-of-units-of-measure.org/resource/om-2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "product":"http://schema.org/Product#",
+    "place":"http://schema.org/Place#",
+    "geo": "http://schema.org/geo",
+    "latitude": {
+      "@id": "http://schema.org/latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "http://schema.org/longitude",
+      "@type": "xsd:float"
+    },
+    "image":{
+      "@id":"http://schema.org/image",
+      "@type": "@id"
+    },
+    "dir":"http://schema.org/",
+    "time":"http://www.w3.org/2006/time#"
+  },
+  "@id": "Camera_inside",
+  "@type": ["Thing","Product"],
+  "name": "OAFMS Philips Camera Inside",
+  "description": "Philips Camera Inside of the Francisco Manuel Sánchez Astronomical Observatory",
+  "base" : "http://venus.datsi.fi.upm.es:8484/Camera_inside",
+  "image": "https://images.philips.com/is/image/PhilipsConsumer/PCVC840K_20-IMS-es_ES?wid=494&hei=435&$pnglarge$",
+  "address":{
+    "@type": "dir:PostalAddress",
+    "dir:addressLocality": "Madrid",
+    "dir:addressRegion": "Boadilla del Monte",
+    "dir:postalCode": "28660",
+    "dir:streetAddress": "Ciruelos"
+  },
+  "geo": {
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
+  "tags":["WoT","Camera", "Inside"],
+  "form":[{
+    "href":"http://venus.datsi.fi.upm.es:8484/Camera_inside/model"
+  }],
+  "wot-context:interaction":
+  [
+    {
+      "@id": "wot-context:OnOffState",
+      "@type": ["wot-td:Property","wot-context:OnOffState"],
+      "name": "State",
+      "description": "Shows if the gateway has a connection to the camera inside.",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/state",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id":"NewPhoto",
+      "@type": ["wot-td:Property"],
+      "name":"NewPhoto",
+      "description":"The property sends the last photo which has been taken by the camera inside.",
+      "schema":  {
+        "image": "philips.jpg",
+        "@type":"image"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/NewPhoto",
+        "mediaType": "application/json"
+      }]
+    }
+  ]
+}</script>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="container">
+
+        <p>Observatorio Astronómico Francisco Manuel Sánchez</p>
+
+    </div>
+</footer>
+
+
+</body></html>

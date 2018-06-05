@@ -1,0 +1,49 @@
+{
+  "id": "http://pluton.datsi.fi.upm.es:8484",
+  "name": "WoT Gateway",
+  "description": "Thing Gateway of the Francisco Manuel Sánchez Astronomical Observatory.",
+  "tags": [
+    "WoT",
+    "Gateway",
+    "Observatory",
+    "Astronomical",
+    "UPM"
+  ],
+  "customFields": {
+    "hostname": "pluton.datsi.fi.upm.es",
+    "port": "8484",
+    "secure": "false"
+  },
+  "links": {
+      "WeatherStation": {
+        "link": "/WeatherStation",
+        "name": "WeatherStation",
+        "description": "Web of Thing WeatherStation"
+      },
+      "Dome":{
+        "link": "/Dome",
+        "name": "Dome",
+        "description": "Web of Thing Dome"
+      },
+      "Camera":{
+        "link": "/Camera",
+        "name": "Camera",
+        "description": "Web of Thing Camera"
+      },
+      "Mount":{
+        "link": "/Mount",
+        "name": "Mount",
+        "description": "Web of Thing Mount"
+      },
+    "CameraInside":{
+      "link": "/Camera_inside",
+      "name": "Camera Inside",
+      "description": "Web of Thing Camera Inside"
+    },
+    "CameraOutside":{
+      "link": "/Camera_outside",
+      "name": "Camera_outside",
+      "description": "Web of Thing Camera Outside"
+    }
+      }
+    }

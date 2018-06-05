@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ex 2.1 - Polling Temperature</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Current temperature</h1>
+
+<h2 id='temp'></h2>
+<script>
+    $(document).ready(
+            function doPoll() {
+                // this is insecure, a token should never
+                // be in clear text on client side code!
+                var token = 'cKXRTaRylYWQiF3MICaKndG4WJMcVLFz';
+                var local = true;
+                var uri = '/properties/temperature';
+
+                var url;
+                if (local) {
+                    url = "https://localhost:8484"
+                } else {
+                    url = "https://raspberrypi.local"
+                }
+                url = url + uri + '?token=' + token;
+
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    headers: {Accept : "application/json"},
+                    success: function( data ){
+                        console.log(data);
+                        $('#temp').html(data[0].t + ' C');
+                        setTimeout(doPoll, 5000);
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( errorThrown );
+                    }
+                });
+            });
+</script>
+</body>
+</html>

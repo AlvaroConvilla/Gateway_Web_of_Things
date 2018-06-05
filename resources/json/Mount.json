@@ -1,0 +1,209 @@
+{
+  "id":"http://pluton.datsi.fi.upm.es:8484",
+  "name": "WoT Mount",
+  "description": "Thing Mount. Observatorio Astronómico Francisco Manuel Sánchez.",
+  "tags":[ "WoT", "Mount", "Telescope"],
+  "customFields":{
+    "hostname":"pluton.datsi.fi.upm.es",
+    "port":"8484",
+    "secure":"false",
+    "dataArraySize":30
+  },
+  "links":{
+    "product":{
+      "link":"https://www.arduino.cc",
+      "title":"Product this Web Thing is based on"
+    },
+    "properties": {
+      "link": "/properties",
+      "title":"List of Properties",
+      "resources":{
+        "state":{
+          "name": "State",
+          "description":"It shows if there is connection to the mount of the telescope.",
+          "values": {
+            "st": {
+              "name": "State",
+              "description": "It shows if there is connection to the mount of the telescope.",
+              "unit": {
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["state","connection","public"]
+        },
+        "Azimuth":{
+          "name": "Azimuth",
+          "description":"Angular measurement in a spherical coordinate system.",
+          "values": {
+            "st": {
+              "name": "Azimuth",
+              "description": "Angular measurement in a spherical coordinate system.",
+              "unit": "degree_celsius",
+              "type":"float"
+            }
+          },
+          "tags":["Position","public","Azimuth"]
+        },
+        "Altitude":{
+          "name": "Altitude",
+          "description":"Shows the current Altitude of the telescope.",
+          "values": {
+            "st": {
+              "name": "Altitude",
+              "description": "Shows the current Altitude of the telescope.",
+              "unit": "altitude",
+              "type":"float"
+            }
+          },
+          "tags":["Position","public","Altitude"]
+        },
+        "Motion":{
+          "name": "Motion",
+          "description":"Shows the current movement of the mount.",
+          "values": {
+            "st": {
+              "name": "Motion",
+              "description": "Shows the current movement of the mount.",
+              "unit": {
+                "Parked": "Parked",
+                "Slewing": "Slewing",
+                "Tracking":"Tracking"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Motion","public"]
+        }
+      }
+    },
+    "actions":{
+      "link":"/actions",
+      "title":"Actions of the Web Thing",
+      "resources":{
+        "Goto":{
+          "name": "Goto",
+          "description":"Move the mount to the indicated position.",
+          "values": {
+            "st": {
+              "name": "Goto",
+              "description": "Move the mount to the indicated position.",
+              "unit": {
+                "RA": "Right Ascension",
+                "DEC": "Declination"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Goto","RADEC","public"]
+        },
+        "setTracking":{
+          "name": "setTracking",
+          "description":"Active the mode setTracking",
+          "values": {
+            "st": {
+              "name": "setTracking",
+              "description": "Active the mode setTracking",
+              "unit": {
+                "speed": "meter per second"
+              },
+              "type":"float"
+            }
+          },
+          "tags":["setTracking","public"]
+        },
+        "GoPark":{
+          "name": "GoPark",
+          "description":"Active the mode GoPark",
+          "values": {
+            "st": {
+              "name": "GoPark",
+              "description": "Active the mode GoPark",
+              "unit": {
+                "action": "GoPark"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["GoPark","public"]
+        },
+        "GoHome":{
+          "name": "GoHome",
+          "description":"Active the mode GoHome",
+          "values": {
+            "st": {
+              "name": "GoHome",
+              "description": "Active the mode GoHome",
+              "unit": {
+                "action": "GoHome"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["GoHome","public"]
+        },
+        "GoNorth":{
+          "name": "GoNorth",
+          "description":"Active the mode GoNorth",
+          "values": {
+            "st": {
+              "name": "GoNorth",
+              "description": "Active the mode GoNorth",
+              "unit": {
+                "action": "GoNorth"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["GoNorth","public"]
+        },
+        "Stop":{
+          "name": "Stop",
+          "description":"Active the mode Stop",
+          "values": {
+            "st": {
+              "name": "Stop",
+              "description": "Active the mode Stop",
+              "unit": {
+                "action": "Stop"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Stop","public"]
+        }
+      }
+    },
+    "events":{
+      "link":"/events",
+      "title":"Events of the Web Thing",
+      "resources":{
+        "ChangeMotion":{
+          "name":"ChangeMotion",
+          "description":"Warn if there is a change in the movement of the mount.",
+          "values": {
+            "ht":{
+              "unit":{
+                "Parked": "Parked",
+                "Slewing": "Slewing",
+                "Tracking":"Tracking"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["ChangeMotion","Change","Motion","public"]
+        }
+      }
+    },
+    "type":{
+      "link":"http://venus.datsi.fi.upm.es:8484/model",
+      "title":"Instance type of the mount"
+    },
+    "ui":{
+      "link":"/",
+      "title":"UserInterface"
+    }
+  }
+}

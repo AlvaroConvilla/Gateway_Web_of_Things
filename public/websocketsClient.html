@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script>
+    function subscribeToWs(uri, msg) {
+        // this is insecure, a token should never
+        // be in clear text on client side code!
+        var token = 'cKXRTaRylYWQiF3MICaKndG4WJMcVLFz';
+        // true = on computer, false = on Pi
+        var local = true;
+        var url;
+
+        if (local) {
+            url = "wss://localhost:8484"
+        } else {
+            url = "wss://raspberrypi.local:8484"
+        }
+
+        url = url + uri + '?token=' + token;
+        var socket = new WebSocket(url);
+
+        socket.onmessage = function (event) {
+            console.log(event.data);
+        };
+
+        socket.onerror = function (error) {
+            console.log('An error occurred while trying to connect to a Websocket!');
+            console.log(error);
+        };
+
+        socket.onopen = function (event) {
+            if (msg) socket.send(msg);
+        };
+    }
+    subscribeToWs('/properties/humidity');
+    subscribeToWs('/actions/ledState');
+</script>
+</body>
+</html>

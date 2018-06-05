@@ -1,0 +1,76 @@
+{
+  "id":"http://pluton.datsi.fi.upm.es:8484",
+  "name": "WoT Camera Inside",
+  "description": "Thing Camera. Observatorio Astronómico Francisco Manuel Sánchez.",
+  "tags":[ "WoT", "Camera", "Inside"],
+  "customFields":{
+    "hostname":"pluton.datsi.fi.upm.es",
+    "port":"8484",
+    "secure":"false",
+    "dataArraySize":30
+  },
+  "links":{
+    "product":{
+      "link":"https://www.arduino.cc",
+      "title":"Product this Web Thing is based on"
+    },
+    "properties": {
+      "link": "/properties",
+      "title":"List of Properties",
+      "resources":{
+        "state":{
+          "name": "State",
+          "description":"Shows if the gateway has a connection to the camera inside.",
+          "values": {
+            "st": {
+              "name": "State",
+              "description": "Shows if the gateway has a connection to the camera inside.",
+              "unit": {
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["state","connection","public"]
+        },
+        "NewPhoto":{
+          "name": "NewPhoto",
+          "description":"The property sends the last photo which has been taken by the camera inside.",
+          "values": {
+            "ph": {
+              "name": "NewPhoto",
+              "description": "The event sends the last photo which has been taken by the camera inside.",
+              "unit": {
+                "file_name": "philips.jpg",
+                "photo": "image",
+                "format": "JPG"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["photo","image","picture"]
+        }
+      }
+    },
+    "actions":{
+      "link":"/actions",
+      "title":"Actions of the Web Thing",
+      "resources":{}
+    },
+    "events":{
+      "link":"/events",
+      "title":"Events of the Web Thing",
+      "resources":{
+      }
+    },
+    "type":{
+      "link":"http://venus.datsi.fi.upm.es:8484/model",
+      "title":"Instance type of the Camera Inside"
+    },
+    "ui":{
+      "link":"/",
+      "title":"UserInterface"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "id":"http://pluton.datsi.fi.upm.es:8484",
+  "name": "WoT Dome",
+  "description": "Dome of the Francisco Manuel Sánchez Astronomical Observatory",
+  "tags":[ "WoT", "Dome"],
+  "customFields":{
+    "hostname":"pluton.datsi.fi.upm.es",
+    "port":"8484",
+    "secure":"false",
+    "dataArraySize":30
+  },
+  "links":{
+    "product":{
+      "link":"https://www.arduino.cc",
+      "title":"Product this Web Thing is based on"
+    },
+    "properties": {
+      "link": "/properties",
+      "title":"List of Properties",
+      "resources":{
+        "state":{
+          "name": "State",
+          "description":"Shows if the gateway has a connection to the Dome.",
+          "values": {
+            "st": {
+              "name": "State",
+              "description": "Shows if the gateway has a connection to the Dome.",
+              "unit": {
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["state","connection","public"]
+        },
+        "Azimuth":{
+          "name":"Azimuth",
+          "description":"Angular measurement in a spherical coordinate system.",
+          "values": {
+            "pst":{
+              "name": "Azimuth",
+              "description": "Describe the position of the dome.",
+              "unit": "Celsius degree",
+              "type": "float"
+              }
+            },
+          "tags":["position","steps","public"]
+        },
+        "Shutter":{
+          "name":"Shutter",
+          "description":"Shutter of the dome.",
+          "values": {
+            "sht":{
+              "name": "Shutter",
+              "description": "Describe the state of the Shutter.",
+              "unit": {
+                "OPEN": "OPEN gates",
+                "CLOSE": "Close gates"
+              },
+              "type": "string"
+            }
+          },
+          "tags":["Shutter","open","close","public"]
+        },
+        "VoltageBattery":{
+          "name":"VoltageBattery",
+          "description":"Voltage of the dome battery.",
+          "values": {
+            "vltg":{
+              "name": "VoltageBattery",
+              "description": "Voltage of the dome battery.",
+              "unit": "voltage",
+              "type": "float"
+            }
+          },
+          "tags":["Voltage","Battery","public"]
+        },
+        "CurrentAction":{
+          "name":"CurrentAction",
+          "description":"Current action of the dome.",
+          "values": {
+            "cact":{
+              "name": "CurrentAction",
+              "description": "Describe the current action of the dome.",
+              "unit": {
+                "Running CCW": "Running CCW",
+                "Running CW": "Running CW",
+                "Stopped": "Stopped",
+                "Parking": "Parking",
+                "Going home": "Going home",
+                "At home": "At home",
+                "Calibrating": "Calibrating"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Action","current","public"]
+        }
+      }
+    },
+    "actions":{
+      "link":"/actions",
+      "title":"Actions of the Web Thing",
+      "resources":{}
+    },
+    "events":{
+      "link":"/events",
+      "title":"Events of the Web Thing",
+      "resources":{
+        "ChangeStateShutter":{
+          "name":"ChangeStateShutter",
+          "description":"The event sends when it receives that the status of the shutter has changed",
+          "values": {
+            "chgsht":{
+              "unit":{
+                "OPEN": "Shutter opened",
+                "CLOSE": "Shutter closed"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Shutter","Open","Close","public"]
+        },
+        "ChangeStateDome":{
+          "name":"ChangeStateDome",
+          "description":"The event is sent when the connection or loss of connection with the dome is detected",
+          "values": {
+            "chgsht":{
+              "unit":{
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Dome","ON","OFF","public"]
+        },
+        "LowVoltageBattery":{
+          "name":"LowVoltageBattery",
+          "description":"The event is sent when low level of the dome's battery is detected",
+          "values": {
+            "chgsht":{
+              "unit":{
+                "ON": "Batery low",
+                "OFF": "Batery high"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Battery","Alarm","public"]
+        },
+        "StopRunningDome":{
+          "name":"StopRunningDome",
+          "description":"The event is sent when the dome is in motion.",
+          "values": {
+            "stprun":{
+              "unit":{
+                "Running": "The dome is in motion"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Motion","Alarm","public"]
+        }
+      }
+    },
+    "type":{
+      "link":"http://venus.datsi.fi.upm.es:8484/model",
+      "title":"Instance type of the Dome"
+    },
+    "ui":{
+      "link":"/",
+      "title":"UserInterface"
+    }
+  }
+}

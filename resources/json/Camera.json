@@ -1,0 +1,151 @@
+{
+  "id":"http://pluton.datsi.fi.upm.es:8484",
+  "name": "WoT Camera DMK",
+  "description": "Camera DMK of the Francisco Manuel Sánchez Astronomical Observatory",
+  "tags":[ "WoT", "Camera","DMK"],
+  "customFields":{
+    "hostname":"pluton.datsi.fi.upm.es",
+    "port":"8484",
+    "secure":"false",
+    "dataArraySize":30
+  },
+  "links":{
+    "product":{
+      "link":"https://www.arduino.cc",
+      "title":"Product this Web Thing is based on"
+    },
+    "properties": {
+      "link": "/properties",
+      "title":"List of Properties",
+      "resources":{
+        "state":{
+          "name": "State",
+          "description":"Shows if the gateway has a connection to the camera DMK.",
+          "values": {
+            "st": {
+              "name": "State",
+              "description": "Shows if the gateway has a connection to the camera DMK.",
+              "unit": {
+                "ON": "With connection",
+                "OFF": "Without connection."
+              },
+              "type":"string"
+            }
+          },
+          "tags":["state","connection","public"]
+        },
+        "ExposureTime":{
+          "name": "ExposureTime",
+          "description":"Exposure time for each of the photos.",
+          "values": {
+            "st": {
+              "name": "ExposureTime",
+              "description": "Exposure time for each of the photos.",
+              "unit": {
+                "Hour": "nonNegativeInteger",
+                "Minute": "nonNegativeInteger",
+                "Second": "nonNegativeInteger"
+              },
+              "type":"nonNegativeInteger"
+            }
+          },
+          "tags":["Exposure","Time","public"]
+        },
+        "Gamma":{
+          "name": "Gamma",
+          "description":"The gamma correction, as it is called a specific non-linear operation that is used to encode and decode luminance or tristimulus values in video or image systems.",
+          "values": {
+            "st": {
+              "name": "Gamma",
+              "description": "The gamma correction, as it is called a specific non-linear operation that is used to encode and decode luminance or tristimulus values in video or image systems.",
+              "unit": "Gamma",
+              "type":"nonNegativeInteger"
+            }
+          },
+          "tags":["Gamma","public"]
+        },
+        "Brightness":{
+          "name": "Brightness",
+          "description":"Brightness is a setting that works mainly on halftones, maintaining the lighting of high lights.",
+          "values": {
+            "st": {
+              "name": "Brightness",
+              "description": "Brightness is a setting that works mainly on halftones, maintaining the lighting of high lights.",
+              "unit": "Brightness",
+              "type":"float"
+            }
+          },
+          "tags":["Brightness","public"]
+        },
+        "NumberOfShoots":{
+          "name": "NumberOfShoots",
+          "description":"Number of photos taken by the camera DMK",
+          "values": {
+            "st": {
+              "name": "NumberOfShoots",
+              "description": "Number of photos taken by the camera DMK",
+              "unit": "NumberOfShoots",
+              "type":"float"
+            }
+          },
+          "tags":["NumberOfShoots","public"]
+        },
+        "Photo":{
+          "name": "Photo",
+          "description":"Get the photo through his ID.",
+          "values": {
+            "st": {
+              "name": "Photo",
+              "description": "Get the photo through his ID.",
+              "unit": "photoX.jpg",
+              "type":"image"
+            }
+          },
+          "tags":["NumberOfShoots","public"]
+        }
+      }
+    },
+    "actions":{
+      "link":"/actions",
+      "title":"Actions of the Web Thing",
+      "resources":{
+        "TakePhoto":{
+          "name": "TakePhoto",
+          "description":"After doing the Action, photographs are received by events.",
+          "values": {
+            "st": {
+              "unit": "TakePhotos",
+              "type":"string"
+            }
+          },
+          "tags":["TakePhoto","public"]
+        }
+      }
+    },
+    "events":{
+      "link":"/events",
+      "title":"Events of the Web Thing",
+      "resources":{
+        "NewPhoto":{
+          "name":"NewPhoto",
+          "description":"The event sends the ID of the last photo which has been taken by the camera.",
+          "values": {
+            "nwph":{
+              "unit": "id_photo",
+              "type":"decimal"
+            }
+          },
+          "tags":["NewPhoto", "public"]
+        }
+      }
+    },
+    "type":{
+      "link":"http://venus.datsi.fi.upm.es:8484/model",
+      "title":"Instance type of the Camera DMK"
+    },
+    "ui":{
+      "link":"/",
+      "title":"UserInterface"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WoT Controller</title>
+
+    <style class="anchorjs"></style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Documentation extras -->
+    <link href="/css/docs.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Docs page layout -->
+<div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+        <h1><a href="/{{req.qp}}">{{req.rooturl}} </a> <a href="/{{req.uri}}"> /{{req.uri}}</a><a href="/{{req.uri}}/actions"> /actions</a>  /{{req.entityId}}</h1>
+        <p>Action Details</p>
+    </div>
+</div>
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-9" role="main">
+            <div class="bs-docs-section">
+
+                {{#if req.actionModel.name}}
+                <h2>{{req.actionModel.name}}</h2>
+                {{else}}
+                <h2>{{req.entityId}}</h2>
+                {{/if}}
+
+                <p>{{req.actionModel.description}}</p>
+
+                <p><b>Tags:</b> {{req.actionModel.tags}}</p>
+
+                <h3>Values</h3>
+                {{#each req.actionModel.values}}
+                <hr>
+                <h4>["{{@key}}"] - {{this.name}}</h4>
+                <p><em>{{this.description}}</em></p>
+                <p>type: {{this.type}}</p>
+                <h3>Unit</h3>
+                {{#if "this.unit.length == '1'"}}
+                <p>unit: {{this.unit}}</p>
+                {{/if}}
+                {{#if "this.unit.length > '1'"}}
+                {{#each this.unit}}
+                <p>unit: ["{{@key}}"] - {{this}}</p>
+                {{/each}}
+                {{/if}}
+
+                {{/each}}
+
+
+                <hr>
+                <h3>Data:</h3>
+                {{#each req.actionModel.data}}
+                <p>["{{@key}}"] - {{this}}</p>
+                {{/each}}
+
+                <img {{req.image}};base64, />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="container">
+
+        <p>Observatorio Astronómico Francisco Manuel Sánchez</p>
+
+    </div>
+</footer>
+
+
+</body></html>

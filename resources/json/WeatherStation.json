@@ -1,0 +1,202 @@
+{
+"id":"http://pluton.datsi.fi.upm.es:8484",
+"name": "WoT WeatherStation",
+"description": "Thing WeatherStation of the Francisco Manuel Sánchez Astronomical Observatory.",
+"tags":[ "WoT", "WeatherStation", "Arduino", "Weather"],
+"customFields":{
+  "hostname":"pluton.datsi.fi.upm.es",
+  "port":"8484",
+  "secure":"false",
+  "dataArraySize":30
+},
+"links":{
+  "product":{
+    "link":"https://www.arduino.cc",
+    "title":"Product this Web Thing is based on"
+  },
+  "properties": {
+    "link": "/properties",
+    "title":"List of Properties",
+    "resources":{
+      "state":{
+        "name": "State",
+        "description":"Shows if the gateway has a connection to the weatherStation.",
+        "values": {
+          "st": {
+            "name": "State",
+            "description": "Shows if the gateway has a connection to the weatherStation.",
+            "unit": {
+              "ON": "With Connection",
+              "OFF": "Without Connection"
+            },
+            "type":"string"
+          }
+        },
+        "tags":["state","connection","public"]
+      },
+      "temperature": {
+        "name": "Temperature sensor",
+        "description": "Ambient temperature sensor. The measured temperature is shown in degrees Celsius.",
+        "values": {
+	  "t":{
+            "name":"Temperature sensor",
+	    "description":"Ambient temperature sensor. The measured temperature is shown in degrees Celsius.",
+	    "unit":"degree_celsius",
+	    "type":"float"
+          }
+        },
+        "tags":["sensor", "public"]
+    },
+    "humidity": {
+      "name": "Humidity sensor",
+      "description": "Ambient humidity sensor. The measured humidity is shown in percentage.",
+      "values": {
+	"h":{
+	  "name":"Humidity",
+ 	  "description":"Ambient humidity sensor. The measured humidity is shown in percentage.",
+ 	  "unit":"%",
+          "type":"float"
+        }
+      },
+      "tags":["sensor", "public"]
+    },
+    "pressure": {
+      "name": "Barometer",
+      "description": "Atmospheric pressure sensor. The measured atmospheric pressure is shown in hectopascal.",
+      "values":{
+	"p":{
+	  "name":"Pressure",
+	  "description":"HectoPascals of pressure",
+	  "unit":"hectopascal",
+          "type":"float"
+        }
+      },
+      "tags":["sensor", "public"]
+    },
+    "rainfall": {
+      "name": "Rain sensor",
+      "description": "It takes values when it comes into contact with water. Rainfall in millititers.",
+      "values":{
+	"r":{
+	  "name":"Rain sensor.",
+	  "description":"It takes values when it comes into contact with water. Rainfall in millititers.",
+	  "unit":"milliliter",
+	  "type":"float"
+	}
+      },
+      "tags":["sensor", "public"] 
+    },
+    "windSpeed": {
+      "name": "Anemometer",
+      "description": "Calculate the wind speed. The unit of measurement is meters per second.",
+      "values":{
+	"ws":{
+	  "name":"WindSpeed",
+	  "description":"Speed of the wind",
+	  "unit":"meter per second",
+	  "type":"float"
+ 	}
+      },
+      "tags":["sensor", "public"]
+    },
+    "windDirection" : {
+      "name": "weather-vane",
+      "description": "Calculate the direction of the wind.",
+      "values":{
+	"wd":{
+	  "name":"WindDirection",
+	  "description":"Calculate the direction of the wind.",
+	  "unit": {
+      	    "N": "North",
+	    "NE": "Northeast",
+	    "E":"East",
+	    "SE":"Southeast",
+	    "S":"South",
+	    "SW":"Southwest",
+	    "W":"West",
+	    "NW":"Northwest"
+          },
+	  "type":"char"
+	}
+      },
+      "tags":["sensor", "public"]
+    }
+  }
+},
+"actions":{
+  "link":"/actions",
+  "title":"Actions of the Web Thing",
+  "resources":{}
+},
+"events":{
+  "link":"/events",
+  "title":"Events of the Web Thing",
+  "resources":{
+    "HighTemperature":{
+      "name":"HighTemperature",
+      "description":"The event sends ON when high temperatures are detected that could jeopardize the integrity of the Observatory's components. temperature => 40ºCelsius",
+      "values": {
+	"ht":{
+	  "unit":{
+        "ON": "Alarm on.",
+        "OFF": "Alarm off."
+      },
+	  "type":"string"
+	}
+      },
+      "tags":["sensor", "public"]
+    },
+    "LowTemperature":{
+      "name":"LowTemperature",
+      "description":"The event sends ON when low temperatures are detected that could jeopardize the integrity of the Observatory's components. temperature = <0ºCelsius",
+      "values": {
+        "ht":{
+          "unit":{
+            "ON": "Alarm on.",
+            "OFF": "Alarm off."
+          },
+          "type":"string"
+        }
+      },
+      "tags":["sensor", "public"]
+    },
+    "Rain":{
+      "name":"Rain",
+      "description":"The event sends ON when rain is detected and the Observatory should be closed.",
+      "values": {
+        "rn":{
+          "unit":{
+            "ON": "Alarm on.",
+            "OFF": "Alarma off."
+          },
+          "type":"float"
+        }
+      },
+      "tags":["sensor", "public"]
+    },
+    "StrongWind":{
+      "name":"StrongWind",
+      "description":"The event sends ON when strong wind is detected and the Observatory should be closed.",
+      "values": {
+        "sw":{
+          "unit":{
+            "ON": "Alarm on.",
+            "OFF": "Alarm off."
+          },
+          "type":"float"
+        }
+      },
+      "tags":["sensor", "public"]
+    }
+  }
+},
+"type":{
+  "link":"http://venus.datsi.fi.upm.es:8484/model",
+  "title":"Instance type of the WeatherStation"
+},
+"ui":{
+  "link":"/",
+  "title":"UserInterface"
+}
+}
+}

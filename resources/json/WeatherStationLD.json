@@ -1,0 +1,228 @@
+{
+  "@context": {
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
+    "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
+    "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
+    "base":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#base",
+    "schema":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#schema",
+    "writeable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#writeable",
+    "observable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#observable",
+    "form":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#form",
+    "href":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#href",
+    "mediaType":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#mediaType",
+    "address":"http://schema.org/address",
+    "Thing":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#Thing",
+    "saref":"http://uri.etsi.org/m2m/saref#",
+    "om":"http://www.ontology-of-units-of-measure.org/resource/om-2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "product":"http://schema.org/Product#",
+    "place":"http://schema.org/Place#",
+    "geo": "http://schema.org/geo",
+    "latitude": {
+      "@id": "http://schema.org/latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "http://schema.org/longitude",
+      "@type": "xsd:float"
+    },
+    "image":{
+      "@id":"http://schema.org/image",
+      "@type": "@id"
+    },
+    "dir":"http://schema.org/"
+  },
+  "@id": "WeatherStation",
+  "@type": ["wot-td:Thing","product"],
+  "name": "OAFMS WeatherStation",
+  "description": "WeatherStation of the Francisco Manuel Sánchez Astronomical Observatory",
+  "base" : "http://pluton.datsi.fi.upm.es:8484/WeatherStation",
+  "image": "http://tycononline.com/assets/images/solar%20transmitter.JPG",
+  "address":{
+    "@type": "dir:PostalAddress",
+    "dir:addressLocality": "Madrid",
+    "dir:addressRegion": "Boadilla del Monte",
+    "dir:postalCode": "28660",
+    "dir:streetAddress": "Ciruelos"
+  },
+  "geo": {
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
+  "tags":["WoT","WeatherStation", "Arduino", "Weather"],
+  "form":[{
+    "href":"http://pluton.datsi.fi.upm.es:8484/WeatherStation/model"
+  }],
+  "wot-context:interaction":
+  [
+    {
+      "@id":"wot-context:OnOffState",
+      "@type": ["wot-td:Property","wot-context:OnOffState"],
+      "name": "State of the connection with the weather station.",
+      "description": "Shows if the gateway has a connection to the weatherStation.",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/state",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id":"wot-context:Temperature",
+      "@type":["wot-td:Property","wot-context:Temperature"],
+      "name":"Temperature sensor.",
+      "description":"Ambient temperature sensor. The measured temperature is shown in degrees Celsius.",
+      "schema": {
+        "saref:TemperatureUnit":"om:degree_Celsius",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/temperature",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"wot-context:Humidity",
+      "@type":["wot-td:Property","wot-context:Humidity"],
+      "name":"Humidity sensor",
+      "description":"Ambient humidity sensor. The measured humidity is shown in percentage.",
+      "schema": {
+        "saref:UnitOfMeasure":"%",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/humidity",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"wot-context:Pressure",
+      "@type":["wot-td:Property","wot-context:Pressure"],
+      "name":"Barometer",
+      "description":"Atmospheric pressure sensor. The measured atmospheric pressure is shown in hectopascal.",
+      "schema": {
+        "saref:PressureUnit":"om:hectopascal",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/pressure",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"RainFall",
+      "@type":["wot-td:Property","RainFall"],
+      "name":"Rain sensor.",
+      "description":"It takes values when it comes into contact with water.",
+      "schema": {
+        "saref:UnitOfMeasure":"om:milliliter",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/rainfall",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"WindSpeed",
+      "@type":["wot-td:Property","WindSpeed","om:Speed"],
+      "name":"Anemometer",
+      "description":"Calculate the wind speed. The unit of measurement is meters per second.",
+      "schema": {
+        "saref:UnitOfMeasure":"om:meter per seconde",
+        "@type": "xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/windSpeed",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"WindDirection",
+      "@type":["wot-td:Property","WindDirection"],
+      "name":"weather-vane",
+      "description":"Calculate the direction of the wind.",
+      "schema": {
+        "saref:UnitOfMeasure": ["N","NE","E","SE","S","SW","W","NW"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [{
+        "href" : "/windDirection",
+        "mediaType": "application/json"
+      }]},
+    {
+      "@id":"HighTemperature",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends ON when high temperatures are detected that could jeopardize the integrity of the Observatory's components. temperature => 40ºCelsius",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "High Temperature",
+      "wot-td:property":"Temperature",
+      "form": [{
+        "href" : "/highTemp",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"LowTemperature",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends ON when low temperatures are detected that could jeopardize the integrity of the Observatory's components. temperature = <0ºCelsius",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "High Temperature",
+      "wot-td:property":"Temperature",
+      "form": [{
+        "href" : "/lowTemp",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"Rain",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends ON when rain is detected and the Observatory should be closed.",
+      "schema":  {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "Rain",
+      "wot-td:property":"RainFall",
+      "form": [{
+        "href" : "/rain",
+        "mediaType": "application/json"
+      }]
+    },
+    {
+      "@id":"StrongWind",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends ON when strong wind is detected and the Observatory should be closed.",
+      "schema":  {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "StrongWind",
+      "wot-td:property":"WindSpeed",
+      "form": [{
+        "href" : "/strongWind",
+        "mediaType": "application/json"
+      }]
+    }
+  ]
+}

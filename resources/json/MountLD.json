@@ -1,0 +1,233 @@
+{  "@context": {
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
+    "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
+    "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
+    "base":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#base",
+    "schema":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#schema",
+    "writeable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#writeable",
+    "observable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#observable",
+    "form":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#form",
+    "href":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#href",
+    "mediaType":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#mediaType",
+    "address":"http://schema.org/address",
+    "Thing":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#Thing",
+    "saref":"http://uri.etsi.org/m2m/saref#",
+    "om":"http://www.ontology-of-units-of-measure.org/resource/om-2/",
+    "azimuth":"http://iot.linkeddata.es/def/adapters#Azimuth",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "product":"http://schema.org/Product#",
+    "place":"http://schema.org/Place#",
+    "geo": "http://schema.org/geo",
+    "latitude": {
+      "@id": "http://schema.org/latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "http://schema.org/longitude",
+      "@type": "xsd:float"
+    },
+    "image":{
+      "@id":"http://schema.org/image",
+      "@type": "@id"
+    },
+    "dir":"http://schema.org/"
+  },
+
+  "@type": ["Thing","product"],
+  "@id": "Mount",
+  "name": "OAFMS Mount",
+  "description": "Mount of the Francisco Manuel Sánchez Astronomical Observatory",
+  "base" : "http://pluton.datsi.fi.upm.es:8484/Mount",
+  "image": "https://nimax-img.de/Produktbilder/zoom/50156_1/Meade-Telescopio-ACF-SC-254-2500-UHTC-LX200-EQ-6-Pro-SynScan-GoTo.jpg",
+  "address":{
+    "@type": "dir:PostalAddress",
+    "dir:addressLocality": "Madrid",
+    "dir:addressRegion": "Boadilla del Monte",
+    "dir:postalCode": "28660",
+    "dir:streetAddress": "Ciruelos"
+  },
+  "geo": {
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
+  "tags":["WoT","Mount", "Telescope"],
+  "form":[{
+    "href":"http://pluton.datsi.fi.upm.es:8484/Camera/model"
+  }],
+  "wot-context:interaction":
+  [
+    {
+      "@id": "State",
+      "@type": ["wot-td:Property","wot-context:OnOffState"],
+      "name": "Status of the connection with the telescope mount.",
+      "description": "It shows if there is connection to the mount of the telescope.",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/state",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Azimuth",
+      "@type": ["wot-td:Property","Position","Azimuth"],
+      "name": "Azimuth",
+      "description": "Angular measurement in a spherical coordinate system.",
+      "schema": {
+        "saref:UnitOfMeasure": "azimuth",
+        "@type":"xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/azimuth",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Altitude",
+      "@type": ["wot-td:Property","Position","Altitude"],
+      "name": "Altitude",
+      "description": "Shows the current Altitude of the telescope.",
+      "schema": {
+        "saref:UnitOfMeasure": "altitude",
+        "@type":"xsd:float"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/altitude",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Motion",
+      "@type": ["wot-td:Property","wot-context:Motion"],
+      "name": "Motion",
+      "description": "Shows the current movement of the mount.",
+      "schema": {
+        "saref:UnitOfMeasure": ["Parked","Slewing","Tracking"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/motion",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "GoTo"],
+      "name": "Goto",
+      "inputSchema": {
+        "saref:UnitOfMeasure": "RA",
+        "saref:UnitOfMeasure": "DEC",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/goto",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "setTracking"],
+      "name": "setTracking",
+      "inputSchema": {
+        "om:Speed":"om:meter per seconde",
+        "@type": "xsd:float"
+      },
+      "form": [
+        {
+          "href": "/setTracking",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "GoPark"],
+      "name": "GoPark",
+      "inputSchema": {
+        "saref:UnitOfMeasure": "GoPark",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/goPark",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "GoHome"],
+      "name": "GoHome",
+      "inputSchema": {
+        "saref:UnitOfMeasure": "GoHome",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/goHome",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "GoNorth"],
+      "name": "GoNorth",
+      "inputSchema": {
+        "saref:UnitOfMeasure": "GoNorth",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/goNorth",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "Stop"],
+      "name": "Stop",
+      "inputSchema": {
+        "saref:UnitOfMeasure": "Stop",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/stop",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id":"ChangeMotion",
+      "@type": ["wot-td:Event"],
+      "description":"Warn if there is a change in the movement of the mount.",
+      "schema": {
+        "saref:UnitOfMeasure": ["Parked","Slewing","Tracking"],
+        "@type":"xsd:string"
+      },
+      "name": "ChangeMotion",
+      "wot-td:property":"Motion",
+      "form": [{
+        "href" : "/changeMotion",
+        "mediaType": "application/json"
+      }]
+    }
+  ]
+}

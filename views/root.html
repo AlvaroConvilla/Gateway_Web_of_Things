@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Web Thing</title>
+
+  <style class="anchorjs"></style>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Documentation extras -->
+  <link href="/css/docs.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+    <!-- Docs page layout -->
+	<div class="bs-docs-header" id="content" tabindex="-1">
+		<div class="container">
+			<h1><a href="/{{req.qp}}">{{req.rooturl}}</a> /{{req.uri}}</h1>
+			<p>Web Thing Root Resource</p>
+		</div>
+	</div>
+
+	<div class="container bs-docs-container">
+		<div class="row">
+			<div class="col-md-9" role="main">
+				<div class="bs-docs-section" vocab="http://model.webofthings.org/" typeof="WebThing">
+
+
+					<h2><strong>Metadata</strong></h2>
+						
+					<p><strong>Name:</strong> <span property="name">{{req.result.name}}</span></p>
+					<p><strong>Description:</strong> <span property="description">{{req.result.description}}</span></p>
+					<p><strong>Base:</strong> <span property="base">{{req.result.base}}</span></p>
+					
+					<p><strong>Location:</strong></p>					
+						{{#each req.result.address}}
+							<p>{{@key}} = {{this}}</p>
+						{{/each}}
+					
+					<p><strong>Geo:</strong></p>
+						{{#each req.result.geo}}
+							<p>{{@key}} = {{this}}</p>
+						{{/each}}
+					
+					<p><strong>Tags:</strong> <span property="tags">{{req.result.tags}}</span></p>
+					
+					<p><strong>Root URL:</strong> <a property="url" href="http://venus.datsi.fi.upm.es:8484/">http://venus.datsi.fi.upm.es:8484/</a></p>
+
+
+					<h3>Model</h3>
+
+					<div>
+					<a href="{{req.uri}}/model/{{req.qp}}">View Full Model</a> of this Web Thing. 
+					</div>
+
+					<hr>
+
+					<h2>Resources</h2>
+
+					<ul>
+					{{#each req.links}}
+						<li property="links" typeof="{{@key}}"> 
+						<h3><a href="{{this}}">{{this}}</a></h3>
+						
+					{{/each}}
+					</ul>
+					</ul>
+
+					<hr>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<footer class="bs-docs-footer" role="contentinfo">
+  <div class="container">
+
+    <p>Observatorio Astronómico Francisco Manuel Sánchez</p>
+
+  </div>
+</footer>
+
+
+</body></html>

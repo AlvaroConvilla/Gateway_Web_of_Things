@@ -1,0 +1,9 @@
+{
+	  "title": "MonturaMensaje",
+	  "description": "Peticion a la montura",
+	  "type": "object",
+	  "properties": {
+   		"comando":"moverNorte", 
+   		"parametros":[]
+	  }
+}

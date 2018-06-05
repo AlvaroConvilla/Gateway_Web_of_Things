@@ -1,0 +1,200 @@
+{
+  "@context": {
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
+    "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
+    "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
+    "base":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#base",
+    "schema":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#schema",
+    "writeable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#writeable",
+    "observable":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#observable",
+    "form":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#form",
+    "href":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#href",
+    "mediaType":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#mediaType",
+    "address":"http://schema.org/address",
+    "Thing":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#Thing",
+    "saref":"http://uri.etsi.org/m2m/saref#",
+    "om":"http://www.ontology-of-units-of-measure.org/resource/om-2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "product":"http://schema.org/Product#",
+    "place":"http://schema.org/Place#",
+    "geo": "http://schema.org/geo",
+    "latitude": {
+      "@id": "http://schema.org/latitude",
+      "@type": "xsd:float"
+    },
+    "longitude": {
+      "@id": "http://schema.org/longitude",
+      "@type": "xsd:float"
+    },
+    "image":{
+      "@id":"http://schema.org/image",
+      "@type": "@id"
+    },
+    "dir":"http://schema.org/",
+    "time":"http://www.w3.org/2006/time#"
+  },
+  "@id": "CameraDMK",
+  "@type": ["Thing","Product"],
+  "name": "OAFMS Camera DMK",
+  "description": "Camera DMK of the Francisco Manuel Sánchez Astronomical Observatory",
+  "base" : "http://pluton.datsi.fi.upm.es:8484/Camera",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPH7MQuu6q5a_rKP_HuVP8Uo2lImNvdj1Fq0KzSUdYyPvdkI0b",
+  "address":{
+    "@type": "dir:PostalAddress",
+    "dir:addressLocality": "Madrid",
+    "dir:addressRegion": "Boadilla del Monte",
+    "dir:postalCode": "28660",
+    "dir:streetAddress": "Ciruelos"
+  },
+  "geo": {
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
+  "tags":["WoT","Camera", "DMK"],
+  "form":[{
+    "href":"http://pluton.datsi.fi.upm.es:8484/Camera/model"
+  }],
+  "wot-context:interaction":
+  [
+    {
+      "@id": "wot-context:OnOffState",
+      "@type": ["wot-td:Property","wot-context:OnOffState"],
+      "name": "State",
+      "description": "Shows if the gateway has a connection to the camera DMK.",
+      "schema": {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/state",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "ExposureTime",
+      "@type": ["wot-td:Property","time:unitHour","time:unitMinute","time:unitSecond"],
+      "name": "ExposureTime",
+      "description": "Exposure time for each of the photos.",
+      "schema": {
+        "saref:UnitOfMeasure": "time:unitHour",
+        "saref:UnitOfMeasure": "time:unitMinute",
+        "saref:UnitOfMeasure": "time:unitSecond",
+        "@type":"xsd:nonNegativeInteger"
+      },
+      "writable": true,
+      "observable": true,
+      "form": [
+        {
+          "href": "/ExposureTime",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Gamma",
+      "@type": ["wot-td:Property"],
+      "name": "Gamma",
+      "description": "The gamma correction, as it is called a specific non-linear operation that is used to encode and decode luminance or tristimulus values in video or image systems.",
+      "schema": {
+        "saref:UnitOfMeasure": "gamma",
+        "@type":"xsd:float"
+      },
+      "writable": true,
+      "observable": true,
+      "form": [
+        {
+          "href": "/Gamma",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Brightness",
+      "@type": ["wot-td:Property"],
+      "name": "Brightness",
+      "description": "Brightness is a setting that works mainly on halftones, maintaining the lighting of high lights.",
+      "schema": {
+        "saref:UnitOfMeasure": "brightness",
+        "@type":"xsd:float"
+      },
+      "writable": true,
+      "observable": true,
+      "form": [
+        {
+          "href": "/Brightness",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "NumberOfShoots",
+      "@type": ["wot-td:Property"],
+      "name": "NumberOfShoots",
+      "description": "Number of photos taken by the camera DMK",
+      "schema": {
+        "saref:UnitOfMeasure": "number",
+        "@type":"xsd:decimal"
+      },
+      "writable": true,
+      "observable": true,
+      "form": [
+        {
+          "href": "/NumberOfShoots",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id": "Photo",
+      "@type": ["wot-td:Property"],
+      "name": "Photo",
+      "description": "Get the photo through his ID.",
+      "schema": {
+        "image": "photoX.jpg",
+        "@type":"image"
+      },
+      "writable": false,
+      "observable": true,
+      "form": [
+        {
+          "href": "/Photo",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": ["wot-td:Action", "TakePhoto"],
+      "name": "TakePhoto",
+      "inputSchema": {
+        "action": "TakePhotos",
+        "@type":"xsd:string"
+      },
+      "form": [
+        {
+          "href": "/TakePhoto",
+          "mediaType": "application/json"
+        }
+      ]
+    },
+    {
+      "@id":"NewPhoto",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends the ID of the last photo which has been taken by the camera.",
+      "schema":  {
+        "saref:UnitOfMeasure": "id_photo",
+        "@type":"xsd:decimal"
+      },
+      "name": "NewPhoto",
+      "wot-td:property":["ExhibithionTime","Gamma","Brightness","NumberOfShoots"],
+      "form": [{
+        "href" : "/NewPhoto",
+        "mediaType": "application/json"
+      }]
+    }
+  ]
+}

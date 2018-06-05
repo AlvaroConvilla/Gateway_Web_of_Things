@@ -1,0 +1,22 @@
+{
+  "name": "servers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "dependencies": {
+    "consolidate": "^0.15.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11",
+    "observe": "^1.4.1",
+    "object.observe": "^0.2.6",
+    "url": "^0.11.0",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alvaroconvilla",
+  "license": "ISC"
+}
