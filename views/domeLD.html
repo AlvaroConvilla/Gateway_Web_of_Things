@@ -24,7 +24,7 @@
 <div class="bs-docs-header" id="content" tabindex="-1">
     <div class="container">
         {{#if req.uri}}
-        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/ <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
+        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/WoT <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
 
         {{else}}
         <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a> /{{req.entityId}}</h1>
@@ -81,7 +81,7 @@
   "@id": "Dome",
   "name": "OAFMS Dome",
   "description": "Dome of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://venus.datsi.fi.upm.es:8484/Dome",
+  "base" : "http://pluton.datsi.fi.upm.es/WoT/Dome",
   "image": "http://mercurio.datsi.fi.upm.es/wp-content/uploads/2015/11/om.jpg",
   "address":{
     "@type": "dir:PostalAddress",
@@ -96,7 +96,7 @@
   },
   "tags":["WoT","Dome"],
   "form":[{
-    "href":"http://venus.datsi.fi.upm.es:8484/Dome/model"
+    "href":"http://pluton.datsi.fi.upm.es/WoT/Dome/model"
   }],
   "wot-context:interaction":
   [

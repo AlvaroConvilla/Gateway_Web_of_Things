@@ -96,20 +96,21 @@ exports.create = function (model) { //por defecto el model que viene es el de la
 //root resource route: 
 function createRootRoute(model){
   //Manejar recurso raiz '/' 
-  router.route('/').get(function(req, res, next){
+  router.route('/WoT').get(function(req, res, next){
     req.model = model;
     req.type = 'root';
+    //req.direc = 'ofs.fi.upm.es/WoT';
 
     var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
     //Extrae los campos requeridos del modelo, añade el objeto a result
     req.result = utils.extractFields(fields,model);
-    req.links = ['model', 'WeatherStation', 'Dome', 'Camera', 'Mount', 'Camera_inside', 'Camera_outside'];
+    req.links = ['WoT/model', 'WoT/login', 'WoT/WeatherStation', 'WoT/Dome', 'WoT/Camera', 'WoT/Mount', 'WoT/Camera_inside', 'WoT/Camera_outside'];
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/WoT/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
-      model: '/model/',
+      model: 'model/',
       WeatherStation: '/WeatherStation/',
       Dome: '/Dome/',
       Camera: '/Camera/',
@@ -124,14 +125,15 @@ function createRootRoute(model){
 };
 function createModelRoutes(model) {
   // GET /model
-  router.route('/model').get(function (req, res, next) {
+  router.route('/WoT/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
     req.type = 'gatewayLD';
     req.entityId = "model";
+    req.uri = 'WoT';
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/WoT/model';
     res.links({
       //type: type
     });
@@ -143,7 +145,7 @@ function createModelRoutes(model) {
 //root resource route: 
 function createWeatherStationRoute(model){
   //GET'/WeatherStation' 
-  router.route('/WeatherStation').get(function(req, res, next){
+  router.route('/WoT/WeatherStation').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
     req.uri = 'WeatherStation';
@@ -152,10 +154,10 @@ function createWeatherStationRoute(model){
     var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
     //Extrae los campos requeridos del modelo, añade el objeto a result
     req.result = utils.extractFields(fields,model);
-    req.links = ['WeatherStation/model', 'WeatherStation/properties', 'WeatherStation/actions', 'WeatherStation/events'];
+    req.links = ['/WoT/WeatherStation/model', '/WoT/WeatherStation/properties', '/WoT/WeatherStation/actions', '/WoT/WeatherStation/events'];
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -171,7 +173,7 @@ function createWeatherStationRoute(model){
 
 function createWeatherStationModelRoutes(model) {
   // GET /WeatherStation/model
-  router.route('/WeatherStation/model').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.type = 'weatherLD';
 
@@ -179,7 +181,7 @@ function createWeatherStationModelRoutes(model) {
     req.entityId = "model";
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -190,7 +192,7 @@ function createWeatherStationModelRoutes(model) {
 function createWeatherStationPropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /WeatherStation/properties
-  router.route('/WeatherStation/properties').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -199,7 +201,7 @@ function createWeatherStationPropertiesRoutes(model) {
     req.links = ['WeatherStation/properties', 'WeatherStation/actions', 'WeatherStation/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       state:'/state',
@@ -215,7 +217,7 @@ function createWeatherStationPropertiesRoutes(model) {
   });
 
   // GET /WeatherStation/properties/{id}
-  router.route('/WeatherStation/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
@@ -225,7 +227,7 @@ function createWeatherStationPropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       //type: type
@@ -237,7 +239,7 @@ function createWeatherStationPropertiesRoutes(model) {
 function createWeatherStationActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /weatherStation/actions
-  router.route('/WeatherStation/actions').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
@@ -246,7 +248,7 @@ function createWeatherStationActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -297,7 +299,7 @@ function createWeatherStationActionsRoutes(model) {
 function createWeatherStationEventsRoutes(model) {
   var events = model.links.events;
   // GET /weatherStation/events
-  router.route('/WeatherStation/events').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
@@ -305,7 +307,7 @@ function createWeatherStationEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -317,7 +319,7 @@ function createWeatherStationEventsRoutes(model) {
   });
     
   // GET /weatherStation/events/{eventType}
-  router.route('/WeatherStation/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/WeatherStation/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
@@ -326,7 +328,7 @@ function createWeatherStationEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //type: type
@@ -338,7 +340,7 @@ function createWeatherStationEventsRoutes(model) {
 //-----------------------------DOME----------------------------------------------------
 function createDomeRoute(model){
   //GET'/Dome'
-  router.route('/Dome').get(function(req, res, next){
+  router.route('/WoT/Dome').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
     req.uri = 'Dome';
@@ -350,7 +352,7 @@ function createDomeRoute(model){
     req.links = ['Dome/model', 'Dome/properties', 'Dome/actions', 'Dome/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -368,7 +370,7 @@ function createDomeRoute(model){
 
 function createDomeModelRoutes(model) {
   // GET /Dome/model
-  router.route('/Dome/model').get(function (req, res, next) {
+  router.route('/WoT/Dome/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
     req.uri = "Dome";
@@ -376,7 +378,7 @@ function createDomeModelRoutes(model) {
     req.type = 'domeLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -387,7 +389,7 @@ function createDomeModelRoutes(model) {
 function createDomePropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Dome/properties
-  router.route('/Dome/properties').get(function (req, res, next) {
+  router.route('/WoT/Dome/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -396,7 +398,7 @@ function createDomePropertiesRoutes(model) {
     req.links = ['Dome/properties', 'Dome/actions', 'Dome/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       state:'/state',
@@ -412,7 +414,7 @@ function createDomePropertiesRoutes(model) {
   });
 
   // GET /Dome/properties/{id}
-  router.route('/Dome/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Dome/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
@@ -422,7 +424,7 @@ function createDomePropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       //type: type
@@ -434,7 +436,7 @@ function createDomePropertiesRoutes(model) {
 function createDomeActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Dome/actions
-  router.route('/Dome/actions').get(function (req, res, next) {
+  router.route('/WoT/Dome/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
@@ -442,7 +444,7 @@ function createDomeActionsRoutes(model) {
     req.result = utils.modelToResources(actions.resources, true);
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -451,7 +453,7 @@ function createDomeActionsRoutes(model) {
   });
 
   // GET /Dome/actions/{actionType}
-  router.route('/Dome/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Dome/actions' + '/:actionType').get(function (req, res, next) {
     req.model = model;
     req.actionModel = actions.resources[req.params.actionType];
     req.type = 'action';
@@ -460,7 +462,7 @@ function createDomeActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -513,7 +515,7 @@ function createDomeActionsRoutes(model) {
 function createDomeEventsRoutes(model) {
   var events = model.links.events;
   // GET /Dome/events
-  router.route('/Dome/events').get(function (req, res, next) {
+  router.route('/WoT/Dome/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
@@ -521,7 +523,7 @@ function createDomeEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //HighTemperature:'/HighTemperature',
@@ -533,7 +535,7 @@ function createDomeEventsRoutes(model) {
   });
 
   // GET /Dome/events/{eventType}
-  router.route('/Dome/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Dome/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
@@ -542,7 +544,7 @@ function createDomeEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //type: type
@@ -554,7 +556,7 @@ function createDomeEventsRoutes(model) {
 //-----------------------------CAMERA----------------------------------------------------
 function createCameraRoute(model){
   //GET'/Camera'
-  router.route('/Camera').get(function(req, res, next){
+  router.route('/WoT/Camera').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
     req.uri = 'Camera';
@@ -566,7 +568,7 @@ function createCameraRoute(model){
     req.links = ['Camera/model', 'Camera/properties', 'Camera/actions', 'Camera/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -584,7 +586,7 @@ function createCameraRoute(model){
 
 function createCameraModelRoutes(model) {
   // GET /Camera/model
-  router.route('/Camera/model').get(function (req, res, next) {
+  router.route('/WoT/Camera/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
     req.uri = "Camera";
@@ -592,7 +594,7 @@ function createCameraModelRoutes(model) {
     req.type = 'cameraLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -603,7 +605,7 @@ function createCameraModelRoutes(model) {
 function createCameraPropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Camera/properties
-  router.route('/Camera/properties').get(function (req, res, next) {
+  router.route('/WoT/Camera/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -612,7 +614,7 @@ function createCameraPropertiesRoutes(model) {
     req.links = ['Camera/properties', 'Camera/actions', 'Camera/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
      //type: type
@@ -621,7 +623,7 @@ function createCameraPropertiesRoutes(model) {
   });
 
   // GET /Camera/properties/Photo/id
-  router.route('/Camera/properties/Photo' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Camera/properties/Photo' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -654,7 +656,7 @@ function createCameraPropertiesRoutes(model) {
     else{
         // Generate the Link headers
         if (properties['@context']) type = properties['@context'];
-        else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
         res.links({
           //type: type
@@ -665,7 +667,7 @@ function createCameraPropertiesRoutes(model) {
   });
 
   // GET /Camera/properties/{id}
-  router.route('/Camera/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Camera/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
@@ -675,7 +677,7 @@ function createCameraPropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       //type: type
@@ -684,7 +686,7 @@ function createCameraPropertiesRoutes(model) {
   });
   //Para actualizar los properties que son "writeable"
   // PUT /Camera/properties/{actionType}
-    router.route('/Camera/properties' + '/:propertyType').put(function (req, res, next) {
+    router.route('/WoT/Camera/properties' + '/:propertyType').put(function (req, res, next) {
       //Prueba: {"name":"ExposureTime","description":"Exposure time for each of the photos.","values":{"st":{"name":"ExposureTime","description":"Exposure time for each of the photos.","unit":{"Hour":"nonNegativeInteger","Minute":"nonNegativeInteger","Second":"nonNegativeInteger"},"type":"nonNegativeInteger"}},"tags":["Exposure","Time","public"],"data":{"Hour":0,"Minute":0,"Second":30}}
       var act = req.body;
       if(req.params.propertyType == "ExposureTime"){
@@ -752,7 +754,7 @@ function createCameraPropertiesRoutes(model) {
 function createCameraActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Camera/actions
-  router.route('/Camera/actions').get(function (req, res, next) {
+  router.route('/WoT/Camera/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
@@ -761,7 +763,7 @@ function createCameraActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -770,7 +772,7 @@ function createCameraActionsRoutes(model) {
   });
 
   // GET /Camera/actions/{actionType}
-  router.route('/Camera/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Camera/actions' + '/:actionType').get(function (req, res, next) {
     req.model = model;
     req.actionModel = actions.resources[req.params.actionType];
     req.type = 'action';
@@ -779,7 +781,7 @@ function createCameraActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -788,7 +790,7 @@ function createCameraActionsRoutes(model) {
   });
 
   // POST /Camera/actions/{actionType}
-  router.route('/Camera/actions' + '/:actionType').post(function (req, res, next) {
+  router.route('/WoT/Camera/actions' + '/:actionType').post(function (req, res, next) {
     //Prueba:{"name":"TakePhoto","description":"After doing the Action, photographs are received by events.","values":{"st":{"unit":"TakePhotos","type":"string"}},"tags":["TakePhoto","public"],"data":{"unit":"TakePhotos"}}
     var act = req.body;
     if(req.params.actionType == "TakePhoto"){
@@ -820,7 +822,7 @@ function createCameraActionsRoutes(model) {
 function createCameraEventsRoutes(model) {
   var events = model.links.events;
   // GET /Camera/events
-  router.route('/Camera/events').get(function (req, res, next) {
+  router.route('/WoT/Camera/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
@@ -828,7 +830,7 @@ function createCameraEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -840,7 +842,7 @@ function createCameraEventsRoutes(model) {
   });
 
   // GET /Camera/events/{eventType}
-  router.route('/Camera/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Camera/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
@@ -849,7 +851,7 @@ function createCameraEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //type: type
@@ -860,7 +862,7 @@ function createCameraEventsRoutes(model) {
 //-----------------------------MOUNT----------------------------------------------------
 function createMountRoute(model){
   //GET'/Mount'
-  router.route('/Mount').get(function(req, res, next){
+  router.route('/WoT/Mount').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
     req.uri = 'Mount';
@@ -872,7 +874,7 @@ function createMountRoute(model){
     req.links = ['Mount/model', 'Mount/properties', 'Mount/actions', 'Mount/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -890,7 +892,7 @@ function createMountRoute(model){
 
 function createMountModelRoutes(model) {
   // GET /Mount/model
-  router.route('/Mount/model').get(function (req, res, next) {
+  router.route('/WoT/Mount/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
     req.uri = "Mount";
@@ -898,7 +900,7 @@ function createMountModelRoutes(model) {
     req.type = 'mountLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -909,7 +911,7 @@ function createMountModelRoutes(model) {
 function createMountPropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Mount/properties
-  router.route('/Mount/properties').get(function (req, res, next) {
+  router.route('/WoT/Mount/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -918,7 +920,7 @@ function createMountPropertiesRoutes(model) {
     req.links = ['Mount/properties', 'Mount/actions', 'Mount/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
 /*      state:'/state',
@@ -934,7 +936,7 @@ function createMountPropertiesRoutes(model) {
   });
 
   // GET /Mount/properties/{id}
-  router.route('/Mount/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Mount/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
@@ -944,7 +946,7 @@ function createMountPropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-     else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+     else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       //type: type
@@ -956,7 +958,7 @@ function createMountPropertiesRoutes(model) {
 function createMountActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Mount/actions
-  router.route('/Mount/actions').get(function (req, res, next) {
+  router.route('/WoT/Mount/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
@@ -965,7 +967,7 @@ function createMountActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -974,7 +976,7 @@ function createMountActionsRoutes(model) {
   });
 
   // POST /Mount/actions/{actionType}
-  router.route('/Mount/actions' + '/:actionType').post(function (req, res, next) {
+  router.route('/WoT/Mount/actions' + '/:actionType').post(function (req, res, next) {
     var act = req.body;
     //console.log(req.params.actionType);
 //    action.id = uuid.v1();
@@ -1055,7 +1057,8 @@ function createMountActionsRoutes(model) {
              //Publicar action en rabbitmq
              var amqp = require('amqplib/callback_api');
 
-             amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
+             //amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
+             amqp.connect('amqp://localhost', function(err, conn) {
                conn.createChannel(function(err, ch) {
                  var ex = 'pasarela';
                  var args = process.argv.slice(2);
@@ -1128,7 +1131,7 @@ function createMountActionsRoutes(model) {
   });
 
   // GET /Mount/actions/{actionType}
-  router.route('/Mount/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Mount/actions' + '/:actionType').get(function (req, res, next) {
     req.model = model;
     req.actionModel = actions.resources[req.params.actionType];
     req.type = 'action';
@@ -1137,7 +1140,7 @@ function createMountActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1157,7 +1160,7 @@ function createMountActionsRoutes(model) {
 function createMountEventsRoutes(model) {
   var events = model.links.events;
   // GET /Mount/events
-  router.route('/Mount/events').get(function (req, res, next) {
+  router.route('/WoT/Mount/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
@@ -1165,7 +1168,7 @@ function createMountEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -1177,7 +1180,7 @@ function createMountEventsRoutes(model) {
   });
 
   // GET /Mount/events/{eventType}
-  router.route('/Mount/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Mount/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
@@ -1186,7 +1189,7 @@ function createMountEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //type: type
@@ -1194,13 +1197,13 @@ function createMountEventsRoutes(model) {
     next();
   });
 };
-//-----------------------------CAMERA INSIDE----------------------------------------------------
+//-----------------------------CAMERA INSIDE 1----------------------------------------------------
 function createCameraInsideRoute(model){
   //GET'/Camera_inside'
-  router.route('/Camera_inside').get(function(req, res, next){
+  router.route('/WoT/Camera_inside_1').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
 
     //var fields = ['id','name','description','tags','customFields'];
     var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
@@ -1209,7 +1212,7 @@ function createCameraInsideRoute(model){
     req.links = ['Camera_inside/model', 'Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -1227,15 +1230,15 @@ function createCameraInsideRoute(model){
 
 function createCameraInsideModelRoutes(model) {
   // GET /Camera_inside/model
-  router.route('/Camera_inside/model').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
-    req.uri = "Camera_inside";
+    req.uri = "Camera_inside_1";
     req.entityId = "model";
     req.type = 'camera_insideLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -1246,16 +1249,16 @@ function createCameraInsideModelRoutes(model) {
 function createCameraInsidePropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Camera_inside/properties
-  router.route('/Camera_inside/properties').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
     req.result = utils.modelToResources(properties.resources, true);
     req.links = ['Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
 //      state:'/state',
@@ -1271,14 +1274,14 @@ function createCameraInsidePropertiesRoutes(model) {
   });
 
   // GET /Camera_inside/properties/{id}
-  router.route('/Camera_inside/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
     req.entityId = req.params.id;
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
     if(req.params.id == 'NewPhoto'){
-            var img  = fs.readFileSync('/home/pluton/wot/camaras/philips.jpg');
+            var img  = fs.readFileSync('/home/pluton/backend/cameras/internal1.jpg');
             res.writeHead(200, {'Content-Type': 'image/gif' });
             res.end(img, 'binary');
     }else{
@@ -1286,7 +1289,7 @@ function createCameraInsidePropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-     else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+     else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     //res.links({
       //type: type
@@ -1299,16 +1302,16 @@ function createCameraInsidePropertiesRoutes(model) {
 function createCameraInsideActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Camera_inside/actions
-  router.route('/Camera_inside/actions').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
     req.result = utils.modelToResources(actions.resources, true);
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1317,7 +1320,7 @@ function createCameraInsideActionsRoutes(model) {
   });
 
   // POST /Camera_inside/actions/{actionType}
-  router.route('Camera_inside/actions' + '/:actionType').post(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/actions' + '/:actionType').post(function (req, res, next) {
     var action = req.body;
     action.id = uuid.v1();
     action.status = "pending";
@@ -1330,7 +1333,7 @@ function createCameraInsideActionsRoutes(model) {
 
 
   // GET /Camera_inside/actions/{actionType}
-  router.route('Camera_inside/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/actions' + '/:actionType').get(function (req, res, next) {
 
     req.result = reverseResults(actions.resources[req.params.actionType].data);
     req.actionModel = actions.resources[req.params.actionType];
@@ -1340,7 +1343,7 @@ function createCameraInsideActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
      if (properties['@context']) type = properties['@context'];
-        else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       type: type
@@ -1349,7 +1352,7 @@ function createCameraInsideActionsRoutes(model) {
   });
 
   // GET /Camera_inside/actions/{id}/{actionId}
-  router.route('/Camera_inside/actions' + '/:actionType/:actionId').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/actions' + '/:actionType/:actionId').get(function (req, res, next) {
     req.result = utils.findObjectInArray(actions.resources[req.params.actionType].data,
       {"id" : req.params.actionId});
     next();
@@ -1360,15 +1363,15 @@ function createCameraInsideActionsRoutes(model) {
 function createCameraInsideEventsRoutes(model) {
   var events = model.links.events;
   // GET /Camera_inside/events
-  router.route('/Camera_inside/events').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
 /*      HighTemperature:'/HighTemperature',
@@ -1380,16 +1383,219 @@ function createCameraInsideEventsRoutes(model) {
   });
 
   // GET /Camera_inside/events/{eventType}
-  router.route('/Camera_inside/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside_1/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
     req.entityId = req.params.eventType;
-    req.uri = 'Camera_inside';
+    req.uri = 'Camera_inside_1';
     req.result = events.resources[req.entityId];
 
      if (events['@context']) type = events['@context'];
-        else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
+
+    res.links({
+      //type: type
+    });
+    next();
+  });
+};
+//-----------------------------CAMERA INSIDE 2----------------------------------------------------
+function createCameraInsideRoute(model){
+  //GET'/Camera_inside'
+  router.route('/WoT/Camera_inside_2').get(function(req, res, next){
+    req.model = model;
+    req.type = 'root'; //nombre del html en la carpeta view
+    req.uri = 'Camera_inside_2';
+
+    //var fields = ['id','name','description','tags','customFields'];
+    var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
+    //Extrae los campos requeridos del modelo, añade el objeto a result
+    req.result = utils.extractFields(fields,model);
+    req.links = ['Camera_inside/model', 'Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
+
+    if (model['@context']) type = model['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es/model';
+
+//Crea encabezado de enlace que direcciona a recursos
+    res.links({
+      model: '/model/',
+      properties: '/properties/',
+      actions: '/actions/',
+      events: '/events/',
+      //things: '/things/',
+      ui: '/',
+      //type: type
+    });
+    next();//llama a la siguiente representacion middleware
+});
+};
+
+function createCameraInsideModelRoutes(model) {
+  // GET /Camera_inside/model
+  router.route('/WoT/Camera_inside_2/model').get(function (req, res, next) {
+    req.result = JSON.stringify(model,undefined,2);
+    req.model = model;
+    req.uri = "Camera_inside_2";
+    req.entityId = "model";
+    req.type = 'camera_insideLD';
+
+    if (model['@context']) type = model['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es/model';
+    res.links({
+      //type: type
+    });
+    next();
+  });
+};
+
+function createCameraInsidePropertiesRoutes(model) {
+  var properties = model.links.properties;
+  // GET /Camera_inside/properties
+  router.route('/WoT/Camera_inside_2/properties').get(function (req, res, next) {
+    req.model = model;
+    req.type = 'properties';
+    req.entityId = 'properties';
+    req.uri = 'Camera_inside_2';
+    req.result = utils.modelToResources(properties.resources, true);
+    req.links = ['Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
+    // Generate the Link headers
+    if (properties['@context']) type = properties['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
+
+    res.links({
+//      state:'/state',
+//      temperature:'/temperature',
+//      humidity:'/humidity',
+//      pressure:'/pressure',
+//      rainfall:'/rainfall',
+//      windSpeed:'/windSpeed',
+//      windDirection:'/windDirection'
+      //type: type
+    });
+    next();
+  });
+
+  // GET /Camera_inside/properties/{id}
+  router.route('/WoT/Camera_inside_2/properties' + '/:id').get(function (req, res, next) {
+    req.model = model;
+    req.propertyModel = properties.resources[req.params.id];
+    req.type = 'property';
+    req.entityId = req.params.id;
+    req.uri = 'Camera_inside_2';
+    if(req.params.id == 'NewPhoto'){
+            var img  = fs.readFileSync('/home/pluton/backend/cameras/internal1.jpg');
+            res.writeHead(200, {'Content-Type': 'image/gif' });
+            res.end(img, 'binary');
+    }else{
+    req.result = properties.resources[req.entityId];
+
+    // Generate the Link headers
+     if (properties['@context']) type = properties['@context'];
+     else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
+
+    //res.links({
+      //type: type
+    //});
+    next();
+    }
+  });
+};
+
+function createCameraInsideActionsRoutes(model) {
+  var actions = model.links.actions;
+  // GET /Camera_inside/actions
+  router.route('/WoT/Camera_inside_2/actions').get(function (req, res, next) {
+    req.model = model;
+    req.type = 'actions';
+    req.entityId = 'actions';
+    req.uri = 'Camera_inside_2';
+    req.result = utils.modelToResources(actions.resources, true);
+    req.links = [''];
+
+    if (actions['@context']) type = actions['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
+
+    res.links({
+      //type: type
+    });
+    next();
+  });
+
+  // POST /Camera_inside/actions/{actionType}
+  router.route('/WoT/Camera_inside_2/actions' + '/:actionType').post(function (req, res, next) {
+    var action = req.body;
+    action.id = uuid.v1();
+    action.status = "pending";
+    action.timestamp = utils.isoTimestamp();
+    utils.cappedPush(actions.resources[req.params.actionType].data, action);
+    res.location(req.originalUrl + '/' + action.id);
+
+    next();
+  });
+
+
+  // GET /Camera_inside/actions/{actionType}
+  router.route('/WoT/Camera_inside_2/actions' + '/:actionType').get(function (req, res, next) {
+
+    req.result = reverseResults(actions.resources[req.params.actionType].data);
+    req.actionModel = actions.resources[req.params.actionType];
+    req.model = model;
+
+    req.type = 'action';
+    req.entityId = req.params.actionType;
+
+     if (properties['@context']) type = properties['@context'];
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
+
+    res.links({
+      type: type
+    });
+    next();
+  });
+
+  // GET /Camera_inside/actions/{id}/{actionId}
+  router.route('/WoT/Camera_inside_2/actions' + '/:actionType/:actionId').get(function (req, res, next) {
+    req.result = utils.findObjectInArray(actions.resources[req.params.actionType].data,
+      {"id" : req.params.actionId});
+    next();
+  });
+};
+
+
+function createCameraInsideEventsRoutes(model) {
+  var events = model.links.events;
+  // GET /Camera_inside/events
+  router.route('/WoT/Camera_inside_2/events').get(function (req, res, next) {
+    req.model = model;
+    req.type = 'events';
+    req.entityId = 'events';
+    req.uri = 'Camera_inside_2';
+    req.result = utils.modelToResources(events.resources, true);
+
+    if (events['@context']) type = events['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
+
+    res.links({
+/*      HighTemperature:'/HighTemperature',
+      Rain:'/Rain',
+      StrongWind:'/StrongWind',*/
+      //type: type
+    });
+    next();
+  });
+
+  // GET /Camera_inside/events/{eventType}
+  router.route('/WoT/Camera_inside_2/events' + '/:eventType').get(function (req, res, next) {
+    req.model = model;
+    req.eventModel = events.resources[req.params.eventType];
+    req.type = 'event';
+    req.entityId = req.params.eventType;
+    req.uri = 'Camera_inside_2';
+    req.result = events.resources[req.entityId];
+
+     if (events['@context']) type = events['@context'];
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       //type: type
@@ -1400,7 +1606,7 @@ function createCameraInsideEventsRoutes(model) {
 //-----------------------------CAMERA OUTSIDE----------------------------------------------------
 function createCameraOutsideRoute(model){
   //GET'/Camera_outside'
-  router.route('/Camera_outside').get(function(req, res, next){
+  router.route('/WoT/Camera_outside').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
     req.uri = 'Camera_outside';
@@ -1412,7 +1618,7 @@ function createCameraOutsideRoute(model){
     req.links = ['Camera_outside/model', 'Camera_outside/properties', 'Camera_outside/actions', 'Camera_outside/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -1430,7 +1636,7 @@ function createCameraOutsideRoute(model){
 
 function createCameraOutsideModelRoutes(model) {
   // GET /Camera_outside/model
-  router.route('/Camera_outside/model').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
     req.uri = "Camera_outside";
@@ -1438,7 +1644,7 @@ function createCameraOutsideModelRoutes(model) {
     req.type = 'camera_outsideLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model';
+    else type = 'http://pluton.datsi.fi.upm.es/model';
     res.links({
       //type: type
     });
@@ -1449,7 +1655,7 @@ function createCameraOutsideModelRoutes(model) {
 function createCameraOutsidePropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Camera_outside/properties
-  router.route('/Camera_outside/properties').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
@@ -1459,7 +1665,7 @@ function createCameraOutsidePropertiesRoutes(model) {
     req.links = ['Camera_outside/properties', 'Camera_outside/actions', 'Camera_outside/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
 /*      state:'/state',
@@ -1475,14 +1681,14 @@ function createCameraOutsidePropertiesRoutes(model) {
   });
 
   // GET /Camera_outside/properties/{id}
-  router.route('/Camera_outside/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
     req.entityId = req.params.id;
     req.uri = 'Camera_outside';
     if(req.params.id == 'NewPhoto'){
-        var img  = fs.readFileSync('/home/pluton/wot/camaras/moobotix.jpg');
+        var img  = fs.readFileSync('/home/pluton/backend/cameras/external.jpg');
         res.writeHead(200, {'Content-Type': 'image/gif' });
         res.end(img, 'binary');
     }
@@ -1491,7 +1697,7 @@ function createCameraOutsidePropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-        else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     //res.links({
       //type: type
@@ -1504,7 +1710,7 @@ function createCameraOutsidePropertiesRoutes(model) {
 function createCameraOutsideActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Camera_outside/actions
-  router.route('/Camera_outside/actions').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
@@ -1514,7 +1720,7 @@ function createCameraOutsideActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1523,7 +1729,7 @@ function createCameraOutsideActionsRoutes(model) {
   });
 
   // POST /Camera_outside/actions/{actionType}
-  router.route('Camera_outside/actions' + '/:actionType').post(function (req, res, next) {
+  router.route('/WoT/Camera_outside/actions' + '/:actionType').post(function (req, res, next) {
     var action = req.body;
     action.id = uuid.v1();
     action.status = "pending";
@@ -1536,7 +1742,7 @@ function createCameraOutsideActionsRoutes(model) {
 
 
   // GET /Camera_outside/actions/{actionType}
-  router.route('Camera_outside/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/actions' + '/:actionType').get(function (req, res, next) {
 
     req.result = reverseResults(actions.resources[req.params.actionType].data);
     req.actionModel = actions.resources[req.params.actionType];
@@ -1546,7 +1752,7 @@ function createCameraOutsideActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
      if (actions['@context']) type = actions['@context'];
-        else type = 'http://venus.datsi.fi.upm.es:8484/model/#properties-resource';
+        else type = 'http://pluton.datsi.fi.upm.es/model/#properties-resource';
 
     res.links({
       type: type
@@ -1566,7 +1772,7 @@ function createCameraOutsideActionsRoutes(model) {
 function createCameraOutsideEventsRoutes(model) {
   var events = model.links.events;
   // GET /Camera_outside/events
-  router.route('/Camera_outside/events').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
@@ -1574,7 +1780,7 @@ function createCameraOutsideEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
 //      HighTemperature:'/HighTemperature',
@@ -1586,7 +1792,7 @@ function createCameraOutsideEventsRoutes(model) {
   });
 
   // GET /Camera_outside/events/{eventType}
-  router.route('/Camera_outside/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Camera_outside/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
@@ -1595,7 +1801,7 @@ function createCameraOutsideEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#events-resource';
+    else type = 'http://pluton.datsi.fi.upm.es/model/#events-resource';
 
     res.links({
       //type: type

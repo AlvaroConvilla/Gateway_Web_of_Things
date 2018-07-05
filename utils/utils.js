@@ -1,7 +1,5 @@
-var keys = require('./../resources/auth'),
-  crypto = require('crypto'),
-  keys = require('./../resources/auth');
-  //_ = require('lodash/collection');
+var keys = require('./../resources/secure/auth'),
+  crypto = require('crypto');
 
 exports.addDevice = function(id, name, description, sensors, actuators) {
   if(!model.things) {
@@ -29,6 +27,10 @@ exports.findAction = function(actionId,model){
 
 exports.findEvent = function(eventId,model){
   return model.links.events.resources[eventId];
+};
+
+exports.findToken = function(Id,model){
+  return model[Id];
 };
 
 exports.isoTimestamp = function(){

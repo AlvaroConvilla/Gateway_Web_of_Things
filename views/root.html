@@ -23,8 +23,15 @@
     <!-- Docs page layout -->
 	<div class="bs-docs-header" id="content" tabindex="-1">
 		<div class="container">
-			<h1><a href="/{{req.qp}}">{{req.rooturl}}</a> /{{req.uri}}</h1>
-			<p>Web Thing Root Resource</p>
+			<!--<table>
+				<tr>
+				<th><h1><a href="/{{req.qp}}">{{req.rooturl}}</a></h1></th>
+				<th><h1>/<a href="http://ofs.fi.upm.es/WoT">WoT</a></h1></th>
+				<th><h1>/<a href="http://ofs.fi.upm.es/WoT/{{req.uri}}">{{req.uri}}</a></h1></th>
+				</tr>
+				<tr><th><p>Web Thing Root Resource</p></th><tr>
+			</table>-->
+			<h1><a href="/{{req.qp}}">{{req.rooturl}}</a>/<a href="http://ofs.fi.upm.es/WoT">WoT</a>/<a href="http://ofs.fi.upm.es/WoT/{{req.uri}}">{{req.uri}}</a></h1>
 		</div>
 	</div>
 
@@ -52,13 +59,13 @@
 					
 					<p><strong>Tags:</strong> <span property="tags">{{req.result.tags}}</span></p>
 					
-					<p><strong>Root URL:</strong> <a property="url" href="http://venus.datsi.fi.upm.es:8484/">http://venus.datsi.fi.upm.es:8484/</a></p>
+					<p><strong>Root URL:</strong> <a property="url" href="http://pluton.datsi.fi.upm.es/WoT/">http://pluton.datsi.fi.upm.es/WoT/</a></p>
 
 
 					<h3>Model</h3>
 
 					<div>
-					<a href="{{req.uri}}/model/{{req.qp}}">View Full Model</a> of this Web Thing. 
+					<a href="{{req.uri}}/WoT/model/">View Full Model</a> of this Web Thing.
 					</div>
 
 					<hr>
@@ -91,3 +98,4 @@
 
 
 </body></html>
+

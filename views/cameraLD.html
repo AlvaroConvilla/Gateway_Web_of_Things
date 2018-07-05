@@ -24,7 +24,7 @@
 <div class="bs-docs-header" id="content" tabindex="-1">
     <div class="container">
         {{#if req.uri}}
-        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/ <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
+        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/WoT <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
 
         {{else}}
         <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a> /{{req.entityId}}</h1>
@@ -81,7 +81,7 @@
   "@type": ["Thing","Product"],
   "name": "OAFMS Camera DMK",
   "description": "Camera DMK of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://venus.datsi.fi.upm.es:8484/Camera",
+  "base" : "http://pluton.datsi.fi.upm.es/WoT/Camera",
   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPH7MQuu6q5a_rKP_HuVP8Uo2lImNvdj1Fq0KzSUdYyPvdkI0b",
   "address":{
     "@type": "dir:PostalAddress",
@@ -96,7 +96,7 @@
   },
   "tags":["WoT","Camera", "DMK"],
   "form":[{
-    "href":"http://venus.datsi.fi.upm.es:8484/Camera/model"
+    "href":"http://pluton.datsi.fi.upm.es/WoT/Camera/model"
   }],
   "wot-context:interaction":
   [

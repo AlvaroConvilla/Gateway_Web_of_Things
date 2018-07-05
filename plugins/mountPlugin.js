@@ -24,7 +24,8 @@ exports.start = function connectHardware(){
 var azimuth = null;
 var altitude = null;
 //Obtener datos del rabbitmq
-amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
+//amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
+amqp.connect('amqp://localhost', function(err, conn) {
   conn.createChannel(function(err, ch) {
     //var ex = 'cupula';
     var ex = 'montura';

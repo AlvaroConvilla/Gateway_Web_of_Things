@@ -23,12 +23,15 @@
 <!-- Docs page layout -->
 <div class="bs-docs-header" id="content" tabindex="-1">
     <div class="container">
-        {{#if req.uri}}
-        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/ <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
+        <!--       {{#if req.uri}}
 
-        {{else}}
+               <h1><a href="/{{req.qp}}/WoT"> {{req.rooturl}}/WoT</a>/ <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
+       -->
+        <h1><a href="/{{req.qp}}">{{req.rooturl}}</a>/<a href="http://ofs.fi.upm.es/WoT">WoT</a>/<a href="http://ofs.fi.upm.es/WoT/{{req.uri}}">{{req.uri}}</a></h1>
+
+        <!--{{else}}
         <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a> /{{req.entityId}}</h1>
-        {{/if}}
+        {{/if}}-->
         <p>Details - Web Thing</p>
     </div>
 </div>
@@ -81,7 +84,7 @@
   "@type": ["Thing","Product"],
   "name": "OAFMS Philips Camera Inside",
   "description": "Philips Camera Inside of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://venus.datsi.fi.upm.es:8484/Camera_inside",
+  "base" : "http://pluton.datsi.fi.upm.es/WoT/Camera_inside",
   "image": "https://images.philips.com/is/image/PhilipsConsumer/PCVC840K_20-IMS-es_ES?wid=494&hei=435&$pnglarge$",
   "address":{
     "@type": "dir:PostalAddress",
@@ -96,7 +99,7 @@
   },
   "tags":["WoT","Camera", "Inside"],
   "form":[{
-    "href":"http://venus.datsi.fi.upm.es:8484/Camera_inside/model"
+    "href":"http://pluton.datsi.fi.upm.es/WoT/Camera_inside/model"
   }],
   "wot-context:interaction":
   [
