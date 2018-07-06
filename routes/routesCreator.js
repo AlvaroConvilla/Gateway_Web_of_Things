@@ -21,6 +21,9 @@ var express = require('express'),
   fs = require('fs');
   var request = require('request');
   //var rp = require('request-promise');
+  //const sqlite3 = require('sqlite3').verbose();
+  var keys = require('../resources/secure/auth'),
+modelSecure = require('./../resources/modelSecure');
 
 
 exports.create = function (model) { //por defecto el model que viene es el de la WeatherStation
@@ -147,68 +150,23 @@ function createModelRoutes(model) {
 function createModelRoutes(model) {
 // POST /WoT/login
   router.route('/WoT/login').post(function (req, res, next) {
+    //El login dará acceso para un usuario que exista registrado y que además tenga reserva hecha en este momento
     var act = req.body;
-
-    var user = act.username;
-    var pass = act.password;
-    console.log(user,pass);
 
         //coger Json que nos llega
         var json = req.body;
-        console.log(json);
-        //enviar a pasarela IoT el login
-        request({
-          url: "http://ofs.fi.upm.es/api/login",
-          method: "POST",
-          json: true,
-          timeout: 30000,
-          followRedirect: true,
-          maxRedirects: 2,
-          body: json
-          },function(error, response, body){
-            //console.log(error);
-            //console.log(response.statusCode);
-            if(!error && response.statusCode == 200){
-              var resp = JSON.stringify(response.body.token);
-              var tk1 = resp.replace('"','');
-              var tk2 = tk1.replace('"','');
-              //obtener token
-              var token = 'Beare '+tk2;
-              token2 = '"'+token+'"';
-              console.log(token2);
-
-              if(token != null){
-                //enviar peticion de consulta de reserva actual
-                request({
-                  url: "http://ofs.fi.upm.es/api/reservations/own",
-                  method: "GET",
-                  timeout: 30000,
-                  followRedirect: true,
-                  maxRedirects: 2,
-                  json: true,
-                  headers: {
-                    'Authorization': token2
-                  }
-                  //json: true
-                  },function(error, response, body){
-                    console.log(error);
-                    console.log(response.statusCode);
-                    if(!error && response.statusCode == 200){
-                      var resp = JSON.stringify(response.body.token);
-                      console.log(resp);
-                    }
-                  });
-                }
-                //si coincide con usuario que intenta loggear
-                //dar acceso enviandole el token de pasarela WoT
-                return res.status(200).send({token: 'totokenken'});
-                //sino devolver un 401 credenciales incorrectas
-              }
+        //console.log('Paso 1: '+JSON.stringify(json));
+        obtenerToken(json,function(token){
+            //console.log('Paso 2: '+token);
+            obtenerReservas(token,function(reservas){
+                //console.log('Paso 3: '+reservas);
+                var bool = comprobarReservaUser(reservas)
+                if(bool == true) return res.status(200).send({token: modelSecure.data.apiToken});
+                else return res.status(403).send({success: false, message: 'Unauthorized'});
             });
+        });
   })
 }
-
-
 
 //-----------------------------WEATHERSTATION----------------------------------------------------
 //root resource route: 
@@ -1888,4 +1846,77 @@ function createDefaultData(resources) {
 
 function reverseResults(array) {
   return array.slice(0).reverse();
+}
+
+function obtenerToken(json_, callback){
+        //enviar a pasarela IoT el login
+       request({
+          url: "http://ofs.fi.upm.es/api/login",
+          method: "POST",
+          json: true,
+          timeout: 30000,
+          followRedirect: true,
+          maxRedirects: 2,
+          body: json_
+          },function(error, response, body){
+            //console.log(response.statusCode);
+            if(!error && response.statusCode == 200){
+              var resp = JSON.stringify(response.body.token);
+              var tk1 = resp.replace('"','');
+              var tk2 = tk1.replace('"','');
+              //obtener token
+              var token = 'Bearer '+tk2;
+              //console.log(token);
+
+              if(resp != null){
+                callback(token);
+              }else{
+               callback(null);
+               }
+              }else{callback(null);}
+          });
+}
+
+function obtenerReservas(token, callback){
+//enviar peticion de consulta de reserva actual
+                var auth = "Authorization";
+                request({
+                  url: "http://ofs.fi.upm.es/api/reservations/own",
+                  method: "GET",
+                  timeout: 30000,
+                  followRedirect: true,
+                  maxRedirects: 2,
+                  json: true,
+                  headers: {
+                    "Authorization" : token
+                  }
+                },function(error, response, body){
+                    if(!error && response.statusCode == 200){
+                      resp = JSON.stringify(response.body);
+                      //console.log(resp);
+                      callback(resp);//devuelve el array de JSONs con las reservas del usuario
+                    }
+                    else{
+                        callback(null);
+                    }
+                });
+}
+
+function comprobarReservaUser(arrReservas){
+    var bool = false;
+    var reservas = JSON.parse(arrReservas); //Array de reservas
+    var tam = reservas.length;
+
+    //current date
+    var datetime = new Date();
+    //console.log(datetime);
+
+    for( i = 0; i < tam; i++){
+        var startD = new Date(reservas[i].startDate);
+        var endD   = new Date(reservas[i].endDate);
+        //console.log(startD);
+        if((startD < datetime) && (datetime < endD)){ bool = true; }
+        //if(startD < datetime) console.log('TRUE');
+    }
+    return bool;
 }

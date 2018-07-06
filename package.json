@@ -8,6 +8,7 @@
     "express": "^4.16.2",
     "parse-json-response": "^1.0.1",
     "request-promise": "^4.2.2",
+    "sqlite3": "^4.0.1",
     "timer-shim": "^0.3.0",
     "ws": "^4.0.0"
   },

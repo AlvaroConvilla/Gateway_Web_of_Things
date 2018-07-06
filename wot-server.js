@@ -5,7 +5,7 @@ var httpServer = require('./servers/http'),
 
  //Argumento del comando de ejecución
  //const args = process.argv;
- var first_value = process.argv[2];
+/* var first_value = process.argv[2];
  var secure;
  //console.log(first_value);
  if(typeof first_value === "undefined"){
@@ -13,7 +13,7 @@ var httpServer = require('./servers/http'),
     secure = false;
  }else{
     secure = true;
- }
+ }*/
 
 //Secure
 //if (process.env.PORT) port = process.env.PORT;

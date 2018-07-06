@@ -11,21 +11,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/middleware/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routesCreator.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routesCreator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state relative-caret-position="197">
+              <caret line="162" column="47" lean-forward="false" selection-start-line="162" selection-start-column="27" selection-end-line="162" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-786">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="http.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/servers/http.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-102">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sensorsPlugin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/sensorsPlugin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-714">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,6 +66,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>\/\/    action\.id \= uuid\.v1\(\)\;\n\/\/    action\.status \= \&quot;pending\&quot;\;\n\/\/    action\.timestamp \= utils\.isoTimestamp\(\)\;\n\/\/    utils\.cappedPush\(actions\.resources\[req\.params\.actionType\]\.data\, action\)\;\n\/\/    res\.location\(req\.originalUrl \+ \'\/\' \+ action\.id\)\;\n    if\(req\.params\.actionType \=\= \&quot;Goto\&quot;\)\{   \/\/\&quot;data\&quot;\:\[\{\&quot;RA\&quot;\: \&quot;6h45m8\.9s\&quot;\,\&quot;DEC\&quot;\: \&quot;\-16\°42\'52\.1\&quot;\}\]\n        try\{\n        var ra \= act\.data\[0\]\.RA\;\n        var dec \= act\.data\[0\]\.DEC\;\n        console\.log\(ra\)\;\n        console\.log\(dec\)\;\n        if\(ra \!\=\= undefined \&amp;\&amp; ra \!\=\= null \&amp;\&amp; dec \!\=\= undefined \&amp;\&amp; dec \!\=\= null\)\{\n            console\.log\(\&quot;Mount Action\:\&quot;\)\;\n            console\.log\(\&quot;\.\.\.\.\.Goto RA\: \&quot;\+ra\)\;\n            console\.log\(\&quot;\.\.\.\.\.Goto DEC\: \&quot;\+dec\)\;\n            \/\/Publicar action en rabbitmq\n            \/\/Fin publicar en Rabbitmq\n            res\.send\(\'Action POST received\'\)\;\n         \}\n         else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n         \}\/\/try\n         catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;setTracking\&quot;\)\{\n        try\{\n        var vel \= act\.data\[0\]\.speed\;\n        if\(vel \!\=\= undefined \&amp;\&amp; vel \!\=\= null\)\{\n           console\.log\(\&quot;Mount Action\:\&quot;\)\;\n           console\.log\(\&quot;\.\.\.\.\.setTracking \-\-\&gt; Speed\:\&quot;\+vel\)\;\n            \/\/Publicar action en rabbitmq\n            \/\/Fin publicar en Rabbitmq\n            res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoPark\&quot;\)\{\n        try\{\n        var gopark \= act\.data\[0\]\.action\;\n        if\(gopark \!\=\= undefined \&amp;\&amp; gopark \!\=\= null \&amp;\&amp; gopark \=\=\= \&quot;GoPark\&quot;\)\{\n         console\.log\(\&quot;Mount Action\:\&quot;\)\;\n         console\.log\(\&quot;\.\.\.\.\.GoPark\&quot;\)\;\n         \/\/Publicar action en rabbitmq\n         \/\/Fin publicar en Rabbitmq\n        res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoHome\&quot;\)\{\n        try\{\n        var gohome \= act\.data\[0\]\.action\;\n        if\(gohome \!\=\= undefined \&amp;\&amp; gohome \!\=\= null \&amp;\&amp; gohome \=\=\= \&quot;GoHome\&quot;\)\{\n         console\.log\(\&quot;Mount Action\:\&quot;\)\;\n         console\.log\(\&quot;\.\.\.\.\.GoHome\&quot;\)\;\n         \/\/Publicar action en rabbitmq\n         \/\/Fin publicar en Rabbitmq\n        res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoNorth\&quot;\)\{\n        actionMount\.properties\.comando \= \&quot;moverNorte\&quot;\;\n        var json_ \= actionMount\;\n\n        try\{\n            var gonorth \= act\.values\.st\.unit\.action\;\n            if\(gonorth \!\=\= undefined \&amp;\&amp; gonorth \!\=\= null \&amp;\&amp; gonorth \=\=\= \&quot;GoNorth\&quot;\)\{\n             console\.log\(\&quot;Mount Action\:\&quot;\)\;\n             console\.log\(\&quot;\.\.\.\.\.GoNorth\&quot;\)\;\n\n             \/\/Publicar action en rabbitmq\n             var amqp \= require\(\'amqplib\/callback_api\'\)\;\n\n             \/\/amqp\.connect\(\'amqp\:\/\/venus\:venuspass\@localhost\'\, function\(err\, conn\) \{\n             amqp\.connect\(\'amqp\:\/\/localhost\'\, function\(err\, conn\) \{\n               conn\.createChannel\(function\(err\, ch\) \{\n                 var ex \= \'pasarela\'\;\n                 var args \= process\.argv\.slice\(2\)\;\n                 var msg \= args\.slice\(1\)\.join\(\' \'\) \|\| \'Hello World\!\'\;\n                 var severity \= \(args\.length \&gt; 0\) \? args\[0\] \: \'info\'\;\n\n                 ch\.assertExchange\(ex\, \'direct\'\, \{durable\: false\}\)\;\n                 ch\.publish\(ex\, severity\, new Buffer\(JSON\.stringify\(json_\)\)\)\; \/\/msg\n                 \/\/console\.log\(json_\)\;\n                 \/\/console\.log\(\&quot; \[x\] Sent \%s\: \'\%s\'\&quot;\, severity\, msg\)\;\n               \}\)\;\n\n               setTimeout\(function\(\) \{ conn\.close\(\)\; process\.exit\(0\) \}\, 500\)\;\n             \}\)\;\n             \/\/Fin publicar en Rabbitmq\n\n             res\.send\(\'Action POST received\'\)\;\n            \}\n            else\{\n                res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{\n          res\.send\(\'Error\: Action not defined\'\)\;\n        \}\n    \}\n        else if\(req\.params\.actionType \=\= \&quot;Stop\&quot;\)\{\n            actionMount\.properties\.comando \= \&quot;parar\&quot;\;\n            var json_ \= actionMount\;\n\n            try\{\n                var stop \= act\.values\.st\.unit\.action\;\n                if\(stop \!\=\= undefined \&amp;\&amp; stop \!\=\= null \&amp;\&amp; stop \=\=\= \&quot;Stop\&quot;\)\{\n                 console\.log\(\&quot;Mount Action\:\&quot;\)\;\n                 console\.log\(\&quot;\.\.\.\.\.Stop\&quot;\)\;\n\n                 \/\/Publicar action en rabbitmq\n                 var amqp \= require\(\'amqplib\/callback_api\'\)\;\n\n                 amqp\.connect\(\'amqp\:\/\/localhost\'\, function\(err\, conn\) \{\n                   conn\.createChannel\(function\(err\, ch\) \{\n                     var ex \= \'montura\'\;\n                     var args \= process\.argv\.slice\(2\)\;\n                     var msg \= args\.slice\(1\)\.join\(\' \'\) \|\| \'Hello World\!\'\;\n                     var severity \= \(args\.length \&gt; 0\) \? args\[0\] \: \'info\'\;\n\n                     ch\.assertExchange\(ex\, \'direct\'\, \{durable\: false\}\)\;\n                     ch\.publish\(ex\, severity\, new Buffer\(JSON\.stringify\(json_\)\)\)\; \/\/msg\n                     \/\/console\.log\(json_\)\;\n                     \/\/console\.log\(\&quot; \[x\] Sent \%s\: \'\%s\'\&quot;\, severity\, msg\)\;\n                   \}\)\;\n\n                   setTimeout\(function\(\) \{ conn\.close\(\)\; process\.exit\(0\) \}\, 500\)\;\n                 \}\)\;\n                 \/\/Fin publicar en Rabbitmq\n\n                 res\.send\(\'Action POST received\'\)\;\n                \}\n                else\{\n                    res\.send\(\'Error\: Action not defined\'\)\;\}\n            \}\/\/try\n            catch\(err\)\{\n              res\.send\(\'Error\: Action not defined\'\)\;\n            \}\n        \}\n    else\{\n    res\.send\(\'Error\: Action not defined\'\)\;\n    \}</find>
+      <find>Si quiere arrancar la Gateway con seguridad</find>
+      <find>return</find>
+      <find>JSON.str</find>
+      <find>obtenerToken</find>
+      <find>obtenerReservas</find>
+      <find>modelSecure</find>
+      <find>comprobarReservaUser</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -51,12 +88,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/middleware/auth.js" />
+        <option value="$PROJECT_DIR$/wot-server.js" />
         <option value="$PROJECT_DIR$/routes/routesCreator.js" />
+        <option value="$PROJECT_DIR$/middleware/auth.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="71" />
     <option name="y" value="-28" />
     <option name="width" value="1869" />
@@ -87,12 +125,22 @@
             <path>
               <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
               <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
-              <item name="middleware" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
               <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
+              <item name="servers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -178,8 +226,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="-4" width="1861" height="964" extended-state="6" />
-    <editor active="true" />
+    <frame x="51" y="-4" width="1861" height="964" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -187,7 +234,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19704433" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19704433" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13829201" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -210,18 +257,50 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
+    <entry file="file://$PROJECT_DIR$/wot-server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/sensorsPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-786">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servers/http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        <state relative-caret-position="197">
+          <caret line="162" column="47" lean-forward="false" selection-start-line="162" selection-start-column="27" selection-end-line="162" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding />
         </state>
       </provider>

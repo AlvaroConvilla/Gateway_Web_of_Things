@@ -12,9 +12,10 @@ module.exports = function() {
     } else {
       var token = req.body.token || req.get('authorization') || req.query.token; //#B
       //console.log(req.path);
+      var path = req.path;
           if (!token) { //#C
-            if((token='/WoT/login') || (token='/WoT') || (token='/WoT/') || (token='/WoT/model')){
-                console.log('Access uthorized to '+token);
+            if((path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')){
+                console.log('Access authorized to '+token);
                 next();
             }
             else{
