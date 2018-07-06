@@ -146,7 +146,6 @@ function createModelRoutes(model) {
 
 function createModelRoutes(model) {
 // POST /WoT/login
-// POST /Mount/actions/{actionType}
   router.route('/WoT/login').post(function (req, res, next) {
     var act = req.body;
 
