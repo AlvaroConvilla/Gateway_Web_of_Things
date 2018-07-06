@@ -19,6 +19,9 @@ var express = require('express'),
   actionMount = require('./../resources/actionMount'),
   //sleep = require('sleep'),
   fs = require('fs');
+  var request = require('request');
+  //var rp = require('request-promise');
+
 
 exports.create = function (model) { //por defecto el model que viene es el de la WeatherStation
   //Campo Data para almacenar los valores de los sensores de los Things:
@@ -141,6 +144,7 @@ function createModelRoutes(model) {
   });
 };
 
+function createModelRoutes(model) {
 // POST /WoT/login
 // POST /Mount/actions/{actionType}
   router.route('/WoT/login').post(function (req, res, next) {
@@ -150,153 +154,61 @@ function createModelRoutes(model) {
     var pass = act.password;
     console.log(user,pass);
 
-//    action.id = uuid.v1();
-//    action.status = "pending";
-//    action.timestamp = utils.isoTimestamp();
-//    utils.cappedPush(actions.resources[req.params.actionType].data, action);
-//    res.location(req.originalUrl + '/' + action.id);
-    if(req.params.actionType == "Goto"){   //"data":[{"RA": "6h45m8.9s","DEC": "-16°42'52.1"}]
-        try{
-        var ra = act.data[0].RA;
-        var dec = act.data[0].DEC;
-        console.log(ra);
-        console.log(dec);
-        if(ra !== undefined && ra !== null && dec !== undefined && dec !== null){
-            console.log("Mount Action:");
-            console.log(".....Goto RA: "+ra);
-            console.log(".....Goto DEC: "+dec);
-            //Publicar action en rabbitmq
-            //Fin publicar en Rabbitmq
-            res.send('Action POST received');
-         }
-         else{res.send('Error: Action not defined');}
-         }//try
-         catch(err){res.send('Error: Action not defined');}
-    }
-    else if(req.params.actionType == "setTracking"){
-        try{
-        var vel = act.data[0].speed;
-        if(vel !== undefined && vel !== null){
-           console.log("Mount Action:");
-           console.log(".....setTracking --> Speed:"+vel);
-            //Publicar action en rabbitmq
-            //Fin publicar en Rabbitmq
-            res.send('Action POST received');
-        }
-        else{res.send('Error: Action not defined');}
-        }//try
-        catch(err){res.send('Error: Action not defined');}
-    }
-    else if(req.params.actionType == "GoPark"){
-        try{
-        var gopark = act.data[0].action;
-        if(gopark !== undefined && gopark !== null && gopark === "GoPark"){
-         console.log("Mount Action:");
-         console.log(".....GoPark");
-         //Publicar action en rabbitmq
-         //Fin publicar en Rabbitmq
-        res.send('Action POST received');
-        }
-        else{res.send('Error: Action not defined');}
-        }//try
-        catch(err){res.send('Error: Action not defined');}
-    }
-    else if(req.params.actionType == "GoHome"){
-        try{
-        var gohome = act.data[0].action;
-        if(gohome !== undefined && gohome !== null && gohome === "GoHome"){
-         console.log("Mount Action:");
-         console.log(".....GoHome");
-         //Publicar action en rabbitmq
-         //Fin publicar en Rabbitmq
-        res.send('Action POST received');
-        }
-        else{res.send('Error: Action not defined');}
-        }//try
-        catch(err){res.send('Error: Action not defined');}
-    }
-    else if(req.params.actionType == "GoNorth"){
-        actionMount.properties.comando = "moverNorte";
-        var json_ = actionMount;
+        //coger Json que nos llega
+        var json = req.body;
+        console.log(json);
+        //enviar a pasarela IoT el login
+        request({
+          url: "http://ofs.fi.upm.es/api/login",
+          method: "POST",
+          json: true,
+          timeout: 30000,
+          followRedirect: true,
+          maxRedirects: 2,
+          body: json
+          },function(error, response, body){
+            //console.log(error);
+            //console.log(response.statusCode);
+            if(!error && response.statusCode == 200){
+              var resp = JSON.stringify(response.body.token);
+              var tk1 = resp.replace('"','');
+              var tk2 = tk1.replace('"','');
+              //obtener token
+              var token = 'Beare '+tk2;
+              token2 = '"'+token+'"';
+              console.log(token2);
 
-        try{
-            var gonorth = act.values.st.unit.action;
-            if(gonorth !== undefined && gonorth !== null && gonorth === "GoNorth"){
-             console.log("Mount Action:");
-             console.log(".....GoNorth");
-
-             //Publicar action en rabbitmq
-             var amqp = require('amqplib/callback_api');
-
-             //amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
-             amqp.connect('amqp://localhost', function(err, conn) {
-               conn.createChannel(function(err, ch) {
-                 var ex = 'pasarela';
-                 var args = process.argv.slice(2);
-                 var msg = args.slice(1).join(' ') || 'Hello World!';
-                 var severity = (args.length > 0) ? args[0] : 'info';
-
-                 ch.assertExchange(ex, 'direct', {durable: false});
-                 ch.publish(ex, severity, new Buffer(JSON.stringify(json_))); //msg
-                 //console.log(json_);
-                 //console.log(" [x] Sent %s: '%s'", severity, msg);
-               });
-
-               setTimeout(function() { conn.close(); process.exit(0) }, 500);
-             });
-             //Fin publicar en Rabbitmq
-
-             res.send('Action POST received');
-            }
-            else{
-                res.send('Error: Action not defined');}
-        }//try
-        catch(err){
-          res.send('Error: Action not defined');
-        }
-    }
-        else if(req.params.actionType == "Stop"){
-            actionMount.properties.comando = "parar";
-            var json_ = actionMount;
-
-            try{
-                var stop = act.values.st.unit.action;
-                if(stop !== undefined && stop !== null && stop === "Stop"){
-                 console.log("Mount Action:");
-                 console.log(".....Stop");
-
-                 //Publicar action en rabbitmq
-                 var amqp = require('amqplib/callback_api');
-
-                 amqp.connect('amqp://localhost', function(err, conn) {
-                   conn.createChannel(function(err, ch) {
-                     var ex = 'montura';
-                     var args = process.argv.slice(2);
-                     var msg = args.slice(1).join(' ') || 'Hello World!';
-                     var severity = (args.length > 0) ? args[0] : 'info';
-
-                     ch.assertExchange(ex, 'direct', {durable: false});
-                     ch.publish(ex, severity, new Buffer(JSON.stringify(json_))); //msg
-                     //console.log(json_);
-                     //console.log(" [x] Sent %s: '%s'", severity, msg);
-                   });
-
-                   setTimeout(function() { conn.close(); process.exit(0) }, 500);
-                 });
-                 //Fin publicar en Rabbitmq
-
-                 res.send('Action POST received');
+              if(token != null){
+                //enviar peticion de consulta de reserva actual
+                request({
+                  url: "http://ofs.fi.upm.es/api/reservations/own",
+                  method: "GET",
+                  timeout: 30000,
+                  followRedirect: true,
+                  maxRedirects: 2,
+                  json: true,
+                  headers: {
+                    'Authorization': token2
+                  }
+                  //json: true
+                  },function(error, response, body){
+                    console.log(error);
+                    console.log(response.statusCode);
+                    if(!error && response.statusCode == 200){
+                      var resp = JSON.stringify(response.body.token);
+                      console.log(resp);
+                    }
+                  });
                 }
-                else{
-                    res.send('Error: Action not defined');}
-            }//try
-            catch(err){
-              res.send('Error: Action not defined');
-            }
-        }
-    else{
-    res.send('Error: Action not defined');
-    }
+                //si coincide con usuario que intenta loggear
+                //dar acceso enviandole el token de pasarela WoT
+                return res.status(200).send({token: 'totokenken'});
+                //sino devolver un 401 credenciales incorrectas
+              }
+            });
+  })
+}
+
 
 
 //-----------------------------WEATHERSTATION----------------------------------------------------
@@ -314,61 +226,16 @@ function createWeatherStationRoute(model){
     req.result = utils.extractFields(fields,model);
     req.links = ['/WoT/WeatherStation/model', '/WoT/WeatherStation/properties', '/WoT/WeatherStation/actions', '/WoT/WeatherStation/events'];
     
-    //coger Json que nos llega
-    var json = req.body;
-    console.log(json);
-    //enviar a pasarela IoT el login
-    request({
-      url: "http://ofs.fi.upm.es/api/login",
-      method: "POST",
-      json: true,
-      timeout: 30000,
-      followRedirect: true,
-      maxRedirects: 2,
-      body: json
-      },function(error, response, body){
-        //console.log(error);
-        //console.log(response.statusCode);
-        if(!error && response.statusCode == 200){
-          var resp = JSON.stringify(response.body.token);
-          var tk1 = resp.replace('"','');
-          var tk2 = tk1.replace('"','');
-          //obtener token
-          var token = 'Beare '+tk2;
-          token2 = '"'+token+'"';
-          console.log(token2);
-
-          if(token != null){
-            //enviar peticion de consulta de reserva actual
-            request({
-              url: "http://ofs.fi.upm.es/api/reservations/own",
-              method: "GET",
-              timeout: 30000,
-              followRedirect: true,
-              maxRedirects: 2,
-              json: true,
-              headers: {
-                'Authorization': token2
-              }
-              //json: true
-              },function(error, response, body){
-                console.log(error);
-                console.log(response.statusCode);
-                if(!error && response.statusCode == 200){
-                  var resp = JSON.stringify(response.body.token);
-                  console.log(resp);
-                }
-              });
-            }
-            //si coincide con usuario que intenta loggear
-            //dar acceso enviandole el token de pasarela WoT
-            return res.status(200).send({token: 'totokenken'});
-            //sino devolver un 401 credenciales incorrectas
-          }
-        });
+    if (model['@context']) type = model['@context'];
+    else type = 'http://pluton.datsi.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
+      model: '/model/',
+      properties: '/properties/',
+      actions: '/actions/',
+      events: '/events/',
+      ui: '/',
     });
     next();//llama a la siguiente representacion middleware
 });

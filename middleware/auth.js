@@ -1,7 +1,5 @@
 var keys = require('../resources/secure/auth'),
 modelSecure = require('./../resources/modelSecure');
-var request = require('request');
-var rp = require('request-promise');
 
 var token2;
 
@@ -15,8 +13,9 @@ module.exports = function() {
       var token = req.body.token || req.get('authorization') || req.query.token; //#B
       //console.log(req.path);
           if (!token) { //#C
-            if(token='/WoT/login' || token='/WoT' || token='/WoT/' || token='/WoT/model'){
-                break;
+            if((token='/WoT/login') || (token='/WoT') || (token='/WoT/') || (token='/WoT/model')){
+                console.log('Access uthorized to '+token);
+                next();
             }
             else{
               return res.status(401).send({success: false, message: 'API token missing.'});
