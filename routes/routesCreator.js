@@ -151,20 +151,46 @@ function createModelRoutes(model) {
 // POST /WoT/login
   router.route('/WoT/login').post(function (req, res, next) {
     //El login dará acceso para un usuario que exista registrado y que además tenga reserva hecha en este momento
-    var act = req.body;
+    //coger Json que nos llega
+    var json = req.body;
 
-        //coger Json que nos llega
-        var json = req.body;
-        //console.log('Paso 1: '+JSON.stringify(json));
+    if(json.username === 'admin'){ //Si el usuario que intenta entrar es admin, siempre dar acceso
+        //Realizar login sobre pasarela IoT con los datos de user y pass que han llegado
         obtenerToken(json,function(token){
-            //console.log('Paso 2: '+token);
-            obtenerReservas(token,function(reservas){
-                //console.log('Paso 3: '+reservas);
-                var bool = comprobarReservaUser(reservas)
-                if(bool == true) return res.status(200).send({token: modelSecure.data.apiToken});
-                else return res.status(403).send({success: false, message: 'Unauthorized'});
-            });
+            console.log(token);
+            if(token != null){
+                    return res.status(200).send({token: modelSecure.data.apiToken});
+            }
+            else {
+                return res.status(403).send({success: false, message: 'Incorrect password'});
+            }
         });
+    }
+    else{ //Cualquier otro usuario debe tener reserva
+        //Realizar login sobre pasarela IoT con los datos de user y pass que han llegado
+        obtenerToken(json,function(token){
+           if(token != null){
+               //Si ha loggeado correctamente obtenemos las reservas de dicho usuario
+               obtenerReservas(token,function(reservas){
+                  if(reservas != null){
+                      //Con las reservas que tiene ver si tiene una para este momento darle acceso
+                      var bool = comprobarReservaUser(reservas);
+
+                      if(bool == true){ //Dar acceso
+                       return res.status(200).send({token: modelSecure.data.apiToken});
+                      }
+                      else{ //Denegar acceso
+                       return res.status(403).send({success: false, message: 'Unauthorized'});
+                      }
+                  }else{
+                      return res.status(403).send({success: false, message: 'Unauthorized'});
+                  }
+               });
+           }else{
+               return res.status(403).send({success: false, message: 'Unauthorized'});
+           }
+        });
+    }
   })
 }
 
@@ -1872,8 +1898,8 @@ function obtenerToken(json_, callback){
                 callback(token);
               }else{
                callback(null);
-               }
-              }else{callback(null);}
+              }
+            }else{callback(null);}
           });
 }
 

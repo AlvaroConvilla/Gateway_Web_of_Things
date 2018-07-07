@@ -15,7 +15,7 @@ module.exports = function() {
       var path = req.path;
           if (!token) { //#C
             if((path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')){
-                console.log('Access authorized to '+token);
+                console.log('Access authorized to '+path);
                 next();
             }
             else{
