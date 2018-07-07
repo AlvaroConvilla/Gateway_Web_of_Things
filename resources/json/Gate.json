@@ -1,5 +1,5 @@
 {
-  "id": "http://pluton.datsi.fi.upm.es:8484",
+  "id": "http://ofs.fi.upm.es:8484",
   "name": "WoT Gateway",
   "description": "Thing Gateway of the Francisco Manuel Sánchez Astronomical Observatory.",
   "tags": [
@@ -10,11 +10,16 @@
     "UPM"
   ],
   "customFields": {
-    "hostname": "pluton.datsi.fi.upm.es",
+    "hostname": "ofs.fi.upm.es",
     "port": "8484",
     "secure": "false"
   },
   "links": {
+    "login": {
+      "link": "/login",
+      "name": "login",
+      "description": "Web of Thing login"
+    },
       "WeatherStation": {
         "link": "/WeatherStation",
         "name": "WeatherStation",

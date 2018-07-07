@@ -38,7 +38,7 @@
   "@type": ["Thing","Product"],
   "name": "OAFMS Moobotix Camera outside",
   "description": "Moobotix Camera Outside of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://pluton.datsi.fi.upm.es:8484/Camera_outside",
+  "base" : "http://ofs.fi.upm.es:8484/Camera_outside",
   "image": "https://www.networkwebcams.com/media/catalog/product/cache/5/image/c8e7b2922fe3ed24d8af6a33b961dcd4/m/o/mobotix_m12d.jpg",
   "address":{
     "@type": "dir:PostalAddress",
@@ -53,7 +53,7 @@
   },
   "tags":["WoT","Camera", "Outside"],
   "form":[{
-    "href":"http://pluton.datsi.fi.upm.es:8484/Camera_outside/model"
+    "href":"http://ofs.fi.upm.es:8484/Camera_outside/model"
   }],
   "wot-context:interaction":
   [

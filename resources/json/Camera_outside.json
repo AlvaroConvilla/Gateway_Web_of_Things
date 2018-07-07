@@ -1,10 +1,10 @@
 {
-  "id":"http://pluton.datsi.fi.upm.es:8484",
+  "id":"http://ofs.fi.upm.es:8484",
   "name": "WoT Camera Outside",
   "description": "Thing Camera. Observatorio Astronómico Francisco Manuel Sánchez.",
   "tags":[ "WoT", "Camera", "Outside"],
   "customFields":{
-    "hostname":"pluton.datsi.fi.upm.es",
+    "hostname":"ofs.fi.upm.es",
     "port":"8484",
     "secure":"false",
     "dataArraySize":30

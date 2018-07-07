@@ -43,7 +43,7 @@
                 <pre>{{req.result}}</pre>
                 <script type="application/ld+json">{
   "@context": {
-	"wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
+    "wot-td":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#",
     "wot-context":"https://w3c.github.io/wot/w3c-wot-common-context.jsonld#",
     "name":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#name",
     "description":"https://w3c.github.io/wot/w3c-wot-td-context.jsonld#description",
@@ -75,13 +75,13 @@
       "@type": "@id"
     },
     "dir":"http://schema.org/"
-   },
+  },
   "@type": ["Thing","product"],
   "@id": "WOT Gateway",
   "name": "OAFMS Gateway",
   "description": "WOT Gateway of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://pluton.datsi.fi.upm.es/WoT/",
-  "port" : "80",
+  "base" : "http://ofs.fi.upm.es:8484/",
+  "port" : "8484",
   "address":{
     "@type": "dir:PostalAddress",
     "dir:addressLocality": "Madrid",
@@ -90,51 +90,57 @@
     "dir:streetAddress": "Ciruelos"
   },
   "geo": {
-	"latitude": "40.40613557505122",
-	"longitude": "-3.8385415077209473"
-	},
+    "latitude": "40.40613557505122",
+    "longitude": "-3.8385415077209473"
+  },
   "tags":["WoT","Gateway", "Astronomical", "Observatory","Thing"],
   "form":[{
-    "href":"http://pluton.datsi.fi.upm.es/WoT/model"
+    "href":"http://ofs.fi.upm.es:8484/model"
   }],
   "wot-td:Link": [
+    {"@id":"login",
+      "@type":["login"],
+      "href": "/login",
+      "name":"login",
+      "description":"Web of Thing login"
+    },
     {"@id":"WeatherStation",
-     "@type":["Thing","Thing:WeatherStation"],
-             "href": "/WeatherStation",
-              "name":"WeatherStation",
-              "description":"Web of Thing WeatherStation"
-            },
-          	{"@id":"Dome",
-             "@type":["Thing","Thing:Dome"],
-             "href": "/Dome",
-              "name":"Dome",
-              "description":"Web of Thing Dome"
-            },
-          	{"@id":"Camera",
-             "@type":["Thing","Thing:Camera","DMK"],
-             "href": "/Camera",
-              "name":"Camera",
-              "description":"Web of Thing Camera DMK"
-            },
-            {"@id":"Mount",
-             "@type":["Thing","Thing:Mount"],
-             "href": "/Mount",
-              "name":"Mount",
-              "description":"Web of Thing Mount"
-            },
-            {"@id":"CameraInside",
-             "@type":["Thing","Thing:Camera","Inside"],
-              "href": "/Camera_inside",
-              "name":"CameraInside",
-              "description":"Web of Thing Camera Inside"
-            },
-            {"@id":"CameraOutside",
-             "@type":["Thing","Thing:Camera","Outside"],
-              "href": "/Camera_outside",
-              "name":"CameraOutside",
-              "description":"Web of Thing Camera Outside"
-            }
-          ]
+      "@type":["Thing","Thing:WeatherStation"],
+      "href": "/WeatherStation",
+      "name":"WeatherStation",
+      "description":"Web of Thing WeatherStation"
+    },
+    {"@id":"Dome",
+      "@type":["Thing","Thing:Dome"],
+      "href": "/Dome",
+      "name":"Dome",
+      "description":"Web of Thing Dome"
+    },
+    {"@id":"Camera",
+      "@type":["Thing","Thing:Camera","DMK"],
+      "href": "/Camera",
+      "name":"Camera",
+      "description":"Web of Thing Camera DMK"
+    },
+    {"@id":"Mount",
+      "@type":["Thing","Thing:Mount"],
+      "href": "/Mount",
+      "name":"Mount",
+      "description":"Web of Thing Mount"
+    },
+    {"@id":"CameraInside",
+      "@type":["Thing","Thing:Camera","Inside"],
+      "href": "/Camera_inside",
+      "name":"CameraInside",
+      "description":"Web of Thing Camera Inside"
+    },
+    {"@id":"CameraOutside",
+      "@type":["Thing","Thing:Camera","Outside"],
+      "href": "/Camera_outside",
+      "name":"CameraOutside",
+      "description":"Web of Thing Camera Outside"
+    }
+  ]
 }</script>
             </div>
 

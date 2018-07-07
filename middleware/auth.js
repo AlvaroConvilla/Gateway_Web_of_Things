@@ -14,7 +14,7 @@ module.exports = function() {
       //console.log(req.path);
       var path = req.path;
           if (!token) { //#C
-            if((path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')){
+            if((path==='/') || (path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')){
                 console.log('Access authorized to '+path);
                 next();
             }

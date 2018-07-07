@@ -37,7 +37,7 @@
   "@id": "WOT Gateway",
   "name": "OAFMS Gateway",
   "description": "WOT Gateway of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://pluton.datsi.fi.upm.es:8484/",
+  "base" : "http://ofs.fi.upm.es:8484/",
   "port" : "8484",
   "address":{
     "@type": "dir:PostalAddress",
@@ -52,9 +52,15 @@
   },
   "tags":["WoT","Gateway", "Astronomical", "Observatory","Thing"],
   "form":[{
-    "href":"http://pluton.datsi.fi.upm.es:8484/model"
+    "href":"http://ofs.fi.upm.es:8484/model"
   }],
   "wot-td:Link": [
+    {"@id":"login",
+      "@type":["login"],
+      "href": "/login",
+      "name":"login",
+      "description":"Web of Thing login"
+    },
     {"@id":"WeatherStation",
       "@type":["Thing","Thing:WeatherStation"],
       "href": "/WeatherStation",

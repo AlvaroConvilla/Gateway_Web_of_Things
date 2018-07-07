@@ -38,7 +38,7 @@
   "@type": ["Thing","Product"],
   "name": "OAFMS Camera DMK",
   "description": "Camera DMK of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://pluton.datsi.fi.upm.es:8484/Camera",
+  "base" : "http://ofs.fi.upm.es:8484/Camera",
   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPH7MQuu6q5a_rKP_HuVP8Uo2lImNvdj1Fq0KzSUdYyPvdkI0b",
   "address":{
     "@type": "dir:PostalAddress",
@@ -53,7 +53,7 @@
   },
   "tags":["WoT","Camera", "DMK"],
   "form":[{
-    "href":"http://pluton.datsi.fi.upm.es:8484/Camera/model"
+    "href":"http://ofs.fi.upm.es:8484/Camera/model"
   }],
   "wot-context:interaction":
   [
