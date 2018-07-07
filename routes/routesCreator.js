@@ -170,9 +170,11 @@ function createModelRoutes(model) {
         //Realizar login sobre pasarela IoT con los datos de user y pass que han llegado
         obtenerToken(json,function(token){
            if(token != null){
+
                //Si ha loggeado correctamente obtenemos las reservas de dicho usuario
                obtenerReservas(token,function(reservas){
                   if(reservas != null){
+
                       //Con las reservas que tiene ver si tiene una para este momento darle acceso
                       var bool = comprobarReservaUser(reservas);
 
@@ -1940,9 +1942,16 @@ function comprobarReservaUser(arrReservas){
     for( i = 0; i < tam; i++){
         var startD = new Date(reservas[i].startDate);
         var endD   = new Date(reservas[i].endDate);
+
         //console.log(startD);
-        if((startD < datetime) && (datetime < endD)){ bool = true; }
         //if(startD < datetime) console.log('TRUE');
+
+        if((startD < datetime) && (datetime < endD)){
+            bool = true;
+            //Se lanza proceso que cambiará el token cuando se termine la reserva
+            //generará un token nuevo invalidando el acceso al usuario por fin de reserva
+            utils.endReserva(endD);
+        }
     }
     return bool;
 }

@@ -77,6 +77,23 @@ exports.generateApiToken = function(length, chars) {
   return result.join('');
 };
 
+//Esta función se llama cuando se le ha dado acceso a un usuario logueado
+//y tiene una reserva  enviandole el token, cuando su reserva finalice debe cambiarse el token
+exports.endReserva = function endR(endDate){
+    var i = 0;
+    var requestLoop = setInterval(function(){
+        //current date
+        var datetime = new Date();
+        //Si supera el limite de la reserva se crea un nuevo token
+        if(datetime > endDate){
+            var token = utils.generateApiToken();
+            modelSecure.data = {"apiToken":token};
+            console.info('>Here is a new random crypto-secure API Key: ' + token);
+            clearInterval(requestLoop);
+        }
+    },3000);
+}
+
 exports.isTokenValid = function(token) {
   return keys.apiToken === token;
 };
