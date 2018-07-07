@@ -11,6 +11,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/middleware/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="164" lean-forward="false" selection-start-line="22" selection-start-column="164" selection-end-line="22" selection-end-column="164" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="action.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/action.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -21,21 +31,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routesCreator.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="routesCreator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="141" column="27" lean-forward="false" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="27" />
+            <state relative-caret-position="179">
+              <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WeatherStation.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/json/WeatherStation.json">
+      <file leaf-file-name="loginLD.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/json/loginLD.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GateLD.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/json/GateLD.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modelLogin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/modelLogin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/json/login.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Camera_outside.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/json/Camera_outside.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -57,8 +107,14 @@
       <find>app</find>
       <find>POST</find>
       <find>pluton.datsi</find>
+      <find>createMountActionsRoutes</find>
+      <find>&quot;secure&quot;:&quot;false&quot;</find>
+      <find>venus.datsi</find>
+      <find>venus</find>
+      <find>createCameraActionsRoutes</find>
     </findStrings>
     <replaceStrings>
+      <replace>&quot;secure&quot;:&quot;true&quot;</replace>
       <replace>ofs</replace>
     </replaceStrings>
   </component>
@@ -77,12 +133,13 @@
       <list>
         <option value="$PROJECT_DIR$/wot-server.js" />
         <option value="$PROJECT_DIR$/utils/utils.js" />
-        <option value="$PROJECT_DIR$/routes/routesCreator.js" />
         <option value="$PROJECT_DIR$/resources/json/Gate.json" />
         <option value="$PROJECT_DIR$/resources/json/GateLD.json" />
-        <option value="$PROJECT_DIR$/middleware/auth.js" />
         <option value="$PROJECT_DIR$/views/gatewayLD.html" />
         <option value="$PROJECT_DIR$/resources/json/WeatherStation.json" />
+        <option value="$PROJECT_DIR$/resources/json/login.json" />
+        <option value="$PROJECT_DIR$/middleware/auth.js" />
+        <option value="$PROJECT_DIR$/routes/routesCreator.js" />
       </list>
     </option>
   </component>
@@ -327,14 +384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/json/Gate.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -351,14 +400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/json/GateLD.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="60" column="21" lean-forward="true" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/action.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-459">
@@ -367,18 +408,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="141" column="27" lean-forward="false" selection-start-line="141" selection-start-column="24" selection-end-line="141" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/json/WeatherStation.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/modelLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/json/Mount.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-968">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/json/Camera_outside.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/json/login.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/json/GateLD.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/json/loginLD.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="164" lean-forward="false" selection-start-line="22" selection-start-column="164" selection-end-line="22" selection-end-column="164" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
           <folding />
         </state>
       </provider>

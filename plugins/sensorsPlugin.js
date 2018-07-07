@@ -39,7 +39,7 @@ var modelTemperature, modelHumidity, modelPressure, modelWindSpeed, modelWindDir
 exports.start = function connectHardware(){
  var requestLoop = setInterval(function(){
   request({
-      url: "http://venus.datsi.fi.upm.es:5000/api/estacion/montegancedo",
+      url: "http://ofs.fi.upm.es:5000/api/estacion/montegancedo",
       method: "GET",
       timeout: 30000,
       followRedirect: true,

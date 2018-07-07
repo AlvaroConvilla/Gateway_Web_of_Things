@@ -16,6 +16,8 @@ var express = require('express'),
   modelCameraInside = require('./../resources/modelCameraInside'),
   modelCameraOutsideLD = require('./../resources/modelCameraOutsideLD'),
   modelCameraOutside = require('./../resources/modelCameraOutside'),
+  modelLogin = require('./../resources/modelLogin'),
+  //modelLoginLD = require('./../resources/modelLoginLD'),
   actionMount = require('./../resources/actionMount'),
   //sleep = require('sleep'),
   fs = require('fs');
@@ -58,6 +60,7 @@ exports.create = function (model) { //por defecto el model que viene es el de la
   //Raiz es el gateway
   createRootRoute(modelGateLD);	
   createModelRoutes(modelGateLD);
+  createGatewayLoginRoutes(modelGateLD);
   //WeatherStation
   createWeatherStationRoute(modelWSLD); 	
   createWeatherStationModelRoutes(modelWSLD);
@@ -147,7 +150,24 @@ function createModelRoutes(model) {
   });
 };
 
-function createModelRoutes(model) {
+//function createModelRoutes(model) {
+function createGatewayLoginRoutes(model) {
+  // GET /WoT/login
+  router.route('/WoT/login').get(function (req, res, next) {
+    req.actionModel = actions.resources[req.params.actionType];
+    req.type = 'action';
+    req.entityId = req.params.actionType;
+    req.uri = "Login";
+    req.result = actions.resources[req.entityId];
+
+    if (model['@context']) type = model['@context'];
+    else type = 'http://ofs.fi.upm.es/WoT/model';
+    res.links({
+      //type: type
+    });
+    next();
+  });
+
 // POST /WoT/login
   router.route('/WoT/login').post(function (req, res, next) {
     //El login dará acceso para un usuario que exista registrado y que además tenga reserva hecha en este momento
@@ -335,7 +355,7 @@ function createWeatherStationActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://venus.datsi.fi.upm.es:8484/model/#actions-resource';
+    else type = 'http://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       type: type

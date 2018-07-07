@@ -1,0 +1,48 @@
+{
+  "id":"http://ofs.fi.upm.es:8484",
+  "name": "WoT Login",
+  "description": "Thing Camera. Observatorio Astronómico Francisco Manuel Sánchez.",
+  "tags":[ "WoT", "Login", "Secure"],
+  "customFields":{
+    "hostname":"ofs.fi.upm.es",
+    "port":"8484",
+    "secure":"true",
+    "dataArraySize":30
+  },
+  "links":{
+    "product":{
+      "link":"",
+      "title":""
+    },
+    "properties": {
+      "link": "/login",
+      "title":"Login Specification",
+      "resources":{
+        "state":{
+          "name": "Login",
+          "description":"POST JSON to https://ofs.fi.upm.es to obtain the token in JSON response.",
+          "values": {
+            "st": {
+              "name": "State",
+              "description": "Obtain the token to access all Astronomical Observatory Things",
+              "unit": {
+                "username": "string",
+                "password": "string"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["state","connection","public"]
+        }
+      }
+    },
+    "type":{
+      "link":"http://ofs.fi.upm.es:8484/model",
+      "title":"Instance type of the Camera Outside"
+    },
+    "ui":{
+      "link":"/",
+      "title":"UserInterface"
+    }
+  }
+}

@@ -6,7 +6,7 @@
   "customFields":{
     "hostname":"ofs.fi.upm.es",
     "port":"8484",
-    "secure":"false",
+    "secure":"true",
     "dataArraySize":30
   },
   "links":{
@@ -166,7 +166,7 @@
       }
     },
     "type":{
-      "link":"http://venus.datsi.fi.upm.es:8484/model",
+      "link":"http://ofs.fi.upm.es:8484/model",
       "title":"Instance type of the Dome"
     },
     "ui":{
