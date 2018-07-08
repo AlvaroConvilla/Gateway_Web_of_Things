@@ -23,12 +23,7 @@
 <!-- Docs page layout -->
 <div class="bs-docs-header" id="content" tabindex="-1">
     <div class="container">
-        {{#if req.uri}}
-        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a>/WoT <a href="/{{req.uri}}{{req.qp}}">{{req.uri}}</a> /{{req.entityId}}</h1>
-
-        {{else}}
-        <h1><a href="/{{req.qp}}"> {{req.rooturl}}</a> /{{req.entityId}}</h1>
-        {{/if}}
+        <h1><a href="/{{req.qp}}">{{req.rooturl}}</a><a href="http://ofs.fi.upm.es/WoT"> /WoT</a><a href="http://ofs.fi.upm.es/WoT/{{req.uri}}"> /{{req.uri}}</a> /model</h1>
         <p>Details - Web Thing</p>
     </div>
 </div>
