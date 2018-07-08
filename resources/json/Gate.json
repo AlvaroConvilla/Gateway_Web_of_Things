@@ -15,10 +15,30 @@
     "secure": "false"
   },
   "links": {
-    "login": {
+    "actions": {
       "link": "/login",
-      "name": "login",
-      "description": "Web of Thing login"
+      "title": "Login of the Web Thing Gateway.",
+      "resources": {
+        "login": {
+          "name": "login",
+          "description": "Login of the Web Thing Gateway.",
+          "values": {
+            "st": {
+              "name": "login",
+              "description": "Login of the Web Thing Gateway.",
+              "unit": {
+                "username": "name",
+                "password": "pass"
+              },
+              "type": "string"
+            }
+          },
+          "tags": [
+            "Login",
+            "public"
+          ]
+        }
+      }
     },
       "WeatherStation": {
         "link": "/WeatherStation",

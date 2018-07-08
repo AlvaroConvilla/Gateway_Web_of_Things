@@ -15,12 +15,12 @@ module.exports = function() {
       var path = req.path;
           if (!token) { //#C
             if((path==='/') || (path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')
-            || (path==='/WoT/WeatherStation') || (path==='/WoT/WeatherStation/properties') || (path==='/WoT/WeatherStation/actions') || (path==='/WoT/WeatherStation/events')
+            /*|| (path==='/WoT/WeatherStation') || (path==='/WoT/WeatherStation/properties') || (path==='/WoT/WeatherStation/actions') || (path==='/WoT/WeatherStation/events')
             || (path==='/WoT/Mount') || (path==='/WoT/Mount/properties') || (path==='/WoT/Mount/actions') || (path==='/WoT/Mount/events')
             || (path==='/WoT/Dome') || (path==='/WoT/Dome/properties') || (path==='/WoT/Dome/actions') || (path==='/WoT/Dome/events')
             || (path==='/WoT/Camera') || (path==='/WoT/Camera/properties') || (path==='/WoT/Camera/actions') || (path==='/WoT/Camera/events')
             || (path==='/WoT/Camera_inside') || (path==='/WoT/Camera_inside/properties') || (path==='/WoT/Camera_inside/actions') || (path==='/WoT/Camera_inside/events')
-            || (path==='/WoT/Camera_outside') || (path==='/WoT/Camera_outside/properties') || (path==='/WoT/Camera_outside/actions') || (path==='/WoT/Camera_outside/events')
+            || (path==='/WoT/Camera_outside') || (path==='/WoT/Camera_outside/properties') || (path==='/WoT/Camera_outside/actions') || (path==='/WoT/Camera_outside/events')*/
             ){
                 console.log('Access authorized to '+path);
                 next();

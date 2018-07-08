@@ -60,7 +60,7 @@ exports.create = function (model) { //por defecto el model que viene es el de la
   //Raiz es el gateway
   createRootRoute(modelGateLD);	
   createModelRoutes(modelGateLD);
-  createGatewayLoginRoutes(modelGateLD);
+  createGatewayLoginRoutes(modelGate);
   //WeatherStation
   createWeatherStationRoute(modelWSLD); 	
   createWeatherStationModelRoutes(modelWSLD);
@@ -152,13 +152,14 @@ function createModelRoutes(model) {
 
 //function createModelRoutes(model) {
 function createGatewayLoginRoutes(model) {
+var actions = model.links.actions;
   // GET /WoT/login
   router.route('/WoT/login').get(function (req, res, next) {
-    req.actionModel = actions.resources[req.params.actionType];
+    req.actionModel = actions.resources['login'];
     req.type = 'action';
-    req.entityId = req.params.actionType;
+    req.entityId = 'login';
     req.uri = "Login";
-    req.result = actions.resources[req.entityId];
+    req.result = actions.resources['login'];
 
     if (model['@context']) type = model['@context'];
     else type = 'http://ofs.fi.upm.es/WoT/model';
@@ -177,7 +178,6 @@ function createGatewayLoginRoutes(model) {
     if(json.username === 'admin'){ //Si el usuario que intenta entrar es admin, siempre dar acceso
         //Realizar login sobre pasarela IoT con los datos de user y pass que han llegado
         obtenerToken(json,function(token){
-            console.log(token);
             if(token != null){
                     return res.status(200).send({token: modelSecure.data.apiToken});
             }
@@ -190,14 +190,13 @@ function createGatewayLoginRoutes(model) {
         //Realizar login sobre pasarela IoT con los datos de user y pass que han llegado
         obtenerToken(json,function(token){
            if(token != null){
-
                //Si ha loggeado correctamente obtenemos las reservas de dicho usuario
                obtenerReservas(token,function(reservas){
                   if(reservas != null){
 
                       //Con las reservas que tiene ver si tiene una para este momento darle acceso
                       var bool = comprobarReservaUser(reservas);
-
+                      console.log(bool);
                       if(bool == true){ //Dar acceso
                        return res.status(200).send({token: modelSecure.data.apiToken});
                       }
@@ -1959,11 +1958,12 @@ function comprobarReservaUser(arrReservas){
     var datetime = new Date();
     //console.log(datetime);
 
+    //Recorrer todas las reservas, obtener las fechas de inicio y fin y comparar con fecha actual para ver si tiene reserva
     for( i = 0; i < tam; i++){
         var startD = new Date(reservas[i].startDate);
         var endD   = new Date(reservas[i].endDate);
 
-        //console.log(startD);
+        //console.log(datetime,endD);
         //if(startD < datetime) console.log('TRUE');
 
         if((startD < datetime) && (datetime < endD)){
