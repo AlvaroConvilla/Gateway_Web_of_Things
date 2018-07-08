@@ -191,6 +191,21 @@
         "href" : "/stopRunningDome",
         "mediaType": "application/json"
       }]
+    },
+    {
+      "@id":"ChangeState",
+      "@type": ["wot-td:Event"],
+      "description":"The event sends when de state of the connection change.",
+      "schema":  {
+        "saref:OnOffState": ["ON","OFF"],
+        "@type":"xsd:string"
+      },
+      "name": "ChangeState",
+      "wot-td:property":"State",
+      "form": [{
+        "href" : "/ChangeState",
+        "mediaType": "application/json"
+      }]
     }
   ]
 }

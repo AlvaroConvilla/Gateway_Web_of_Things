@@ -133,6 +133,9 @@ exports.mock = function connectHardware(){
         modelWindDirection.data = {"windDirection":windDir, "timestamp":utils.isoTimestamp()};
         modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
         //
+        modelEventChangeState = utils.findEvent('ChangeState',resources);
+        modelEventChangeState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+
         if(parseFloat(temp) >= parseFloat(40)){ //si es más de 40 grados
             modelEventHighTemp.data = {"state":"ON", "timestamp":utils.isoTimestamp()};
         }else{

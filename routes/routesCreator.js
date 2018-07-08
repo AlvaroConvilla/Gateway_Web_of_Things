@@ -196,7 +196,7 @@ var actions = model.links.actions;
 
                       //Con las reservas que tiene ver si tiene una para este momento darle acceso
                       var bool = comprobarReservaUser(reservas);
-                      console.log(bool);
+
                       if(bool == true){ //Dar acceso
                        return res.status(200).send({token: modelSecure.data.apiToken});
                       }

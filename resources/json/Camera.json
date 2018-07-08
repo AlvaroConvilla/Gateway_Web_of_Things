@@ -136,6 +136,20 @@
             }
           },
           "tags":["NewPhoto", "public"]
+        },
+        "ChangeState":{
+          "name":"ChangeState",
+          "description":"The event sends when de state of the connection change.",
+          "values": {
+            "nwph":{
+              "unit":{
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["ChangeState", "ON","OFF", "public"]
         }
       }
     },

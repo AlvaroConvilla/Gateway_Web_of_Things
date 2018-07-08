@@ -122,8 +122,8 @@
           },
           "tags":["Shutter","Open","Close","public"]
         },
-        "ChangeStateDome":{
-          "name":"ChangeStateDome",
+        "ChangeState":{
+          "name":"ChangeState",
           "description":"The event is sent when the connection or loss of connection with the dome is detected",
           "values": {
             "chgsht":{

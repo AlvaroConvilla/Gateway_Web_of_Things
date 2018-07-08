@@ -19,6 +19,13 @@ modelStateOUT.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 //fin variables
 
 exports.start = function connectHardwareCamera(){
-    modelStateIN.data = {"state":"ON", "timestamp":utils.isoTimestamp()};
-    modelStateOUT.data = {"state":"ON", "timestamp":utils.isoTimestamp()};
+    estado = 'ON';
+    modelStateIN.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+    modelStateOUT.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+
+    modelEventChangeStateIN = utils.findEvent('ChangeState',resourcesIN);
+    modelEventChangeStateIN.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+
+    modelEventChangeStateOUT= utils.findEvent('ChangeState',resourcesOUT);
+    modelEventChangeStateOUT.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 }

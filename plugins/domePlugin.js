@@ -26,8 +26,9 @@ modelEventLowVoltageBattery.data = {"state":estado, "timestamp":utils.isoTimesta
 modelEventChangeStateShutter = utils.findEvent('ChangeStateShutter',resources);
 modelEventChangeStateShutter.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 
-modelEventChangeStateDome = utils.findEvent('ChangeStateDome',resources);
-modelEventChangeStateDome.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+modelEventChangeState = utils.findEvent('ChangeState',resources);
+modelEventChangeState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 
 modelEventStopRunningDome = utils.findEvent('StopRunningDome',resources);
 modelEventStopRunningDome.data = {"state":estado, "timestamp":utils.isoTimestamp()};
@@ -92,5 +93,3 @@ amqp.connect('amqp://localhost', function(err, conn) {
 
 //Fin rabbitmq
 }
-modelState.data = {"state":"OFF", "timestamp":utils.isoTimestamp()};
-modelEventChangeStateDome.data = {"state":"OFF", "timestamp":utils.isoTimestamp()};

@@ -61,7 +61,22 @@
     "events":{
       "link":"/events",
       "title":"Events of the Web Thing",
-      "resources":{}
+      "resources":{
+        "ChangeState":{
+          "name":"ChangeState",
+          "description":"The event is sent when the connection or loss of connection with the dome is detected",
+          "values": {
+            "chgsht":{
+              "unit":{
+                "ON": "With Connection",
+                "OFF": "Without Connection"
+              },
+              "type":"string"
+            }
+          },
+          "tags":["Dome","ON","OFF","public"]
+        }
+      }
     },
     "type":{
       "link":"http://ofs.fi.upm.es:8484/model",

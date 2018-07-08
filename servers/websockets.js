@@ -168,6 +168,24 @@ exports.listen = function(server){
                 }
               }
           })
+       }
+       //Evento que informa a los observadores de que la vel. del viento es alta
+       else if(ruta == '/WeatherStation/events/ChangeState'){ //modelWindSpeed = utils.findProperty('windSpeed',resources);
+          var flag = null;
+          var location = '/links/events/resources/ChangeState';
+          ws.send(JSON.stringify(selectResource(location, resourcesWS)));
+          Object.observe(selectResource(location, resourcesWS), function(changes){
+              model = utils.findEvent('ChangeState',resourcesWS);
+              if(model.data.state != flag){
+                flag = model.data.state;
+                try{
+           	         ws.send(JSON.stringify(selectResource(location, resourcesWS)));
+           	    }
+           	    catch(e){
+           	         ws.terminate();
+                }
+              }
+          })
        }//FIN WeatherStation
 ////////////////////Dome
        else if(ruta == '/Dome/events/ChangeStateShutter'){
@@ -238,6 +256,23 @@ exports.listen = function(server){
               }
             })
        }
+       else if(ruta == '/Dome/events/ChangeState'){
+                   var flag = null;
+                   var location = '/links/events/resources/ChangeState';
+                   ws.send(JSON.stringify(selectResource(location, resourcesDome)));
+                   Object.observe(selectResource(location, resourcesDome), function(changes){
+                     model = utils.findEvent('ChangeState',resourcesDome);
+                     if(model.data.state != flag){
+                       flag = model.data.state;
+                       try{
+                      	  ws.send(JSON.stringify(selectResource(location, resourcesDome)));
+                      	}
+                      	catch(e){
+                      	  ws.terminate();
+                       }
+                     }
+                   })
+              }
 ////////////////////Camera DMK
        else if(ruta == '/Camera/events/NewPhoto'){
             var flag = null;
@@ -258,6 +293,25 @@ exports.listen = function(server){
               }
             })
        }
+       else if(ruta == '/Camera/events/ChangeState'){
+                   var flag = null;
+                   var location = '/links/events/resources/ChangeState';
+                   ws.send(JSON.stringify(selectResource(location, resourcesCamDMK)));
+                   Object.observe(selectResource(location, resourcesCamDMK), function(changes){
+                     model = utils.findEvent('ChangeState',resourcesCamDMK);
+                     if(parseFloat(model.data.ID) != parseFloat(flag)){
+                       flag = parseFloat(model.data.ID);
+                       try{
+                         //var obj = JSON.stringify(selectResource(location, resourcesCamDMK));
+                         //console.log(obj);
+                      	  ws.send(JSON.stringify(selectResource(location, resourcesCamDMK)));
+                      	}
+                      	catch(e){
+                      	  ws.terminate();
+                       }
+                     }
+                   })
+              }
 ////////////////////Mount
        else if(ruta == '/Mount/events/ChangeMotion'){
             var flag = null;
@@ -276,6 +330,60 @@ exports.listen = function(server){
               }
             })
        }
+       else if(ruta == '/Mount/events/ChangeState'){
+                   var flag = null;
+                   var location = '/links/events/resources/ChangeState';
+                   ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                   Object.observe(selectResource(location, resourcesMount), function(changes){
+                     model = utils.findEvent('ChangeState',resourcesMount);
+                     if(model.data.state != flag){
+                       flag = model.data.state;
+                       try{
+                      	  ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                      	}
+                      	catch(e){
+                      	  ws.terminate();
+                       }
+                     }
+                   })
+              }
+////////////////////Camera_inside
+        else if(ruta == '/Camera_inside/events/ChangeState'){
+                   var flag = null;
+                   var location = '/links/events/resources/ChangeState';
+                   ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                   Object.observe(selectResource(location, resourcesMount), function(changes){
+                     model = utils.findEvent('ChangeState',resourcesMount);
+                     if(model.data.state != flag){
+                       flag = model.data.state;
+                       try{
+                      	  ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                      	}
+                      	catch(e){
+                      	  ws.terminate();
+                       }
+                     }
+                   })
+              }
+////////////////////Camera_outside
+              else if(ruta == '/Camera_outside/events/ChangeState'){
+                   var flag = null;
+                   var location = '/links/events/resources/ChangeState';
+                   ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                   Object.observe(selectResource(location, resourcesMount), function(changes){
+                     model = utils.findEvent('ChangeState',resourcesMount);
+                     if(model.data.state != flag){
+                       flag = model.data.state;
+                       try{
+                      	  ws.send(JSON.stringify(selectResource(location, resourcesMount)));
+                      	}
+                      	catch(e){
+                      	  ws.terminate();
+                       }
+                     }
+                   })
+              }
+
     }
     //para captar errores, como formato incorrecto/no soportado de URL
     catch(e){

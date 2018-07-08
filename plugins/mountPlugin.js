@@ -17,6 +17,9 @@ var estado = "OFF";
 modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 modelMotion.data = {"Motion": "Parked", "timestamp":utils.isoTimestamp()};
 modelEventChangeMotion.data = {"state":"OFF", "timestamp":utils.isoTimestamp()};
+
+modelEventChangeState = utils.findEvent('ChangeState',resources);
+modelEventChangeState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 //fin variables
 
 

@@ -20,12 +20,15 @@ modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 //fin variables
 
 exports.start = function connectHardwareCamera(){
-    modelState.data = {"state":"ON", "timestamp":utils.isoTimestamp()};
+    modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
     modelExposureTime.data = {"Hour":0,"Minute":0,"Second":15, "timestamp":utils.isoTimestamp()};
     modelGamma.data = {"Gamma":parseFloat(0), "timestamp":utils.isoTimestamp()};
     modelBrightness.data = {"Brightness":parseFloat(0), "timestamp":utils.isoTimestamp()};
     modelNumberOfShoots.data = {"NumberOfShoots":parseFloat(2), "timestamp":utils.isoTimestamp()};
     modelEventNewPhoto.data = {"ID":parseFloat(0), "timestamp":utils.isoTimestamp()};
+
+    modelEventChangeState = utils.findEvent('ChangeState',resourcesCam);
+    modelEventChangeState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 
     /* PRUEBA
     var cont = 1;
