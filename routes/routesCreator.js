@@ -1355,7 +1355,7 @@ function createCameraInsidePropertiesRoutes(model) {
     req.entityId = req.params.id;
     req.uri = 'Camera_inside_1';
     if(req.params.id == 'NewPhoto'){
-            var img  = fs.readFileSync('/home/pluton/backend/cameras/internal1.jpg');
+            var img  = fs.readFileSync('/app/cameras/internal1.jpg');
             res.writeHead(200, {'Content-Type': 'image/gif' });
             res.end(img, 'binary');
     }else{
@@ -1762,7 +1762,7 @@ function createCameraOutsidePropertiesRoutes(model) {
     req.entityId = req.params.id;
     req.uri = 'Camera_outside';
     if(req.params.id == 'NewPhoto'){
-        var img  = fs.readFileSync('/home/pluton/backend/cameras/external.jpg');
+        var img  = fs.readFileSync('/app/cameras/external.jpg');
         res.writeHead(200, {'Content-Type': 'image/gif' });
         res.end(img, 'binary');
     }
