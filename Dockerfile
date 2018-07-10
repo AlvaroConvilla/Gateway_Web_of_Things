@@ -1,22 +1,17 @@
+# Use an official Nodejs runtime as a parent image
 FROM node:7
 
-# Create app directory
-WORKDIR /home/alvaro/Escritorio/dev_wot
+# Set the working directory to /app
+WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY . /home/alvaro/Escritorio/dev_wot/package.json
-
+# Install any needed packages
 RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
-COPY . /home/alvaro/Escritorio/dev_wot
-
+# Make port 8484 available to the world outside this container
 EXPOSE 8484
 
+# Run application when the container launches
 #CMD [ "npm", "start" ]
-CMD ./CaptureImage.sh
-CMD ./catalejo.sh
 CMD node wot-server.js

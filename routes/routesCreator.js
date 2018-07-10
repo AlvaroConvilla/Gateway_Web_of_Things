@@ -201,14 +201,14 @@ var actions = model.links.actions;
                        return res.status(200).send({token: modelSecure.data.apiToken});
                       }
                       else{ //Denegar acceso
-                       return res.status(403).send({success: false, message: 'Unauthorized'});
+                       return res.status(403).send({success: false, message: 'Unauthorized: The user does not have a reservation now.'});
                       }
                   }else{
-                      return res.status(403).send({success: false, message: 'Unauthorized'});
+                      return res.status(403).send({success: false, message: 'Unauthorized: The user does not have a reservation now.});
                   }
                });
            }else{
-               return res.status(403).send({success: false, message: 'Unauthorized'});
+               return res.status(403).send({success: false, message: 'Unauthorized: The user is not registered.'});
            }
         });
     }
