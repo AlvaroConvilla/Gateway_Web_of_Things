@@ -37,7 +37,7 @@ camerasINOUT.start(); //start poner datos de las cámaras inside and outside
 var take_photos = require('./plugins/cameraPlugin');
 take_photos.takePhotos();//Comienzo del proceso de obtener las fotos
 
-var port = 8484;
+var port = 8484; //443;
 //exports.sec = secure;
 //if(secure) {
     var https = require('https'); //#B

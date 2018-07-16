@@ -204,7 +204,7 @@ var actions = model.links.actions;
                        return res.status(403).send({success: false, message: 'Unauthorized: The user does not have a reservation now.'});
                       }
                   }else{
-                      return res.status(403).send({success: false, message: 'Unauthorized: The user does not have a reservation now.});
+                      return res.status(403).send({success: false, message: 'Unauthorized: The user does not have a reservation now.'});
                   }
                });
            }else{
@@ -1131,8 +1131,8 @@ function createMountActionsRoutes(model) {
              //Publicar action en rabbitmq
              var amqp = require('amqplib/callback_api');
 
-             //amqp.connect('amqp://venus:venuspass@localhost', function(err, conn) {
-             amqp.connect('amqp://localhost', function(err, conn) {
+             amqp.connect('amqp://venus:venuspass@rabbitmq', function(err, conn) {
+             //amqp.connect('amqp://localhost', function(err, conn) {
                conn.createChannel(function(err, ch) {
                  var ex = 'pasarela';
                  var args = process.argv.slice(2);
