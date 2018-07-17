@@ -27,8 +27,8 @@ modelEventChangeStateShutter = utils.findEvent('ChangeStateShutter',resources);
 modelEventChangeStateShutter.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 
 modelState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
-modelEventChangeState = utils.findEvent('ChangeState',resources);
-modelEventChangeState.data = {"state":estado, "timestamp":utils.isoTimestamp()};
+modelEventChangeStateDome = utils.findEvent('ChangeState',resources);
+modelEventChangeStateDome.data = {"state":estado, "timestamp":utils.isoTimestamp()};
 
 modelEventStopRunningDome = utils.findEvent('StopRunningDome',resources);
 modelEventStopRunningDome.data = {"state":estado, "timestamp":utils.isoTimestamp()};
@@ -36,11 +36,10 @@ modelEventStopRunningDome.data = {"state":estado, "timestamp":utils.isoTimestamp
 
 exports.start = function connectHardware(){
 //Obtener datos del rabbitmq
-amqp.connect('amqp://venus:venuspass@rabbitmq', function(err, conn) {
 //amqp.connect('amqp://localhost', function(err, conn) {
+amqp.connect('amqp://venus:venuspass@localhost:5672', function(err, conn) {
   conn.createChannel(function(err, ch) {
     var ex = 'cupula';
-    //var ex = 'montura';
     ch.assertExchange(ex, 'direct', {durable: false});
 
     ch.assertQueue('', {exclusive: true}, function(err, q) {

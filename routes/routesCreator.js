@@ -1131,8 +1131,8 @@ function createMountActionsRoutes(model) {
              //Publicar action en rabbitmq
              var amqp = require('amqplib/callback_api');
 
-             amqp.connect('amqp://venus:venuspass@rabbitmq', function(err, conn) {
              //amqp.connect('amqp://localhost', function(err, conn) {
+             amqp.connect('amqp://venus:venuspass@localhost:5672', function(err, conn) {
                conn.createChannel(function(err, ch) {
                  var ex = 'pasarela';
                  var args = process.argv.slice(2);
@@ -1274,10 +1274,10 @@ function createMountEventsRoutes(model) {
 //-----------------------------CAMERA INSIDE 1----------------------------------------------------
 function createCameraInsideRoute(model){
   //GET'/Camera_inside'
-  router.route('/WoT/Camera_inside_1').get(function(req, res, next){
+  router.route('/WoT/Camera_inside').get(function(req, res, next){
     req.model = model;
     req.type = 'root'; //nombre del html en la carpeta view
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
 
     //var fields = ['id','name','description','tags','customFields'];
     var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
@@ -1304,10 +1304,10 @@ function createCameraInsideRoute(model){
 
 function createCameraInsideModelRoutes(model) {
   // GET /Camera_inside/model
-  router.route('/WoT/Camera_inside_1/model').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/model').get(function (req, res, next) {
     req.result = JSON.stringify(model,undefined,2);
     req.model = model;
-    req.uri = "Camera_inside_1";
+    req.uri = "Camera_inside";
     req.entityId = "model";
     req.type = 'camera_insideLD';
 
@@ -1323,11 +1323,11 @@ function createCameraInsideModelRoutes(model) {
 function createCameraInsidePropertiesRoutes(model) {
   var properties = model.links.properties;
   // GET /Camera_inside/properties
-  router.route('/WoT/Camera_inside_1/properties').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/properties').get(function (req, res, next) {
     req.model = model;
     req.type = 'properties';
     req.entityId = 'properties';
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
     req.result = utils.modelToResources(properties.resources, true);
     req.links = ['Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
     // Generate the Link headers
@@ -1348,12 +1348,12 @@ function createCameraInsidePropertiesRoutes(model) {
   });
 
   // GET /Camera_inside/properties/{id}
-  router.route('/WoT/Camera_inside_1/properties' + '/:id').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/properties' + '/:id').get(function (req, res, next) {
     req.model = model;
     req.propertyModel = properties.resources[req.params.id];
     req.type = 'property';
     req.entityId = req.params.id;
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
     if(req.params.id == 'NewPhoto'){
             var img  = fs.readFileSync('/app/cameras/internal1.jpg');
             res.writeHead(200, {'Content-Type': 'image/gif' });
@@ -1376,11 +1376,11 @@ function createCameraInsidePropertiesRoutes(model) {
 function createCameraInsideActionsRoutes(model) {
   var actions = model.links.actions;
   // GET /Camera_inside/actions
-  router.route('/WoT/Camera_inside_1/actions').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/actions').get(function (req, res, next) {
     req.model = model;
     req.type = 'actions';
     req.entityId = 'actions';
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
     req.result = utils.modelToResources(actions.resources, true);
     req.links = [''];
 
@@ -1394,7 +1394,7 @@ function createCameraInsideActionsRoutes(model) {
   });
 
   // POST /Camera_inside/actions/{actionType}
-  router.route('/WoT/Camera_inside_1/actions' + '/:actionType').post(function (req, res, next) {
+  router.route('/WoT/Camera_inside/actions' + '/:actionType').post(function (req, res, next) {
     var action = req.body;
     action.id = uuid.v1();
     action.status = "pending";
@@ -1407,7 +1407,7 @@ function createCameraInsideActionsRoutes(model) {
 
 
   // GET /Camera_inside/actions/{actionType}
-  router.route('/WoT/Camera_inside_1/actions' + '/:actionType').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/actions' + '/:actionType').get(function (req, res, next) {
 
     req.result = reverseResults(actions.resources[req.params.actionType].data);
     req.actionModel = actions.resources[req.params.actionType];
@@ -1426,7 +1426,7 @@ function createCameraInsideActionsRoutes(model) {
   });
 
   // GET /Camera_inside/actions/{id}/{actionId}
-  router.route('/WoT/Camera_inside_1/actions' + '/:actionType/:actionId').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/actions' + '/:actionType/:actionId').get(function (req, res, next) {
     req.result = utils.findObjectInArray(actions.resources[req.params.actionType].data,
       {"id" : req.params.actionId});
     next();
@@ -1437,11 +1437,11 @@ function createCameraInsideActionsRoutes(model) {
 function createCameraInsideEventsRoutes(model) {
   var events = model.links.events;
   // GET /Camera_inside/events
-  router.route('/WoT/Camera_inside_1/events').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/events').get(function (req, res, next) {
     req.model = model;
     req.type = 'events';
     req.entityId = 'events';
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
@@ -1457,12 +1457,12 @@ function createCameraInsideEventsRoutes(model) {
   });
 
   // GET /Camera_inside/events/{eventType}
-  router.route('/WoT/Camera_inside_1/events' + '/:eventType').get(function (req, res, next) {
+  router.route('/WoT/Camera_inside/events' + '/:eventType').get(function (req, res, next) {
     req.model = model;
     req.eventModel = events.resources[req.params.eventType];
     req.type = 'event';
     req.entityId = req.params.eventType;
-    req.uri = 'Camera_inside_1';
+    req.uri = 'Camera_inside';
     req.result = events.resources[req.entityId];
 
      if (events['@context']) type = events['@context'];
@@ -1474,209 +1474,7 @@ function createCameraInsideEventsRoutes(model) {
     next();
   });
 };
-//-----------------------------CAMERA INSIDE 2----------------------------------------------------
-function createCameraInsideRoute(model){
-  //GET'/Camera_inside'
-  router.route('/WoT/Camera_inside_2').get(function(req, res, next){
-    req.model = model;
-    req.type = 'root'; //nombre del html en la carpeta view
-    req.uri = 'Camera_inside_2';
 
-    //var fields = ['id','name','description','tags','customFields'];
-    var fields = ['name','description','base', 'port', 'address', 'geo', 'tags'];
-    //Extrae los campos requeridos del modelo, añade el objeto a result
-    req.result = utils.extractFields(fields,model);
-    req.links = ['Camera_inside/model', 'Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
-
-    if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
-
-//Crea encabezado de enlace que direcciona a recursos
-    res.links({
-      model: '/model/',
-      properties: '/properties/',
-      actions: '/actions/',
-      events: '/events/',
-      //things: '/things/',
-      ui: '/',
-      //type: type
-    });
-    next();//llama a la siguiente representacion middleware
-});
-};
-
-function createCameraInsideModelRoutes(model) {
-  // GET /Camera_inside/model
-  router.route('/WoT/Camera_inside_2/model').get(function (req, res, next) {
-    req.result = JSON.stringify(model,undefined,2);
-    req.model = model;
-    req.uri = "Camera_inside_2";
-    req.entityId = "model";
-    req.type = 'camera_insideLD';
-
-    if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
-    res.links({
-      //type: type
-    });
-    next();
-  });
-};
-
-function createCameraInsidePropertiesRoutes(model) {
-  var properties = model.links.properties;
-  // GET /Camera_inside/properties
-  router.route('/WoT/Camera_inside_2/properties').get(function (req, res, next) {
-    req.model = model;
-    req.type = 'properties';
-    req.entityId = 'properties';
-    req.uri = 'Camera_inside_2';
-    req.result = utils.modelToResources(properties.resources, true);
-    req.links = ['Camera_inside/properties', 'Camera_inside/actions', 'Camera_inside/events'];
-    // Generate the Link headers
-    if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
-
-    res.links({
-//      state:'/state',
-//      temperature:'/temperature',
-//      humidity:'/humidity',
-//      pressure:'/pressure',
-//      rainfall:'/rainfall',
-//      windSpeed:'/windSpeed',
-//      windDirection:'/windDirection'
-      //type: type
-    });
-    next();
-  });
-
-  // GET /Camera_inside/properties/{id}
-  router.route('/WoT/Camera_inside_2/properties' + '/:id').get(function (req, res, next) {
-    req.model = model;
-    req.propertyModel = properties.resources[req.params.id];
-    req.type = 'property';
-    req.entityId = req.params.id;
-    req.uri = 'Camera_inside_2';
-    if(req.params.id == 'NewPhoto'){
-            var img  = fs.readFileSync('/home/pluton/backend/cameras/internal1.jpg');
-            res.writeHead(200, {'Content-Type': 'image/gif' });
-            res.end(img, 'binary');
-    }else{
-    req.result = properties.resources[req.entityId];
-
-    // Generate the Link headers
-     if (properties['@context']) type = properties['@context'];
-     else type = 'http://ofs.fi.upm.es/model/#properties-resource';
-
-    //res.links({
-      //type: type
-    //});
-    next();
-    }
-  });
-};
-
-function createCameraInsideActionsRoutes(model) {
-  var actions = model.links.actions;
-  // GET /Camera_inside/actions
-  router.route('/WoT/Camera_inside_2/actions').get(function (req, res, next) {
-    req.model = model;
-    req.type = 'actions';
-    req.entityId = 'actions';
-    req.uri = 'Camera_inside_2';
-    req.result = utils.modelToResources(actions.resources, true);
-    req.links = [''];
-
-    if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
-
-    res.links({
-      //type: type
-    });
-    next();
-  });
-
-  // POST /Camera_inside/actions/{actionType}
-  router.route('/WoT/Camera_inside_2/actions' + '/:actionType').post(function (req, res, next) {
-    var action = req.body;
-    action.id = uuid.v1();
-    action.status = "pending";
-    action.timestamp = utils.isoTimestamp();
-    utils.cappedPush(actions.resources[req.params.actionType].data, action);
-    res.location(req.originalUrl + '/' + action.id);
-
-    next();
-  });
-
-
-  // GET /Camera_inside/actions/{actionType}
-  router.route('/WoT/Camera_inside_2/actions' + '/:actionType').get(function (req, res, next) {
-
-    req.result = reverseResults(actions.resources[req.params.actionType].data);
-    req.actionModel = actions.resources[req.params.actionType];
-    req.model = model;
-
-    req.type = 'action';
-    req.entityId = req.params.actionType;
-
-     if (properties['@context']) type = properties['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
-
-    res.links({
-      type: type
-    });
-    next();
-  });
-
-  // GET /Camera_inside/actions/{id}/{actionId}
-  router.route('/WoT/Camera_inside_2/actions' + '/:actionType/:actionId').get(function (req, res, next) {
-    req.result = utils.findObjectInArray(actions.resources[req.params.actionType].data,
-      {"id" : req.params.actionId});
-    next();
-  });
-};
-
-
-function createCameraInsideEventsRoutes(model) {
-  var events = model.links.events;
-  // GET /Camera_inside/events
-  router.route('/WoT/Camera_inside_2/events').get(function (req, res, next) {
-    req.model = model;
-    req.type = 'events';
-    req.entityId = 'events';
-    req.uri = 'Camera_inside_2';
-    req.result = utils.modelToResources(events.resources, true);
-
-    if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
-
-    res.links({
-/*      HighTemperature:'/HighTemperature',
-      Rain:'/Rain',
-      StrongWind:'/StrongWind',*/
-      //type: type
-    });
-    next();
-  });
-
-  // GET /Camera_inside/events/{eventType}
-  router.route('/WoT/Camera_inside_2/events' + '/:eventType').get(function (req, res, next) {
-    req.model = model;
-    req.eventModel = events.resources[req.params.eventType];
-    req.type = 'event';
-    req.entityId = req.params.eventType;
-    req.uri = 'Camera_inside_2';
-    req.result = events.resources[req.entityId];
-
-     if (events['@context']) type = events['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
-
-    res.links({
-      //type: type
-    });
-    next();
-  });
-};
 //-----------------------------CAMERA OUTSIDE----------------------------------------------------
 function createCameraOutsideRoute(model){
   //GET'/Camera_outside'

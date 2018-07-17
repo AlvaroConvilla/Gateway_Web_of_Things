@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcb4115c-d237-4e8b-9602-56d63c636ced" name="Default" comment="" />
+    <list default="true" id="fcb4115c-d237-4e8b-9602-56d63c636ced" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/middleware/auth.js" afterPath="$PROJECT_DIR$/middleware/auth.js" />
+      <change beforePath="$PROJECT_DIR$/plugins/domePlugin.js" afterPath="$PROJECT_DIR$/plugins/domePlugin.js" />
+      <change beforePath="$PROJECT_DIR$/plugins/mountPlugin.js" afterPath="$PROJECT_DIR$/plugins/mountPlugin.js" />
+      <change beforePath="$PROJECT_DIR$/routes/routesCreator.js" afterPath="$PROJECT_DIR$/routes/routesCreator.js" />
+      <change beforePath="$PROJECT_DIR$/wot-server.js" afterPath="$PROJECT_DIR$/wot-server.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,28 +24,18 @@
       <file leaf-file-name="routesCreator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="206" column="26" lean-forward="false" selection-start-line="206" selection-start-column="26" selection-end-line="206" selection-end-column="26" />
+            <state relative-caret-position="144">
+              <caret line="762" column="65" lean-forward="false" selection-start-line="762" selection-start-column="62" selection-end-line="762" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/middleware/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Dockerfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            <state relative-caret-position="255">
+              <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -44,8 +44,8 @@
       <file leaf-file-name="wot-server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wot-server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            <state relative-caret-position="295">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,10 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\/\/    action\.id \= uuid\.v1\(\)\;\n\/\/    action\.status \= \&quot;pending\&quot;\;\n\/\/    action\.timestamp \= utils\.isoTimestamp\(\)\;\n\/\/    utils\.cappedPush\(actions\.resources\[req\.params\.actionType\]\.data\, action\)\;\n\/\/    res\.location\(req\.originalUrl \+ \'\/\' \+ action\.id\)\;\n    if\(req\.params\.actionType \=\= \&quot;Goto\&quot;\)\{   \/\/\&quot;data\&quot;\:\[\{\&quot;RA\&quot;\: \&quot;6h45m8\.9s\&quot;\,\&quot;DEC\&quot;\: \&quot;\-16\°42\'52\.1\&quot;\}\]\n        try\{\n        var ra \= act\.data\[0\]\.RA\;\n        var dec \= act\.data\[0\]\.DEC\;\n        console\.log\(ra\)\;\n        console\.log\(dec\)\;\n        if\(ra \!\=\= undefined \&amp;\&amp; ra \!\=\= null \&amp;\&amp; dec \!\=\= undefined \&amp;\&amp; dec \!\=\= null\)\{\n            console\.log\(\&quot;Mount Action\:\&quot;\)\;\n            console\.log\(\&quot;\.\.\.\.\.Goto RA\: \&quot;\+ra\)\;\n            console\.log\(\&quot;\.\.\.\.\.Goto DEC\: \&quot;\+dec\)\;\n            \/\/Publicar action en rabbitmq\n            \/\/Fin publicar en Rabbitmq\n            res\.send\(\'Action POST received\'\)\;\n         \}\n         else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n         \}\/\/try\n         catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;setTracking\&quot;\)\{\n        try\{\n        var vel \= act\.data\[0\]\.speed\;\n        if\(vel \!\=\= undefined \&amp;\&amp; vel \!\=\= null\)\{\n           console\.log\(\&quot;Mount Action\:\&quot;\)\;\n           console\.log\(\&quot;\.\.\.\.\.setTracking \-\-\&gt; Speed\:\&quot;\+vel\)\;\n            \/\/Publicar action en rabbitmq\n            \/\/Fin publicar en Rabbitmq\n            res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoPark\&quot;\)\{\n        try\{\n        var gopark \= act\.data\[0\]\.action\;\n        if\(gopark \!\=\= undefined \&amp;\&amp; gopark \!\=\= null \&amp;\&amp; gopark \=\=\= \&quot;GoPark\&quot;\)\{\n         console\.log\(\&quot;Mount Action\:\&quot;\)\;\n         console\.log\(\&quot;\.\.\.\.\.GoPark\&quot;\)\;\n         \/\/Publicar action en rabbitmq\n         \/\/Fin publicar en Rabbitmq\n        res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoHome\&quot;\)\{\n        try\{\n        var gohome \= act\.data\[0\]\.action\;\n        if\(gohome \!\=\= undefined \&amp;\&amp; gohome \!\=\= null \&amp;\&amp; gohome \=\=\= \&quot;GoHome\&quot;\)\{\n         console\.log\(\&quot;Mount Action\:\&quot;\)\;\n         console\.log\(\&quot;\.\.\.\.\.GoHome\&quot;\)\;\n         \/\/Publicar action en rabbitmq\n         \/\/Fin publicar en Rabbitmq\n        res\.send\(\'Action POST received\'\)\;\n        \}\n        else\{res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{res\.send\(\'Error\: Action not defined\'\)\;\}\n    \}\n    else if\(req\.params\.actionType \=\= \&quot;GoNorth\&quot;\)\{\n        actionMount\.properties\.comando \= \&quot;moverNorte\&quot;\;\n        var json_ \= actionMount\;\n\n        try\{\n            var gonorth \= act\.values\.st\.unit\.action\;\n            if\(gonorth \!\=\= undefined \&amp;\&amp; gonorth \!\=\= null \&amp;\&amp; gonorth \=\=\= \&quot;GoNorth\&quot;\)\{\n             console\.log\(\&quot;Mount Action\:\&quot;\)\;\n             console\.log\(\&quot;\.\.\.\.\.GoNorth\&quot;\)\;\n\n             \/\/Publicar action en rabbitmq\n             var amqp \= require\(\'amqplib\/callback_api\'\)\;\n\n             \/\/amqp\.connect\(\'amqp\:\/\/venus\:venuspass\@localhost\'\, function\(err\, conn\) \{\n             amqp\.connect\(\'amqp\:\/\/localhost\'\, function\(err\, conn\) \{\n               conn\.createChannel\(function\(err\, ch\) \{\n                 var ex \= \'pasarela\'\;\n                 var args \= process\.argv\.slice\(2\)\;\n                 var msg \= args\.slice\(1\)\.join\(\' \'\) \|\| \'Hello World\!\'\;\n                 var severity \= \(args\.length \&gt; 0\) \? args\[0\] \: \'info\'\;\n\n                 ch\.assertExchange\(ex\, \'direct\'\, \{durable\: false\}\)\;\n                 ch\.publish\(ex\, severity\, new Buffer\(JSON\.stringify\(json_\)\)\)\; \/\/msg\n                 \/\/console\.log\(json_\)\;\n                 \/\/console\.log\(\&quot; \[x\] Sent \%s\: \'\%s\'\&quot;\, severity\, msg\)\;\n               \}\)\;\n\n               setTimeout\(function\(\) \{ conn\.close\(\)\; process\.exit\(0\) \}\, 500\)\;\n             \}\)\;\n             \/\/Fin publicar en Rabbitmq\n\n             res\.send\(\'Action POST received\'\)\;\n            \}\n            else\{\n                res\.send\(\'Error\: Action not defined\'\)\;\}\n        \}\/\/try\n        catch\(err\)\{\n          res\.send\(\'Error\: Action not defined\'\)\;\n        \}\n    \}\n        else if\(req\.params\.actionType \=\= \&quot;Stop\&quot;\)\{\n            actionMount\.properties\.comando \= \&quot;parar\&quot;\;\n            var json_ \= actionMount\;\n\n            try\{\n                var stop \= act\.values\.st\.unit\.action\;\n                if\(stop \!\=\= undefined \&amp;\&amp; stop \!\=\= null \&amp;\&amp; stop \=\=\= \&quot;Stop\&quot;\)\{\n                 console\.log\(\&quot;Mount Action\:\&quot;\)\;\n                 console\.log\(\&quot;\.\.\.\.\.Stop\&quot;\)\;\n\n                 \/\/Publicar action en rabbitmq\n                 var amqp \= require\(\'amqplib\/callback_api\'\)\;\n\n                 amqp\.connect\(\'amqp\:\/\/localhost\'\, function\(err\, conn\) \{\n                   conn\.createChannel\(function\(err\, ch\) \{\n                     var ex \= \'montura\'\;\n                     var args \= process\.argv\.slice\(2\)\;\n                     var msg \= args\.slice\(1\)\.join\(\' \'\) \|\| \'Hello World\!\'\;\n                     var severity \= \(args\.length \&gt; 0\) \? args\[0\] \: \'info\'\;\n\n                     ch\.assertExchange\(ex\, \'direct\'\, \{durable\: false\}\)\;\n                     ch\.publish\(ex\, severity\, new Buffer\(JSON\.stringify\(json_\)\)\)\; \/\/msg\n                     \/\/console\.log\(json_\)\;\n                     \/\/console\.log\(\&quot; \[x\] Sent \%s\: \'\%s\'\&quot;\, severity\, msg\)\;\n                   \}\)\;\n\n                   setTimeout\(function\(\) \{ conn\.close\(\)\; process\.exit\(0\) \}\, 500\)\;\n                 \}\)\;\n                 \/\/Fin publicar en Rabbitmq\n\n                 res\.send\(\'Action POST received\'\)\;\n                \}\n                else\{\n                    res\.send\(\'Error\: Action not defined\'\)\;\}\n            \}\/\/try\n            catch\(err\)\{\n              res\.send\(\'Error\: Action not defined\'\)\;\n            \}\n        \}\n    else\{\n    res\.send\(\'Error\: Action not defined\'\)\;\n    \}</find>
-      <find>Si quiere arrancar la Gateway con seguridad</find>
-      <find>return</find>
-      <find>JSON.str</find>
       <find>modelSecure</find>
       <find>obtenerReservas</find>
       <find>obtenerToken</find>
@@ -78,16 +74,25 @@
       <find>login</find>
       <find>.jpg</find>
       <find>conn.createChannel</find>
-      <find>venus</find>
       <find>camera_in</find>
       <find>/app</find>
       <find>the reservation</find>
       <find>reservation</find>
+      <find>createChannel</find>
+      <find>amqp</find>
+      <find>modelEventChangeStateDome</find>
+      <find>venus</find>
+      <find>Camera_inside_</find>
+      <find>post</find>
+      <find>put</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;secure&quot;:&quot;true&quot;</replace>
       <replace>ofs</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -105,7 +110,6 @@
         <option value="$PROJECT_DIR$/utils/utils.js" />
         <option value="$PROJECT_DIR$/resources/json/GateLD.json" />
         <option value="$PROJECT_DIR$/resources/json/login.json" />
-        <option value="$PROJECT_DIR$/middleware/auth.js" />
         <option value="$PROJECT_DIR$/resources/json/loginLD.json" />
         <option value="$PROJECT_DIR$/resources/json/Gate.json" />
         <option value="$PROJECT_DIR$/views/actions.html" />
@@ -138,16 +142,18 @@
         <option value="$PROJECT_DIR$/plugins/sensorsPlugin.js" />
         <option value="$PROJECT_DIR$/plugins/cameraPlugin.js" />
         <option value="$PROJECT_DIR$/plugins/cameras_IN_OUT_Plugin.js" />
-        <option value="$PROJECT_DIR$/routes/routesCreator.js" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/plugins/mountPlugin.js" />
         <option value="$PROJECT_DIR$/plugins/domePlugin.js" />
+        <option value="$PROJECT_DIR$/routes/routesCreator.js" />
         <option value="$PROJECT_DIR$/wot-server.js" />
-        <option value="$PROJECT_DIR$/docker-compose.yml" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/middleware/auth.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="71" />
     <option name="y" value="-28" />
     <option name="width" value="1869" />
@@ -168,8 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,17 +185,23 @@
             <path>
               <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
               <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
+              <item name="middleware" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Gateway_Web_of_Things" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Gateway_Web_of_Things" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Descargas/IotGateway-master" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -264,18 +275,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="-28" width="1871" height="991" extended-state="6" />
-    <editor active="true" />
+    <frame x="71" y="-28" width="1871" height="991" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2202166" sideWeight="0.5019199" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4055355" sideWeight="0.49808007" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40651387" sideWeight="0.49808007" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14975315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15798135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -285,7 +296,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -299,13 +309,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="54" lean-forward="true" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2584">
@@ -366,13 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
           <caret line="41" column="6" lean-forward="true" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="173" lean-forward="true" selection-start-line="22" selection-start-column="173" selection-end-line="22" selection-end-column="173" />
         </state>
       </provider>
     </entry>
@@ -607,20 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/mountPlugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/domePlugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="39" column="2" lean-forward="false" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/sqlite3/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -628,34 +610,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wot-server.js">
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        <state relative-caret-position="170">
+          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="391">
+            <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/mountPlugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        <state relative-caret-position="155">
+          <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/domePlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="39" column="46" lean-forward="false" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="206" column="26" lean-forward="false" selection-start-line="206" selection-start-column="26" selection-end-line="206" selection-end-column="26" />
+        <state relative-caret-position="144">
+          <caret line="762" column="65" lean-forward="false" selection-start-line="762" selection-start-column="62" selection-end-line="762" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/wot-server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        <state relative-caret-position="295">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding />
         </state>
       </provider>

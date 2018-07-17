@@ -14,19 +14,16 @@ module.exports = function() {
       //console.log(req.path);
       var path = req.path;
           if (!token) { //#C
-            if((path==='/') || (path==='/WoT/login') || (path==='/WoT') || (path==='/WoT/') || (path==='/WoT/model')
-            /*|| (path==='/WoT/WeatherStation') || (path==='/WoT/WeatherStation/properties') || (path==='/WoT/WeatherStation/actions') || (path==='/WoT/WeatherStation/events')
-            || (path==='/WoT/Mount') || (path==='/WoT/Mount/properties') || (path==='/WoT/Mount/actions') || (path==='/WoT/Mount/events')
-            || (path==='/WoT/Dome') || (path==='/WoT/Dome/properties') || (path==='/WoT/Dome/actions') || (path==='/WoT/Dome/events')
-            || (path==='/WoT/Camera') || (path==='/WoT/Camera/properties') || (path==='/WoT/Camera/actions') || (path==='/WoT/Camera/events')
-            || (path==='/WoT/Camera_inside') || (path==='/WoT/Camera_inside/properties') || (path==='/WoT/Camera_inside/actions') || (path==='/WoT/Camera_inside/events')
-            || (path==='/WoT/Camera_outside') || (path==='/WoT/Camera_outside/properties') || (path==='/WoT/Camera_outside/actions') || (path==='/WoT/Camera_outside/events')*/
-            ){
-                console.log('Access authorized to '+path);
-                next();
+            if((path==='/WoT/Camera/actions/TakePhoto') || (path==='/WoT/Mount/actions/Goto') || (path==='/WoT/Mount/actions/setTracking')
+            || (path==='/WoT/Mount/actions/GoPark') || (path==='/WoT/Mount/actions/GoHome') || (path==='/WoT/Mount/actions/GoNorth')
+            || (path==='/WoT/Mount/actions/GoNorth') || (path==='/WoT/Camera/properties/ExposureTime') || (path==='/WoT/Camera/properties/ExposureTime')
+            || (path==='/WoT/Camera/properties/Gamma') || (path==='/WoT/Camera/properties/Brightness') || (path==='/WoT/Camera/properties/NumberOfShoots')){
+
+                return res.status(401).send({success: false, message: 'API token missing.'});
             }
             else{
-              return res.status(401).send({success: false, message: 'API token missing.'});
+                //console.log('Access authorized to '+path);
+                next();
             }
           } else {
             if (token != modelSecure.data.apiToken){//keys.apiToken) { //#D
