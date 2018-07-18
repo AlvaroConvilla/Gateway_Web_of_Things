@@ -22,7 +22,7 @@ module.exports = function() {
                 return res.status(401).send({success: false, message: 'API token missing.'});
             }
             else{
-                //console.log('Access authorized to '+path);
+                console.log('Access authorized to '+path);
                 next();
             }
           } else {
