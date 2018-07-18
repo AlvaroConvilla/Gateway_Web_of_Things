@@ -37,7 +37,7 @@
   "@type": ["wot-td:Thing","product"],
   "name": "OAFMS WeatherStation",
   "description": "WeatherStation of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://ofs.fi.upm.es:8484/WeatherStation",
+  "base" : "https://ofs.fi.upm.es:8484/WeatherStation",
   "image": "http://tycononline.com/assets/images/solar%20transmitter.JPG",
   "address":{
     "@type": "dir:PostalAddress",
@@ -52,7 +52,7 @@
   },
   "tags":["WoT","WeatherStation", "Arduino", "Weather"],
   "form":[{
-    "href":"http://ofs.fi.upm.es:8484/WeatherStation/model"
+    "href":"https://ofs.fi.upm.es:8484/WeatherStation/model"
   }],
   "wot-context:interaction":
   [

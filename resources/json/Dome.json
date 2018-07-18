@@ -1,5 +1,5 @@
 {
-  "id":"http://ofs.fi.upm.es:8484",
+  "id":"https://ofs.fi.upm.es:8484",
   "name": "WoT Dome",
   "description": "Dome of the Francisco Manuel Sánchez Astronomical Observatory",
   "tags":[ "WoT", "Dome"],
@@ -166,7 +166,7 @@
       }
     },
     "type":{
-      "link":"http://ofs.fi.upm.es:8484/model",
+      "link":"https://ofs.fi.upm.es:8484/model",
       "title":"Instance type of the Dome"
     },
     "ui":{

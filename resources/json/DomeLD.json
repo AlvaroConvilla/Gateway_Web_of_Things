@@ -38,7 +38,7 @@
   "@id": "Dome",
   "name": "OAFMS Dome",
   "description": "Dome of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://ofs.fi.upm.es:8484/Dome",
+  "base" : "https://ofs.fi.upm.es:8484/Dome",
   "image": "http://mercurio.datsi.fi.upm.es/wp-content/uploads/2015/11/om.jpg",
   "address":{
     "@type": "dir:PostalAddress",
@@ -53,7 +53,7 @@
   },
   "tags":["WoT","Dome"],
   "form":[{
-    "href":"http://ofs.fi.upm.es:8484/Dome/model"
+    "href":"https://ofs.fi.upm.es:8484/Dome/model"
   }],
   "wot-context:interaction":
   [

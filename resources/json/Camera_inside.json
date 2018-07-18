@@ -1,5 +1,5 @@
 {
-  "id":"http://ofs.fi.upm.es:8484",
+  "id":"https://ofs.fi.upm.es:8484",
   "name": "WoT Camera Inside",
   "description": "Thing Camera. Observatorio Astronómico Francisco Manuel Sánchez.",
   "tags":[ "WoT", "Camera", "Inside"],
@@ -79,7 +79,7 @@
       }
     },
     "type":{
-      "link":"http://ofs.fi.upm.es:8484/model",
+      "link":"https://ofs.fi.upm.es:8484/model",
       "title":"Instance type of the Camera Inside"
     },
     "ui":{

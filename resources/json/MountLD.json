@@ -38,7 +38,7 @@
   "@id": "Mount",
   "name": "OAFMS Mount",
   "description": "Mount of the Francisco Manuel Sánchez Astronomical Observatory",
-  "base" : "http://ofs.fi.upm.es:8484/Mount",
+  "base" : "https://ofs.fi.upm.es:8484/Mount",
   "image": "https://nimax-img.de/Produktbilder/zoom/50156_1/Meade-Telescopio-ACF-SC-254-2500-UHTC-LX200-EQ-6-Pro-SynScan-GoTo.jpg",
   "address":{
     "@type": "dir:PostalAddress",
@@ -53,7 +53,7 @@
   },
   "tags":["WoT","Mount", "Telescope"],
   "form":[{
-    "href":"http://ofs.fi.upm.es:8484/Camera/model"
+    "href":"https://ofs.fi.upm.es:8484/Camera/model"
   }],
   "wot-context:interaction":
   [

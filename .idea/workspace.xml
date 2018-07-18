@@ -2,18 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcb4115c-d237-4e8b-9602-56d63c636ced" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/views/action.html" afterPath="$PROJECT_DIR$/views/action.html" />
-      <change beforePath="$PROJECT_DIR$/views/actions.html" afterPath="$PROJECT_DIR$/views/actions.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/plugins/sensorsPlugin.js" afterPath="$PROJECT_DIR$/plugins/sensorsPlugin.js" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Camera.json" afterPath="$PROJECT_DIR$/resources/json/Camera.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/CameraLD.json" afterPath="$PROJECT_DIR$/resources/json/CameraLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Camera_inside.json" afterPath="$PROJECT_DIR$/resources/json/Camera_inside.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Camera_insideLD.json" afterPath="$PROJECT_DIR$/resources/json/Camera_insideLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Camera_outside.json" afterPath="$PROJECT_DIR$/resources/json/Camera_outside.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Camera_outsideLD.json" afterPath="$PROJECT_DIR$/resources/json/Camera_outsideLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Dome.json" afterPath="$PROJECT_DIR$/resources/json/Dome.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/DomeLD.json" afterPath="$PROJECT_DIR$/resources/json/DomeLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Gate.json" afterPath="$PROJECT_DIR$/resources/json/Gate.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/GateLD.json" afterPath="$PROJECT_DIR$/resources/json/GateLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/Mount.json" afterPath="$PROJECT_DIR$/resources/json/Mount.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/MountLD.json" afterPath="$PROJECT_DIR$/resources/json/MountLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/WeatherStation.json" afterPath="$PROJECT_DIR$/resources/json/WeatherStation.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/WeatherStationLD.json" afterPath="$PROJECT_DIR$/resources/json/WeatherStationLD.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/login.json" afterPath="$PROJECT_DIR$/resources/json/login.json" />
+      <change beforePath="$PROJECT_DIR$/resources/json/loginLD.json" afterPath="$PROJECT_DIR$/resources/json/loginLD.json" />
+      <change beforePath="$PROJECT_DIR$/routes/routesCreator.js" afterPath="$PROJECT_DIR$/routes/routesCreator.js" />
       <change beforePath="$PROJECT_DIR$/views/cameraLD.html" afterPath="$PROJECT_DIR$/views/cameraLD.html" />
       <change beforePath="$PROJECT_DIR$/views/camera_insideLD.html" afterPath="$PROJECT_DIR$/views/camera_insideLD.html" />
       <change beforePath="$PROJECT_DIR$/views/camera_outsideLD.html" afterPath="$PROJECT_DIR$/views/camera_outsideLD.html" />
       <change beforePath="$PROJECT_DIR$/views/domeLD.html" afterPath="$PROJECT_DIR$/views/domeLD.html" />
-      <change beforePath="$PROJECT_DIR$/views/event.html" afterPath="$PROJECT_DIR$/views/event.html" />
-      <change beforePath="$PROJECT_DIR$/views/events.html" afterPath="$PROJECT_DIR$/views/events.html" />
       <change beforePath="$PROJECT_DIR$/views/gatewayLD.html" afterPath="$PROJECT_DIR$/views/gatewayLD.html" />
       <change beforePath="$PROJECT_DIR$/views/mountLD.html" afterPath="$PROJECT_DIR$/views/mountLD.html" />
-      <change beforePath="$PROJECT_DIR$/views/properties.html" afterPath="$PROJECT_DIR$/views/properties.html" />
-      <change beforePath="$PROJECT_DIR$/views/property.html" afterPath="$PROJECT_DIR$/views/property.html" />
       <change beforePath="$PROJECT_DIR$/views/root.html" afterPath="$PROJECT_DIR$/views/root.html" />
       <change beforePath="$PROJECT_DIR$/views/weatherLD.html" afterPath="$PROJECT_DIR$/views/weatherLD.html" />
     </list>
@@ -26,102 +39,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="domeLD.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/domeLD.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="138" lean-forward="false" selection-start-line="25" selection-start-column="138" selection-end-line="25" selection-end-column="138" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="event.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/event.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="144" lean-forward="false" selection-start-line="25" selection-start-column="144" selection-end-line="25" selection-end-column="144" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="events.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/events.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="142" lean-forward="false" selection-start-line="25" selection-start-column="142" selection-end-line="25" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gatewayLD.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/gatewayLD.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="88" lean-forward="false" selection-start-line="25" selection-start-column="88" selection-end-line="25" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mountLD.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/mountLD.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="138" lean-forward="false" selection-start-line="25" selection-start-column="138" selection-end-line="25" selection-end-column="138" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="properties.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/properties.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="142" lean-forward="false" selection-start-line="25" selection-start-column="142" selection-end-line="25" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="property.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/property.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="92" lean-forward="false" selection-start-line="24" selection-start-column="92" selection-end-line="24" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="root.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/root.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="33" column="142" lean-forward="false" selection-start-line="33" selection-start-column="142" selection-end-line="33" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weatherLD.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/weatherLD.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="138" lean-forward="false" selection-start-line="25" selection-start-column="138" selection-end-line="25" selection-end-column="138" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="293">
+                <caret line="33" column="142" lean-forward="false" selection-start-line="33" selection-start-column="137" selection-end-line="33" selection-end-column="142" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -130,10 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>app</find>
-      <find>pluton.datsi</find>
-      <find>createMountActionsRoutes</find>
-      <find>&quot;secure&quot;:&quot;false&quot;</find>
       <find>venus.datsi</find>
       <find>createCameraActionsRoutes</find>
       <find>comprobarReservaUser</find>
@@ -160,10 +82,15 @@
       <find>inter</find>
       <find>http</find>
       <find>ofs</find>
+      <find>httpss</find>
+      <find>http://ofs.fi.upm.es:8484</find>
+      <find>http://ofs.fi.upm.es</find>
+      <find>inici</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;secure&quot;:&quot;true&quot;</replace>
       <replace>ofs</replace>
+      <replace>https://ofs.fi.upm.es:8484</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -210,7 +137,6 @@
         <option value="$PROJECT_DIR$/middleware/auth.js" />
         <option value="$PROJECT_DIR$/plugins/domePlugin.js" />
         <option value="$PROJECT_DIR$/routes/routesCreator.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/views/action.html" />
         <option value="$PROJECT_DIR$/views/actions.html" />
         <option value="$PROJECT_DIR$/views/camera_insideLD.html" />
@@ -225,6 +151,7 @@
         <option value="$PROJECT_DIR$/views/property.html" />
         <option value="$PROJECT_DIR$/views/root.html" />
         <option value="$PROJECT_DIR$/views/weatherLD.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -361,7 +288,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="-28" width="1871" height="991" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -369,7 +295,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36308807" sideWeight="0.49808007" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36308807" sideWeight="0.49808007" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16456391" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -621,23 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="441">
-            <caret line="35" column="148" lean-forward="true" selection-start-line="35" selection-start-column="148" selection-end-line="35" selection-end-column="148" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/routesCreator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -776,8 +685,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/weatherLD.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="138" lean-forward="false" selection-start-line="25" selection-start-column="138" selection-end-line="25" selection-end-column="138" />
+        <state relative-caret-position="340">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="293">
+            <caret line="33" column="142" lean-forward="false" selection-start-line="33" selection-start-column="137" selection-end-line="33" selection-end-column="142" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>

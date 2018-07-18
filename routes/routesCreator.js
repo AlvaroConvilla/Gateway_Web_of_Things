@@ -115,7 +115,7 @@ function createRootRoute(model){
     req.result = utils.extractFields(fields,model);
     req.links = ['WoT/model', 'WoT/login', 'WoT/WeatherStation', 'WoT/Dome', 'WoT/Camera', 'WoT/Mount', 'WoT/Camera_inside', 'WoT/Camera_outside'];
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/WoT/model';
+    else type = 'https://ofs.fi.upm.es:8484/WoT/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -142,7 +142,7 @@ function createModelRoutes(model) {
     req.uri = 'WoT';
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/WoT/model';
+    else type = 'https://ofs.fi.upm.es:8484/WoT/model';
     res.links({
       //type: type
     });
@@ -162,7 +162,7 @@ var actions = model.links.actions;
     req.result = actions.resources['login'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/WoT/model';
+    else type = 'https://ofs.fi.upm.es:8484/WoT/model';
     res.links({
       //type: type
     });
@@ -231,7 +231,7 @@ function createWeatherStationRoute(model){
     req.links = ['/WoT/WeatherStation/model', '/WoT/WeatherStation/properties', '/WoT/WeatherStation/actions', '/WoT/WeatherStation/events'];
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es:8484/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -255,7 +255,7 @@ function createWeatherStationModelRoutes(model) {
     req.entityId = "model";
     
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -275,7 +275,7 @@ function createWeatherStationPropertiesRoutes(model) {
     req.links = ['WeatherStation/properties', 'WeatherStation/actions', 'WeatherStation/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       state:'/state',
@@ -301,7 +301,7 @@ function createWeatherStationPropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       //type: type
@@ -322,7 +322,7 @@ function createWeatherStationActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -354,7 +354,7 @@ function createWeatherStationActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://ofs.fi.upm.es:8484/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       type: type
@@ -381,7 +381,7 @@ function createWeatherStationEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -402,7 +402,7 @@ function createWeatherStationEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //type: type
@@ -426,7 +426,7 @@ function createDomeRoute(model){
     req.links = ['Dome/model', 'Dome/properties', 'Dome/actions', 'Dome/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -452,7 +452,7 @@ function createDomeModelRoutes(model) {
     req.type = 'domeLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -472,7 +472,7 @@ function createDomePropertiesRoutes(model) {
     req.links = ['Dome/properties', 'Dome/actions', 'Dome/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       state:'/state',
@@ -498,7 +498,7 @@ function createDomePropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       //type: type
@@ -518,7 +518,7 @@ function createDomeActionsRoutes(model) {
     req.result = utils.modelToResources(actions.resources, true);
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -536,7 +536,7 @@ function createDomeActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -597,7 +597,7 @@ function createDomeEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //HighTemperature:'/HighTemperature',
@@ -618,7 +618,7 @@ function createDomeEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //type: type
@@ -642,7 +642,7 @@ function createCameraRoute(model){
     req.links = ['Camera/model', 'Camera/properties', 'Camera/actions', 'Camera/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -668,7 +668,7 @@ function createCameraModelRoutes(model) {
     req.type = 'cameraLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -688,7 +688,7 @@ function createCameraPropertiesRoutes(model) {
     req.links = ['Camera/properties', 'Camera/actions', 'Camera/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
      //type: type
@@ -730,7 +730,7 @@ function createCameraPropertiesRoutes(model) {
     else{
         // Generate the Link headers
         if (properties['@context']) type = properties['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+        else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
         res.links({
           //type: type
@@ -751,7 +751,7 @@ function createCameraPropertiesRoutes(model) {
 
     // Generate the Link headers
     if (properties.resources[req.params.id]['@context']) type = properties.resources[req.params.id]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       //type: type
@@ -837,7 +837,7 @@ function createCameraActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -855,7 +855,7 @@ function createCameraActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -904,7 +904,7 @@ function createCameraEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -925,7 +925,7 @@ function createCameraEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //type: type
@@ -948,7 +948,7 @@ function createMountRoute(model){
     req.links = ['Mount/model', 'Mount/properties', 'Mount/actions', 'Mount/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -974,7 +974,7 @@ function createMountModelRoutes(model) {
     req.type = 'mountLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -994,7 +994,7 @@ function createMountPropertiesRoutes(model) {
     req.links = ['Mount/properties', 'Mount/actions', 'Mount/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
 /*      state:'/state',
@@ -1020,7 +1020,7 @@ function createMountPropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-     else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+     else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       //type: type
@@ -1041,7 +1041,7 @@ function createMountActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1214,7 +1214,7 @@ function createMountActionsRoutes(model) {
     req.result = actions.resources[req.entityId];
 
     if (actions.resources[req.params.actionType]['@context']) type = actions.resources[req.params.actionType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1242,7 +1242,7 @@ function createMountEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       HighTemperature:'/HighTemperature',
@@ -1263,7 +1263,7 @@ function createMountEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //type: type
@@ -1287,7 +1287,7 @@ function createCameraInsideRoute(model){
     'Camera_inside/2/properties', 'Camera_inside/2/actions', 'Camera_inside/2/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -1312,7 +1312,7 @@ function createCameraInsideRoute(model){
     'Camera_inside/2/properties', 'Camera_inside/2/actions', 'Camera_inside/2/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -1338,7 +1338,7 @@ function createCameraInsideModelRoutes(model) {
     req.type = 'camera_insideLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -1359,7 +1359,7 @@ function createCameraInsidePropertiesRoutes(model) {
                      'Camera_inside/2/properties', 'Camera_inside/2/actions', 'Camera_inside/2/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
 //      state:'/state',
@@ -1397,7 +1397,7 @@ function createCameraInsidePropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-     else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+     else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     //res.links({
       //type: type
@@ -1419,7 +1419,7 @@ function createCameraInsideActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1451,7 +1451,7 @@ function createCameraInsideActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
      if (properties['@context']) type = properties['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+        else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       type: type
@@ -1479,7 +1479,7 @@ function createCameraInsideEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
 /*      HighTemperature:'/HighTemperature',
@@ -1500,7 +1500,7 @@ function createCameraInsideEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
      if (events['@context']) type = events['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+        else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       //type: type
@@ -1524,7 +1524,7 @@ function createCameraOutsideRoute(model){
     req.links = ['Camera_outside/model', 'Camera_outside/properties', 'Camera_outside/actions', 'Camera_outside/events'];
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
 
 //Crea encabezado de enlace que direcciona a recursos
     res.links({
@@ -1550,7 +1550,7 @@ function createCameraOutsideModelRoutes(model) {
     req.type = 'camera_outsideLD';
 
     if (model['@context']) type = model['@context'];
-    else type = 'http://ofs.fi.upm.es/model';
+    else type = 'https://ofs.fi.upm.es:8484/model';
     res.links({
       //type: type
     });
@@ -1571,7 +1571,7 @@ function createCameraOutsidePropertiesRoutes(model) {
     req.links = ['Camera_outside/properties', 'Camera_outside/actions', 'Camera_outside/events'];
     // Generate the Link headers
     if (properties['@context']) type = properties['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
 /*      state:'/state',
@@ -1603,7 +1603,7 @@ function createCameraOutsidePropertiesRoutes(model) {
 
     // Generate the Link headers
      if (properties['@context']) type = properties['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+        else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     //res.links({
       //type: type
@@ -1626,7 +1626,7 @@ function createCameraOutsideActionsRoutes(model) {
     req.links = [''];
 
     if (actions['@context']) type = actions['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#actions-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#actions-resource';
 
     res.links({
       //type: type
@@ -1658,7 +1658,7 @@ function createCameraOutsideActionsRoutes(model) {
     req.entityId = req.params.actionType;
 
      if (actions['@context']) type = actions['@context'];
-        else type = 'http://ofs.fi.upm.es/model/#properties-resource';
+        else type = 'https://ofs.fi.upm.es:8484/model/#properties-resource';
 
     res.links({
       type: type
@@ -1686,7 +1686,7 @@ function createCameraOutsideEventsRoutes(model) {
     req.result = utils.modelToResources(events.resources, true);
 
     if (events['@context']) type = events['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
 //      HighTemperature:'/HighTemperature',
@@ -1707,7 +1707,7 @@ function createCameraOutsideEventsRoutes(model) {
     req.result = events.resources[req.entityId];
 
     if (events.resources[req.params.eventType]['@context']) type = events.resources[req.params.eventType]['@context'];
-    else type = 'http://ofs.fi.upm.es/model/#events-resource';
+    else type = 'https://ofs.fi.upm.es:8484/model/#events-resource';
 
     res.links({
       //type: type
@@ -1730,7 +1730,7 @@ function reverseResults(array) {
 function obtenerToken(json_, callback){
         //enviar a pasarela IoT el login
        request({
-          url: "http://ofs.fi.upm.es/api/login",
+          url: "https://ofs.fi.upm.es:8484/api/login",
           method: "POST",
           json: true,
           timeout: 30000,
@@ -1760,7 +1760,7 @@ function obtenerReservas(token, callback){
 //enviar peticion de consulta de reserva actual
                 var auth = "Authorization";
                 request({
-                  url: "http://ofs.fi.upm.es/api/reservations/own",
+                  url: "https://ofs.fi.upm.es:8484/api/reservations/own",
                   method: "GET",
                   timeout: 30000,
                   followRedirect: true,
