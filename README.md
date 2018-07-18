@@ -1,8 +1,8 @@
 # Gateway_Web_of_Things
 
-##Instrucciones para el despliegue de la pasarela Web of Things.
-###1º Desplegar imagen Docker y ejecutar contenedor de Rabbitmq.
-####Para ello escribir el siguiente documento: docker-compose.yml
+## Instrucciones para el despliegue de la pasarela Web of Things.
+### 1º Desplegar imagen Docker y ejecutar contenedor de Rabbitmq.
+#### Para ello escribir el siguiente documento: docker-compose.yml
 ´´´
 version: '3'
 services:
