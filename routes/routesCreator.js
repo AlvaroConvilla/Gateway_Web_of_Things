@@ -156,9 +156,9 @@ var actions = model.links.actions;
   // GET /WoT/login
   router.route('/WoT/login').get(function (req, res, next) {
     req.actionModel = actions.resources['login'];
-    req.type = 'action';
+    req.type = 'login';
     req.entityId = 'login';
-    req.uri = "Login";
+    req.uri = "login";
     req.result = actions.resources['login'];
 
     if (model['@context']) type = model['@context'];
