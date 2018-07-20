@@ -38,7 +38,7 @@ var take_photos = require('./plugins/cameraPlugin');
 take_photos.takePhotos();//Comienzo del proceso de obtener las fotos
 
 var port = 8484;
-var secure = false;
+var secure = true;
 if(secure) {
     var https = require('https'); //#B
     var certFile = './resources/secure/caCert.pem'; //#C
