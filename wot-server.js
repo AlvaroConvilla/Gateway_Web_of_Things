@@ -57,7 +57,7 @@ if(secure) {
         console.log('>Secure WoT server started on port %s', port);
     })
   } else { //Sin HTTPS://
-    Iniciar el servidor HTTP mediante la invocación de escucha() en la aplicación express.
+    //Iniciar el servidor HTTP mediante la invocación de escucha() en la aplicación express.
     var server = httpServer.listen(port, function () {
       console.log('>HTTP server started...');
       wsServer.listen(server);
