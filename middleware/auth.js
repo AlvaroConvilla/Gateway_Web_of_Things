@@ -11,7 +11,7 @@ module.exports = function() {
 
     } else {
       var token = req.body.token || req.get('authorization') || req.query.token; //#B
-      console.log(req.method);
+      //console.log(req.method);
       var path = req.path;
       if ((!token) && (req.method === 'GET')) { //#C
             if((path==='/WoT/Camera/actions/TakePhoto') || (path==='/WoT/Mount/actions/Goto') || (path==='/WoT/Mount/actions/setTracking')
