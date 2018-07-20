@@ -14,6 +14,7 @@ module.exports = function() {
       console.log(req.method);
       var path = req.path;
       if ((!token) && (req.method === 'GET')) { //#C
+        console.log('entra');
             if((path==='/WoT/Camera/actions/TakePhoto') || (path==='/WoT/Mount/actions/Goto') || (path==='/WoT/Mount/actions/setTracking')
             || (path==='/WoT/Mount/actions/GoPark') || (path==='/WoT/Mount/actions/GoHome') || (path==='/WoT/Mount/actions/GoNorth')
             || (path==='/WoT/Mount/actions/GoNorth') || (path==='/WoT/Camera/properties/ExposureTime') || (path==='/WoT/Camera/properties/ExposureTime')

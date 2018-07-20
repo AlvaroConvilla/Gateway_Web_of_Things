@@ -38,8 +38,8 @@ var take_photos = require('./plugins/cameraPlugin');
 take_photos.takePhotos();//Comienzo del proceso de obtener las fotos
 
 var port = 8484;
-//exports.sec = secure;
-//if(secure) {
+var secure = false;
+if(secure) {
     var https = require('https'); //#B
     var certFile = './resources/secure/caCert.pem'; //#C
     var keyFile = './resources/secure/privateKey.pem'; //#D
@@ -56,12 +56,12 @@ var port = 8484;
         wsServer.listen(server); //#G
         console.log('>Secure WoT server started on port %s', port);
     })
-  //} else { //Sin HTTPS://
-    //Iniciar el servidor HTTP mediante la invocación de escucha() en la aplicación express.
-    //var server = httpServer.listen(port, function () {
-      //console.log('>HTTP server started...');
-      //wsServer.listen(server);
-      //Una vez que se inicia el servidor, se invoca la devolución de llamada.
-      //console.info('>Your WoT-Gateway is up and running on port %s', port);
-    //});
-//}
+  } else { //Sin HTTPS://
+    Iniciar el servidor HTTP mediante la invocación de escucha() en la aplicación express.
+    var server = httpServer.listen(port, function () {
+      console.log('>HTTP server started...');
+      wsServer.listen(server);
+      Una vez que se inicia el servidor, se invoca la devolución de llamada.
+      console.info('>Your WoT-Gateway is up and running on port %s', port);
+    });
+}
