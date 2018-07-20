@@ -26,7 +26,7 @@ exports.listen = function(server){
         );
        })*/
 /////////////////WeatherStation
-       if(ruta == '/WeatherStation/properties/demo_grafica'){
+       if(ruta == '/WoT/WeatherStation/properties/demo_grafica'){
           var location = '/links/properties/resources/temperature'; //localización del recurso pedido en el JSON
 
           ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -39,7 +39,7 @@ exports.listen = function(server){
             }
           })
        }
-       if(ruta == '/WeatherStation/properties/demo_press'){
+       if(ruta == '/WoT/WeatherStation/properties/demo_press'){
                  var location = '/links/properties/resources/pressure'; //localización del recurso pedido en el JSON
 
                  ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -52,7 +52,7 @@ exports.listen = function(server){
                    }
                  })
        }
-       if(ruta == '/WeatherStation/properties/demo_windSpeed'){
+       if(ruta == '/WoT/WeatherStation/properties/demo_windSpeed'){
                         var location = '/links/properties/resources/windSpeed'; //localización del recurso pedido en el JSON
 
                         ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -65,7 +65,7 @@ exports.listen = function(server){
                           }
                         })
        }
-       if(ruta == '/WeatherStation/properties/demo_humidity'){
+       if(ruta == '/WoT/WeatherStation/properties/demo_humidity'){
                         var location = '/links/properties/resources/humidity'; //localización del recurso pedido en el JSON
 
                         ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -79,7 +79,7 @@ exports.listen = function(server){
                         })
               }
        //Evento que avisa a los subscritos si la temperatura ha cambiado
-       if(ruta == '/WeatherStation/properties/temperature'){
+       if(ruta == '/WoT/WeatherStation/properties/temperature'){
            var temp = null;
            var location = '/links/properties/resources/temperature'; //localización del recurso pedido en el JSON
            ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -98,7 +98,7 @@ exports.listen = function(server){
            })
        }
        //Evento que avisa a los subscritos si la temperatura es alta para el observatorio
-       else if(ruta == '/WeatherStation/events/HighTemperature'){
+       else if(ruta == '/WoT/WeatherStation/events/HighTemperature'){
           var flag = null;
           var location = '/links/events/resources/HighTemperature'; //localización del recurso pedido en el JSON
           //ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -116,7 +116,7 @@ exports.listen = function(server){
           })
        }
        //Evento que avisa a los subscritos si la temperatura es baja para el observatorio
-       else if(ruta == '/WeatherStation/events/LowTemperature'){
+       else if(ruta == '/WoT/WeatherStation/events/LowTemperature'){
          var flag = null;
          var location = '/links/events/resources/LowTemperature'; //localización del recurso pedido en el JSON
          //ws.send(JSON.stringify(selectResource(location)));
@@ -134,7 +134,7 @@ exports.listen = function(server){
          })
        }
        //Evento que avisa a los observadores sobre que está lloviendo
-       else if(ruta == '/WeatherStation/events/Rain'){
+       else if(ruta == '/WoT/WeatherStation/events/Rain'){
           var flag = null;
           var location = '/links/events/resources/Rain'; //localización del recurso pedido en el JSON
           //ws.send(JSON.stringify(selectResource(location)));
@@ -152,7 +152,7 @@ exports.listen = function(server){
           })
        }
        //Evento que informa a los observadores de que la vel. del viento es alta
-       else if(ruta == '/WeatherStation/events/StrongWind'){ //modelWindSpeed = utils.findProperty('windSpeed',resources);
+       else if(ruta == '/WoT/WeatherStation/events/StrongWind'){ //modelWindSpeed = utils.findProperty('windSpeed',resources);
           var flag = null;
           var location = '/links/events/resources/StrongWind';
           ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -170,7 +170,7 @@ exports.listen = function(server){
           })
        }
        //Evento que informa a los observadores de que la vel. del viento es alta
-       else if(ruta == '/WeatherStation/events/ChangeState'){ //modelWindSpeed = utils.findProperty('windSpeed',resources);
+       else if(ruta == '/WoT/WeatherStation/events/ChangeState'){ //modelWindSpeed = utils.findProperty('windSpeed',resources);
           var flag = null;
           var location = '/links/events/resources/ChangeState';
           ws.send(JSON.stringify(selectResource(location, resourcesWS)));
@@ -188,7 +188,7 @@ exports.listen = function(server){
           })
        }//FIN WeatherStation
 ////////////////////Dome
-       else if(ruta == '/Dome/events/ChangeStateShutter'){
+       else if(ruta == '/WoT/Dome/events/ChangeStateShutter'){
             var flag = null;
             var location = '/links/events/resources/ChangeStateShutter';
             ws.send(JSON.stringify(selectResource(location, resourcesDome)));
@@ -205,7 +205,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Dome/events/ChangeStateDome'){
+       else if(ruta == '/WoT/Dome/events/ChangeStateDome'){
             var flag = null;
             var location = '/links/events/resources/ChangeStateDome';
             ws.send(JSON.stringify(selectResource(location, resourcesDome)));
@@ -222,7 +222,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Dome/events/LowVoltageBattery'){
+       else if(ruta == '/WoT/Dome/events/LowVoltageBattery'){
             var flag = null;
             var location = '/links/events/resources/LowVoltageBattery';
             ws.send(JSON.stringify(selectResource(location, resourcesDome)));
@@ -239,7 +239,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Dome/events/StopRunningDome'){
+       else if(ruta == '/WoT/Dome/events/StopRunningDome'){
             var flag = null;
             var location = '/links/events/resources/StopRunningDome';
             ws.send(JSON.stringify(selectResource(location, resourcesDome)));
@@ -256,7 +256,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Dome/events/ChangeState'){
+       else if(ruta == '/WoT/Dome/events/ChangeState'){
                    var flag = null;
                    var location = '/links/events/resources/ChangeState';
                    ws.send(JSON.stringify(selectResource(location, resourcesDome)));
@@ -274,7 +274,7 @@ exports.listen = function(server){
                    })
               }
 ////////////////////Camera DMK
-       else if(ruta == '/Camera/events/NewPhoto'){
+       else if(ruta == '/WoT/Camera/events/NewPhoto'){
             var flag = null;
             var location = '/links/events/resources/NewPhoto';
             ws.send(JSON.stringify(selectResource(location, resourcesCamDMK)));
@@ -293,7 +293,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Camera/events/ChangeState'){
+       else if(ruta == '/WoT/Camera/events/ChangeState'){
                    var flag = null;
                    var location = '/links/events/resources/ChangeState';
                    ws.send(JSON.stringify(selectResource(location, resourcesCamDMK)));
@@ -313,7 +313,7 @@ exports.listen = function(server){
                    })
               }
 ////////////////////Mount
-       else if(ruta == '/Mount/events/ChangeMotion'){
+       else if(ruta == '/WoT/Mount/events/ChangeMotion'){
             var flag = null;
             var location = '/links/events/resources/ChangeMotion';
             ws.send(JSON.stringify(selectResource(location, resourcesMount)));
@@ -330,7 +330,7 @@ exports.listen = function(server){
               }
             })
        }
-       else if(ruta == '/Mount/events/ChangeState'){
+       else if(ruta == '/WoT/Mount/events/ChangeState'){
                    var flag = null;
                    var location = '/links/events/resources/ChangeState';
                    ws.send(JSON.stringify(selectResource(location, resourcesMount)));
@@ -348,7 +348,7 @@ exports.listen = function(server){
                    })
               }
 ////////////////////Camera_inside
-        else if(ruta == '/Camera_inside/events/ChangeState'){
+        else if(ruta == '/WoT/Camera_inside/events/ChangeState'){
                    var flag = null;
                    var location = '/links/events/resources/ChangeState';
                    ws.send(JSON.stringify(selectResource(location, resourcesMount)));
@@ -366,7 +366,7 @@ exports.listen = function(server){
                    })
               }
 ////////////////////Camera_outside
-              else if(ruta == '/Camera_outside/events/ChangeState'){
+              else if(ruta == '/WoT/Camera_outside/events/ChangeState'){
                    var flag = null;
                    var location = '/links/events/resources/ChangeState';
                    ws.send(JSON.stringify(selectResource(location, resourcesMount)));
