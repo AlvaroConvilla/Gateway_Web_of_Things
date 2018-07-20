@@ -11,9 +11,9 @@ module.exports = function() {
 
     } else {
       var token = req.body.token || req.get('authorization') || req.query.token; //#B
-      //console.log(req.path);
+      console.log(req.method);
       var path = req.path;
-          if (!token) { //#C
+      if ((!token) && ((req.method == 'POST') || (req.method == 'PUT'))) { //#C
             if((path==='/WoT/Camera/actions/TakePhoto') || (path==='/WoT/Mount/actions/Goto') || (path==='/WoT/Mount/actions/setTracking')
             || (path==='/WoT/Mount/actions/GoPark') || (path==='/WoT/Mount/actions/GoHome') || (path==='/WoT/Mount/actions/GoNorth')
             || (path==='/WoT/Mount/actions/GoNorth') || (path==='/WoT/Camera/properties/ExposureTime') || (path==='/WoT/Camera/properties/ExposureTime')
@@ -25,13 +25,14 @@ module.exports = function() {
                 console.log('Access authorized to '+path);
                 next();
             }
-          } else {
+      }
+      else {
             if (token != modelSecure.data.apiToken){//keys.apiToken) { //#D
               return res.status(403).send({success: false, message: 'API token invalid.'});
             } else { //#E
               next();
             }
-          }
+      }
     }
   }
 };
