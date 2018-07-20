@@ -61,7 +61,7 @@ if(secure) {
     var server = httpServer.listen(port, function () {
       console.log('>HTTP server started...');
       wsServer.listen(server);
-      Una vez que se inicia el servidor, se invoca la devolución de llamada.
+      //Una vez que se inicia el servidor, se invoca la devolución de llamada.
       console.info('>Your WoT-Gateway is up and running on port %s', port);
     });
 }
